@@ -1,0 +1,106 @@
+{
+  "attributes": {
+    "strength": {
+      "description": "A high Strength allows your character to carry more items and may give bonuses to attack and damage with melee weapons.",
+      "prime_for_class": "Mercenary",
+      "mechanics": {
+        "carry_capacity": true,
+        "melee_bonus": {
+          "attack": true,
+          "damage": true
+        }
+      },
+      "house_rules": [
+        "Mercenaries and Alien Brutes may use their Strength Bonus to modify melee To-Hit and damage rolls."
+      ]
+    },
+    "intelligence": {
+      "description": "Intelligence represents I.Q., reasoning, and the ability to solve puzzles or understand difficult concepts.",
+      "mechanics": {
+        "languages": "Gain one extra language for each point above 10."
+      },
+      "house_rules": [
+        "Alien Mystics may use their Intelligence Bonus to penalize Saving Throws against their Gifts."
+      ]
+    },
+    "wisdom": {
+      "description": "Wisdom determines insight, perception, and good judgment. Affects XP and meditation effectiveness.",
+      "prime_for_class": "Star Knight",
+      "mechanics": {
+        "xp_bonus": "5% if Wisdom is 13 or higher"
+      },
+      "house_rules": [
+        "Star Knights may use their Wisdom Bonus to penalize Saving Throws against their Meditations."
+      ]
+    },
+    "constitution": {
+      "description": "Constitution represents health and endurance. Adds bonus HP per Hit Die.",
+      "mechanics": {
+        "hp_bonus": "Add Constitution Bonus to each Hit Die roll"
+      }
+    },
+    "dexterity": {
+      "description": "Dexterity is a combination of coordination and quickness. Affects ranged attacks and possibly AC.",
+      "prime_for_class": "Pilot",
+      "mechanics": {
+        "ranged_hit_bonus": true
+      },
+      "house_rules": [
+        "Dexterity Bonus may modify Armor Class (AC). Positive bonus improves AC; negative worsens it."
+      ]
+    },
+    "charisma": {
+      "description": "Charisma affects leadership, negotiation, and number and loyalty of assistants.",
+      "prime_for_class": "Aristocrat",
+      "mechanics": {
+        "xp_bonus": "5% if Charisma is 13 or higher",
+        "assistants_and_loyalty": "See tables/charisma_bonus.json"
+      },
+      "house_rules": [
+        "Referee may require loyalty checks for NPCs in dangerous or morally compromising situations."
+      ]
+    }
+  },
+  "universal_bonus_table": [
+    {
+      "range": "3-6",
+      "description": "Below Average",
+      "bonus": "-1 (or -5%)"
+    },
+    {
+      "range": "7-14",
+      "description": "Average",
+      "bonus": "None"
+    },
+    {
+      "range": "15-18",
+      "description": "Above Average",
+      "bonus": "+1 (or 5%)"
+    }
+  ],
+  "house_rules": {
+    "rolling_options": [
+      "Roll 3d6 in order for each attribute.",
+      "Roll 3d6 six times and assign to attributes as desired.",
+      "Roll 4d6, drop the lowest die, assign as desired (heroic campaigns)."
+    ]
+  },
+  "experience_bonus_rules": {
+    "base_bonuses": [
+      "All characters add percentage bonuses from Wisdom and Charisma if high enough.",
+      "Each class adds their Prime Attribute bonus (some high values may double this)."
+    ],
+    "maximum_bonus": "20%",
+    "notes": [
+      "Alien Brute, Alien Mystic, and Robot do not receive class-based XP bonuses."
+    ]
+  },
+  "starting_credits": {
+    "roll": "3d6 \u00d7 10",
+    "description": "This represents the number of credits (cd) your character starts with."
+  },
+  "alignment": {
+    "description": "Alignments usually divide the world into 'us' (Lawful or Good) and 'them' (Chaotic or Evil).",
+    "referee_note": "The Referee defines alignment meanings and consequences."
+  }
+}

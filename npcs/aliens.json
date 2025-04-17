@@ -1,0 +1,281 @@
+{
+  "aliens": [
+    {
+      "name": "Cyborg, Metallic",
+      "armor_class": "6 [13]",
+      "hit_dice": 2,
+      "total_hit_bonus": "+2",
+      "attacks": [
+        {
+          "type": "Laser pistol",
+          "damage": "1d6+1"
+        },
+        {
+          "type": "Laser rifle",
+          "damage": "2d6"
+        }
+      ],
+      "saving_throw": 17,
+      "special": "None",
+      "movement": "12",
+      "hde_xp": "2/30",
+      "description": "Metallic Cyborgs are escaped former slaves turned warriors, standing nearly 7 feet tall with chrome bodies and glowing red eyes."
+    },
+    {
+      "name": "Cyborg, Replica",
+      "armor_class": "7 [12]",
+      "hit_dice": 3,
+      "total_hit_bonus": "+3",
+      "attacks": [
+        {
+          "type": "Slam",
+          "damage": "1d6-1"
+        }
+      ],
+      "saving_throw": 16,
+      "special": "Appears completely human and is skilled in infiltration.",
+      "movement": "12",
+      "hde_xp": "3/75",
+      "description": "Rulers of cyborg society, these near-perfect human replicas infiltrate civilization unnoticed."
+    },
+    {
+      "name": "Falcon-Men",
+      "armor_class": "9 [10]",
+      "hit_dice": "1+1",
+      "total_hit_bonus": "+1",
+      "attacks": [
+        {
+          "type": "Wing buffet or by weapon",
+          "damage": "1d6-1"
+        }
+      ],
+      "saving_throw": 18,
+      "special": "Flight",
+      "movement": "12 (land or flight)",
+      "hde_xp": "2/20",
+      "description": "Humanoid figures with large feathered wings, often wearing robes and shouting with dramatic flair."
+    },
+    {
+      "name": "Felinoids",
+      "armor_class": "7 [12]",
+      "hit_dice": "1+1",
+      "total_hit_bonus": "+1",
+      "attacks": [
+        {
+          "type": "Claws or by weapon",
+          "damage": "1d6-1"
+        }
+      ],
+      "saving_throw": 18,
+      "special": "Dark vision 90 ft, Climb",
+      "movement": "12 (climbing: 12)",
+      "hde_xp": "1/15",
+      "description": "Tall feline humanoids with natural climbing claws and night vision. Agile and territorial."
+    },
+    {
+      "name": "Greys",
+      "armor_class": "6 [13]",
+      "hit_dice": 3,
+      "total_hit_bonus": "+3",
+      "attacks": [
+        {
+          "type": "Psychic Blast",
+          "damage": "1d6"
+        }
+      ],
+      "saving_throw": 16,
+      "special": "Psychic Blast, Detect Thoughts",
+      "movement": "8",
+      "hde_xp": "3/175",
+      "description": "Mysterious slick-skinned creatures with black eyes and telepathic abilities."
+    },
+    {
+      "name": "Mindoids",
+      "armor_class": "5 [14]",
+      "hit_dice": 5,
+      "total_hit_bonus": "+5",
+      "attacks": [
+        {
+          "type": "Psychic Energy",
+          "damage": "2d6"
+        }
+      ],
+      "saving_throw": 14,
+      "special": "Detect Invisible, Detect Thoughts, Expand Senses, +2 Initiative",
+      "movement": "12",
+      "hde_xp": "5/600",
+      "description": "Humanlike beings with enormous craniums and immense psychic power. Emit damaging psychic bursts."
+    },
+    {
+      "name": "Odays",
+      "armor_class": "7 [12]",
+      "hit_dice": "1+1",
+      "total_hit_bonus": "+1",
+      "attacks": [
+        {
+          "type": "By weapon",
+          "damage": "1d6"
+        }
+      ],
+      "saving_throw": 18,
+      "special": "Meditations as 7th level Star Knight",
+      "movement": "6",
+      "hde_xp": "5/240",
+      "description": "Small, wise, and riddle-speaking aliens who act as mentors to many Star Knights."
+    },
+    {
+      "name": "Procyon",
+      "armor_class": "4 [15]",
+      "hit_dice": 2,
+      "total_hit_bonus": "+2",
+      "attacks": [
+        {
+          "type": "Laser rifle or other weapon",
+          "damage": "2d6"
+        }
+      ],
+      "saving_throw": 17,
+      "special": "+1 To-Hit with laser weapons and grenades",
+      "movement": "9",
+      "hde_xp": "2/45",
+      "description": "Aggressive raccoon-like beings with a gift for advanced weapons and tactics."
+    },
+    {
+      "name": "Qinlons",
+      "armor_class": "6 [13]",
+      "hit_dice": "3+3",
+      "total_hit_bonus": "+4",
+      "attacks": [
+        {
+          "type": "By weapon",
+          "damage": "varies"
+        }
+      ],
+      "saving_throw": 16,
+      "special": "+1 to melee damage",
+      "movement": "12",
+      "hde_xp": "3/75",
+      "description": "Honor-driven warriors with ridged foreheads and brutal melee strength."
+    },
+    {
+      "name": "Soldier",
+      "armor_class": "5 [16]",
+      "hit_dice": "1+1 or higher",
+      "total_hit_bonus": "+1",
+      "attacks": [
+        {
+          "type": "By weapon",
+          "damage": "varies"
+        }
+      ],
+      "saving_throw": "18 or lower",
+      "special": "None",
+      "movement": "12",
+      "hde_xp": "1/15",
+      "description": "Generic military personnel, mercenaries, or pirates. Highly customizable per scenario."
+    },
+    {
+      "name": "Space Savages",
+      "armor_class": "7 [12]",
+      "hit_dice": 2,
+      "total_hit_bonus": "+2",
+      "attacks": [
+        {
+          "type": "Slam or by weapon",
+          "damage": "1d6"
+        }
+      ],
+      "saving_throw": 17,
+      "special": "Immune to mind-influencing effects",
+      "movement": "15",
+      "hde_xp": "2/45",
+      "description": "Feral space marauders who scream, kill, and never negotiate. Immune to mental control."
+    },
+    {
+      "name": "Uttins",
+      "armor_class": "8 [11]",
+      "hit_dice": 1,
+      "total_hit_bonus": "+1",
+      "attacks": [
+        {
+          "type": "Ion pistol",
+          "damage": "1d6 (2d6 vs robots)"
+        }
+      ],
+      "saving_throw": 18,
+      "special": "Ion pistol does double damage to robots",
+      "movement": "6",
+      "hde_xp": "1/15",
+      "description": "Rodent-like scavengers in cowls. Love salvage and wield special ion pistols."
+    },
+    {
+      "name": "Void Knight",
+      "armor_class": "3 [16]",
+      "hit_dice": "5-10",
+      "total_hit_bonus": "+3 to +5",
+      "attacks": [
+        {
+          "type": "Star Sword",
+          "damage": "1d6+4"
+        },
+        {
+          "type": "Corrupted Energy",
+          "damage": "5d6"
+        }
+      ],
+      "saving_throw": {
+        "5 HD": 14,
+        "6 HD": 13,
+        "7 HD": 12,
+        "8 HD": 11,
+        "9 HD": 10,
+        "10 HD": 9
+      },
+      "special": "Star Knight Meditations, Corrupted Energy, Force of Will (insta-kill)",
+      "movement": "12",
+      "hde_xp": {
+        "5 HD": "7/1,100",
+        "6 HD": "8/1,400",
+        "7 HD": "9/1,700",
+        "8 HD": "10/2,000",
+        "9 HD": "11/2,300",
+        "10 HD": "12/2,600"
+      },
+      "description": "Fallen Star Knights who wield dark power. Use Meditations and deadly psychic abilities."
+    },
+    {
+      "name": "Wolflings",
+      "armor_class": "7 [12]",
+      "hit_dice": "2+2",
+      "total_hit_bonus": "+2",
+      "attacks": [
+        {
+          "type": "By weapon",
+          "damage": "varies"
+        }
+      ],
+      "saving_throw": 17,
+      "special": "Group Tactics, Keen Senses",
+      "movement": "12",
+      "hde_xp": "2/45",
+      "description": "Wolf-like humanoids who excel in packs. Gain +1 To-Hit when fighting with two or more allies."
+    },
+    {
+      "name": "Yabnabs",
+      "armor_class": "8 [11]",
+      "hit_dice": 1,
+      "total_hit_bonus": "+1",
+      "attacks": [
+        {
+          "type": "Primitive Weapon",
+          "damage": "1d6"
+        }
+      ],
+      "saving_throw": 18,
+      "special": "None",
+      "movement": "6",
+      "hde_xp": "1/15",
+      "description": "Short, bear-like primitives with an intense curiosity for the stars."
+    }
+  ]
+}

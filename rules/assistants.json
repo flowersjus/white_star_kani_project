@@ -1,0 +1,67 @@
+{
+  "assistants": {
+    "hiring_rules": {
+      "description": "Assistants may be hired to carry loot, fight, or perform other duties.",
+      "duration": "Rates assume a typical one-week adventure.",
+      "xp_share": "Assistants receive a half share of XP earned during adventuring."
+    },
+    "types": [
+      {
+        "name": "Animal Trainer",
+        "cost": 125
+      },
+      {
+        "name": "Assassin",
+        "cost": 300
+      },
+      {
+        "name": "Engineer",
+        "cost": 250
+      },
+      {
+        "name": "General Soldier",
+        "cost": 25
+      },
+      {
+        "name": "Non-combatant (servant, roustabout)",
+        "cost": 5
+      },
+      {
+        "name": "Planetary Chauffeur/Taxi",
+        "cost": 20
+      },
+      {
+        "name": "Sage",
+        "cost": 300
+      },
+      {
+        "name": "Starship Repairman",
+        "cost": 50
+      },
+      {
+        "name": "Spy",
+        "cost": 125
+      },
+      {
+        "name": "Starship Captain",
+        "cost": 150
+      },
+      {
+        "name": "Starship Crew Member",
+        "cost": 25
+      },
+      {
+        "name": "Starship Gunner",
+        "cost": 35
+      },
+      {
+        "name": "Translator",
+        "cost": 35
+      },
+      {
+        "name": "Weapon & Armor Repairman",
+        "cost": 25
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "advancement": {
+    "xp_award_guidelines": {
+      "defeating_opponents": "Use HDE/XP values.",
+      "discovering_treasure": "Award 1\u20131000 XP based on value or risk.",
+      "advancing_story": "Award 25\u2013500 XP based on narrative progress."
+    },
+    "distribution": {
+      "default": "XP is split equally among the party.",
+      "individual_bonus": "Referee may award individual XP for exceptional actions or risks."
+    },
+    "bonuses": {
+      "prime_attribute": "Grants XP bonus based on class.",
+      "wisdom_charisma_bonus": "Characters with Wisdom or Charisma 13+ receive an additional XP bonus."
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "meditations": {
+    "1": [
+      {
+        "name": "Charm Person",
+        "range": "120 ft",
+        "duration": "1 hour",
+        "description": "Affects human-sized bipeds. Target must make a Saving Throw or fall under the Star Knight\u2019s influence."
+      },
+      {
+        "name": "Detect Evil/Good",
+        "range": "120 ft",
+        "duration": "2 turns",
+        "description": "Detects creatures or locations with evil or good intent within range. Poison is not considered evil."
+      },
+      {
+        "name": "Detect Life",
+        "range": "120 ft",
+        "duration": "2 turns",
+        "description": "Detects presence and sentience of living beings. Does not reveal number or location."
+      },
+      {
+        "name": "Healing Meditation",
+        "range": "Self",
+        "duration": "Immediate",
+        "description": "Heals the Star Knight for 1d6+1 Hit Points."
+      },
+      {
+        "name": "Protective Meditation",
+        "range": "Self",
+        "duration": "2 hours",
+        "description": "Enemies suffer -1 To-Hit vs Star Knight. Knight gets +1 to Saving Throws."
+      },
+      {
+        "name": "Read Languages",
+        "range": "Reading distance",
+        "duration": "1 or 2 languages",
+        "description": "Allows reading of unknown or unfamiliar written language."
+      }
+    ],
+    "2": [
+      {
+        "name": "Combat Coordination",
+        "range": "Self",
+        "duration": "1 hour",
+        "description": "+1 to all To-Hit rolls."
+      },
+      {
+        "name": "Detect Invisible",
+        "range": "Line of Sight",
+        "duration": "1 hour",
+        "description": "Detects invisible entities or objects, including cloaked or hidden ones."
+      },
+      {
+        "name": "Detect Thoughts",
+        "range": "60 ft",
+        "duration": "2 hours",
+        "description": "Reads surface thoughts and emotional state."
+      },
+      {
+        "name": "Find Traps",
+        "range": "30 ft",
+        "duration": "2 turns",
+        "description": "Detects mechanical and technological traps."
+      },
+      {
+        "name": "Locate Object",
+        "range": "90 ft",
+        "duration": "1 round/level",
+        "description": "Reveals direction to a known type of object."
+      },
+      {
+        "name": "Speak With Animals",
+        "range": "30 ft",
+        "duration": "1 hour",
+        "description": "Communicates with animals; may influence their behavior."
+      }
+    ],
+    "3": [
+      {
+        "name": "Alter Reflexes",
+        "range": "Self",
+        "duration": "3 turns",
+        "description": "Doubles Movement, allows 2 attacks per round, and +2 to Initiative."
+      },
+      {
+        "name": "Dark Vision",
+        "range": "Self",
+        "duration": "1 day",
+        "description": "See in complete darkness up to 60 ft."
+      },
+      {
+        "name": "Defensive Coordination",
+        "range": "30 ft",
+        "duration": "2 hours",
+        "description": "Allies gain +1 to Saves; enemies -1 To-Hit vs group."
+      },
+      {
+        "name": "Protection from Missiles",
+        "range": "Self",
+        "duration": "2 hours",
+        "description": "Blocks all personal missile attacks while wielding a Star Sword."
+      },
+      {
+        "name": "Water Breathing",
+        "range": "Self",
+        "duration": "2 hours",
+        "description": "Allows the Star Knight to breathe underwater."
+      }
+    ],
+    "4": [
+      {
+        "name": "Confusion",
+        "range": "120 ft",
+        "duration": "2 hours",
+        "description": "Affects 2d6+ targets with random behavior. Stronger targets resist initially. Save required each turn."
+      },
+      {
+        "name": "Expand Senses",
+        "range": "360 ft",
+        "duration": "2 hours",
+        "description": "Allows remote vision and hearing to a named location/direction."
+      },
+      {
+        "name": "Heal Other",
+        "range": "Touch",
+        "duration": "Immediate",
+        "description": "Restores 1d6+1 HP to another individual or creature."
+      },
+      {
+        "name": "Neutralize Poison",
+        "range": "Touch",
+        "duration": "Immediate",
+        "description": "Removes poison from the target."
+      },
+      {
+        "name": "Speak With Plants",
+        "range": "30 ft",
+        "duration": "1 hour",
+        "description": "Communicates with plant life. Plants may assist the Star Knight."
+      }
+    ],
+    "5": [
+      {
+        "name": "Charm Creature",
+        "range": "120 ft",
+        "duration": "1 hour",
+        "description": "Like Charm Person but works on large creatures or 3d6 small ones."
+      },
+      {
+        "name": "Protection From Missiles II",
+        "range": "Self",
+        "duration": "2 hours",
+        "description": "Blocks and reflects laser attacks. Requires Star Sword."
+      },
+      {
+        "name": "Telekinesis",
+        "range": "120 ft",
+        "duration": "1 hour",
+        "description": "Moves up to 20 lbs per level with mental force."
+      },
+      {
+        "name": "Vision",
+        "range": "Self",
+        "duration": "3 questions",
+        "description": "Ask 3 questions about the Star Knight\u2019s destiny. Only usable once/week."
+      }
+    ]
+  }
+}

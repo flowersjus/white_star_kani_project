@@ -1,0 +1,70 @@
+{
+  "modifications": {
+    "advanced_shielding": {
+      "name": "Advanced Shielding",
+      "description": "Adds +1 to a starship\u2019s Shield Strength. May be purchased up to 3 times.",
+      "max_purchases": 3,
+      "base_cost_per_hp": 30
+    },
+    "advanced_targeting_system": {
+      "name": "Advanced Targeting System",
+      "description": "Adds +1 to a starship\u2019s Targeting. May be purchased up to 3 times.",
+      "max_purchases": 3,
+      "base_cost_per_hp": 20
+    },
+    "automated_weapons": {
+      "name": "Automated Weapons",
+      "description": "Allows one of a starship\u2019s attacks to operate without a crew. Base Hit Bonus +0. Purchase once per weapon.",
+      "max_purchases": "per_weapon",
+      "base_cost_per_hp": 30
+    },
+    "cloaking_device": {
+      "name": "Cloaking Device",
+      "description": "Allows the starship to become invisible. Breaks when attacking or activating shields.",
+      "max_purchases": 1,
+      "base_cost_per_hp": 100
+    },
+    "ftl_drive": {
+      "name": "Faster-Than-Light (FTL) Drive",
+      "description": "Enables galactic travel. Takes 5 rounds to activate once clear of planetary gravity.",
+      "max_purchases": 1,
+      "base_cost_per_hp": 10
+    },
+    "high_yield_thrusters": {
+      "name": "High-Yield Thrusters",
+      "description": "Adds +1 to a starship\u2019s Movement. May be purchased up to 3 times.",
+      "max_purchases": 3,
+      "base_cost_per_hp": 20
+    },
+    "ion_charge": {
+      "name": "Ion Charge",
+      "description": "Adds a weapon that deals 2d6 damage and inflicts -1 Movement to the target for the next round.",
+      "max_purchases": "per_weapon",
+      "base_cost_per_hp": 30
+    },
+    "proton_missiles": {
+      "name": "Proton Missiles",
+      "description": "Adds a weapon that deals 8d6 damage. Does no damage to ships with Shield Strength \u2265 1.",
+      "max_purchases": "per_weapon",
+      "base_cost_per_hp": 10
+    },
+    "reinforced_hull": {
+      "name": "Reinforced Hull",
+      "description": "Adds -1 [+1] to a starship\u2019s Armor Class. May be purchased up to 3 times.",
+      "max_purchases": 3,
+      "base_cost_per_hp": 2
+    },
+    "tractor_beam": {
+      "name": "Tractor Beam",
+      "description": "Stops enemy movement on failed Save. Pulls enemy closer. +2 To-Hit for attacker. Only for large transports/dreadnoughts.",
+      "max_purchases": 1,
+      "base_cost_per_hp": 3
+    },
+    "shield_capacitor": {
+      "name": "Shield Capacitor",
+      "description": "Reduces Shield Strength regeneration interval by 1 round. May be purchased up to 3 times.",
+      "max_purchases": 3,
+      "base_cost_per_hp": 3
+    }
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "core_combat": {
+    "description": "Rules and mechanics for resolving personal combat in White Star.",
+    "round_structure": [
+      "Determine Initiative",
+      "Highest initiative party acts first",
+      "Next highest acts, continuing until all have acted",
+      "Repeat in the same order until combat ends"
+    ],
+    "initiative": {
+      "roll": "1d6 per party",
+      "simultaneous_rule": "Ties result in simultaneous actions; damage still applies even if attacker dies"
+    },
+    "attack_roll": {
+      "mechanic": "Roll 1d20 + BHB + bonuses (STR or DEX, tech, etc.)",
+      "comparison": {
+        "AC": "Compare result to To-Hit Table",
+        "AAC": "Hit if result >= target's AAC"
+      }
+    },
+    "melee_attack": {
+      "description": "Hand-to-hand attacks within 10 ft",
+      "bonuses": "STR To-Hit and STR damage bonus if Referee allows"
+    },
+    "missile_attack": {
+      "description": "Attacks with ranged weapons",
+      "bonuses": "DEX To-Hit bonus",
+      "rof": "Maximum attacks per round",
+      "range": "Ranges x1 (short), x2 (med), x3 (long), x4 (extreme)",
+      "modifiers": "-2 To-Hit per range tier beyond short (e.g., -6 at extreme)"
+    },
+    "visibility": {
+      "invisible_opponent": "-4 To-Hit unless general location known",
+      "special_senses": "Referee determines if powerful creatures detect invisibility"
+    },
+    "movement": {
+      "normal": "Move up to Movement (typically 12 = 120 ft) and act",
+      "running": "Move up to 2x Movement, but no other actions allowed"
+    },
+    "gifts_and_meditations": {
+      "activation": "Begin of round; fails if user takes damage before activation"
+    },
+    "negotiation": {
+      "option": "Players may attempt to resolve or delay combat via dialogue"
+    },
+    "morale": {
+      "rule": "Most enemies flee if hopeless; Referee may use Saving Throw"
+    },
+    "damage_and_death": {
+      "rule": "HP loss reduces total; 0 HP = death"
+    },
+    "healing": {
+      "rest": "1 HP/day of rest, full HP after 4 weeks of rest"
+    },
+    "to_hit_table": {
+      "ac_aac_vs_roll": [
+        {
+          "ac": 9,
+          "aac": 10,
+          "required_roll": 10
+        },
+        {
+          "ac": 8,
+          "aac": 11,
+          "required_roll": 11
+        },
+        {
+          "ac": 7,
+          "aac": 12,
+          "required_roll": 12
+        },
+        {
+          "ac": 6,
+          "aac": 13,
+          "required_roll": 13
+        },
+        {
+          "ac": 5,
+          "aac": 14,
+          "required_roll": 14
+        },
+        {
+          "ac": 4,
+          "aac": 15,
+          "required_roll": 15
+        },
+        {
+          "ac": 3,
+          "aac": 16,
+          "required_roll": 16
+        },
+        {
+          "ac": 2,
+          "aac": 17,
+          "required_roll": 17
+        },
+        {
+          "ac": 1,
+          "aac": 18,
+          "required_roll": 18
+        },
+        {
+          "ac": 0,
+          "aac": 19,
+          "required_roll": 19
+        },
+        {
+          "ac": -1,
+          "aac": 20,
+          "required_roll": 20
+        },
+        {
+          "ac": -2,
+          "aac": 21,
+          "required_roll": 21
+        },
+        {
+          "ac": -3,
+          "aac": 22,
+          "required_roll": 22
+        },
+        {
+          "ac": -4,
+          "aac": 23,
+          "required_roll": 23
+        },
+        {
+          "ac": -5,
+          "aac": 24,
+          "required_roll": 24
+        },
+        {
+          "ac": -6,
+          "aac": 25,
+          "required_roll": 25
+        },
+        {
+          "ac": -7,
+          "aac": 26,
+          "required_roll": 26
+        },
+        {
+          "ac": -8,
+          "aac": 27,
+          "required_roll": 27
+        },
+        {
+          "ac": -9,
+          "aac": 28,
+          "required_roll": 28
+        }
+      ]
+    },
+    "time": {
+      "round": "1 minute",
+      "turn": "10 minutes",
+      "notes": "A round is used for combat and fast-paced actions. A turn is used for slower exploration activities. The Referee may also rule that longer spans of time (hours, days, or months) pass depending on the context."
+    }
+  }
+}

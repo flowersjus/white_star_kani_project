@@ -1,0 +1,131 @@
+{
+  "classes": {
+    "aristocrat": {
+      "description": "Charismatic leaders and social manipulators who inspire allies and command followers.",
+      "xp_bonus": {
+        "attribute": "charisma",
+        "thresholds": {
+          "13-14": "5%",
+          "15+": "10%"
+        }
+      },
+      "class_features": [
+        "Powerful Speaker: +1 to all To-Hit and Saving Throw rolls for allies after 1 round speech (lasts 6 turns).",
+        "Silver Tongue: Mimics 'Charm Person' effect with a 1 round speech if target fails Save.",
+        "+2 to Saves against influence or mind-affecting effects.",
+        "Retinue (4th): Gains 1st/2nd level Merc bodyguard and 2d6 followers.",
+        "Planetary Ruler (8th): May establish a base of power, gaining loyal followers."
+      ],
+      "weapon_armor_restrictions": "May use clubs, daggers, firearms, grenades, laser pistols, mono-daggers, mono-swords, staffs, swords. Light Armor only, no shields.",
+      "advancement_table": "tables/aristocrat_advancement.json"
+    },
+    "mercenary": {
+      "description": "Combat specialists who excel in weapon use and survivability.",
+      "xp_bonus": {
+        "attribute": "strength",
+        "thresholds": {
+          "13-14": "5%",
+          "15+": "10%"
+        }
+      },
+      "class_features": [
+        "Combat Machine: Extra attacks vs 1HD or fewer enemies (1 per level).",
+        "+2 on Saves vs death/poison.",
+        "Establish Stronghold (9th): Attract loyal soldiers as strike force."
+      ],
+      "weapon_armor_restrictions": "No restrictions.",
+      "advancement_table": "tables/mercenary_advancement.json"
+    },
+    "pilot": {
+      "description": "Experts in starship operation, repair, and quick thinking under pressure.",
+      "xp_bonus": {
+        "attribute": "dexterity",
+        "thresholds": {
+          "13-14": "5%",
+          "15+": "10%"
+        }
+      },
+      "class_features": [
+        "Stick Jockey: +2 Initiative in Starship Combat.",
+        "Space Ace: Temporarily boost 1 ship stat (2 stats at 4th, 3 stats at 8th).",
+        "Jury-Rig: Once/day heal starship for 1d6/level HP, then take same damage after 2d6 rounds. Can also interface with tech.",
+        "+2 on Saves vs explosions/environmental hazards.",
+        "Captain (4th): May modify starship beyond stock stats."
+      ],
+      "weapon_armor_restrictions": "Light Armor only. Weapons: clubs, daggers, firearms, grenades, mono-daggers, mono-swords, laser pistols.",
+      "advancement_table": "tables/pilot_advancement.json"
+    },
+    "star_knight": {
+      "description": "Mystical warriors who blend martial skill with spiritual meditations.",
+      "xp_bonus": {
+        "attribute": "wisdom",
+        "thresholds": {
+          "13-14": "5%",
+          "15+": "10%"
+        }
+      },
+      "class_features": [
+        "Meditations: Can prepare/activate Meditations per level (see Meditation Table).",
+        "Star Sword Duelist: +1 to-hit with Star Sword. Starts with one for free.",
+        "+2 to Saves vs Meditations and Gifts.",
+        "Establish Monastery (10th): Attract followers to a secluded training center."
+      ],
+      "weapon_armor_restrictions": "Daggers, laser pistols, Star Swords. Light Armor + shields.",
+      "advancement_table": "tables/star_knight_advancement.json",
+      "extra_tables": {
+        "meditations": "tables/star_knight_meditation_advancement.json"
+      }
+    },
+    "alien_brute": {
+      "description": "Physically dominant alien warriors with unarmed combat skills and keen senses.",
+      "xp_bonus": {
+        "attribute": "strength",
+        "thresholds": {}
+      },
+      "class_features": [
+        "Combat Machine: Extra attacks vs 1HD or fewer enemies (1 per level).",
+        "Keen Senses: See in perfect darkness up to 40 feet.",
+        "Unarmed Combat: 1d6+1 damage unarmed.",
+        "+2 to Saves vs poison or death.",
+        "Languages: Common and others per Referee discretion."
+      ],
+      "weapon_armor_restrictions": "No restrictions.",
+      "advancement_table": "tables/alien_brute_advancement.json"
+    },
+    "alien_mystic": {
+      "description": "Psychic and spiritual aliens who use ancient rituals to wield Gifts.",
+      "xp_bonus": {
+        "attribute": "wisdom",
+        "thresholds": {}
+      },
+      "class_features": [
+        "Gifts: Begins with two 1st level Gifts, can prepare per Gift Table after level 2.",
+        "Keen Senses: Find hidden doors on 1-4/1d6, detect nearby on 1-2/1d6.",
+        "+2 to Saves vs Gifts or Meditations.",
+        "Languages: Common and others; often multilingual."
+      ],
+      "weapon_armor_restrictions": "Light Armor. Weapons: clubs, daggers, bows, swords, staffs. Other weapons by species culture.",
+      "advancement_table": "tables/alien_mystic_advancement.json",
+      "extra_tables": {
+        "gifts": "tables/alien_mystic_gift_advancement.json"
+      }
+    },
+    "robot": {
+      "description": "Sentient machines with specialized models, scanning abilities, and self-repair routines.",
+      "xp_bonus": {
+        "attribute": "none",
+        "thresholds": {}
+      },
+      "class_features": [
+        "Metal Body: +3 to AC, vacuum safe, immune to poison/disease, needs recharge.",
+        "Mechanical Understanding: Bonuses when interfacing with tech.",
+        "Model Types: Choose Combat, Diplomacy, or Mechanical for extra perks.",
+        "Scanners: Detect life at 60 feet, cannot be surprised by living creatures.",
+        "Self-Repair: Heal 1d6+1 HP with 8-hour repair cycle.",
+        "Languages: Common and Robot."
+      ],
+      "weapon_armor_restrictions": "Weapons vary by model. Defaults: clubs, daggers, laser pistols.",
+      "advancement_table": "tables/robot_advancement.json"
+    }
+  }
+}

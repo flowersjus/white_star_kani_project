@@ -1,0 +1,43 @@
+{
+  "starship_combat": {
+    "overview": "Starship combat functions similarly to personal combat but includes rules for initiative, movement, targeting, and starship-specific actions.",
+    "combat_round": {
+      "steps": [
+        "1. Determine Initiative (1d6 per party; Pilots may add their Initiative bonus).",
+        "2. Highest initiative party acts first (move, attack, activate mods).",
+        "3. Remaining parties act in descending order.",
+        "4. Repeat each round using the same turn order unless changed by effects."
+      ],
+      "simultaneous_actions": "If initiative ties, actions are simultaneous and damage is still resolved for both sides."
+    },
+    "attack_roll": {
+      "mechanics": "Roll 1d20 + BHB + Dex Bonus + ship\u2019s Targeting bonus.",
+      "resolution": "Compare against target's AC (standard) or AAC (ascending).",
+      "notes": "All attacks in starship combat are considered missile attacks."
+    },
+    "cloaking": {
+      "description": "Cloaked ships can only be hit if their general location is known. Attacks are at -8 To-Hit."
+    },
+    "movement": {
+      "normal": "May move up to listed Movement and act.",
+      "double": "May move up to 2x Movement but take no other actions."
+    },
+    "damage_and_destruction": {
+      "rule": "At 0 HP, the starship explodes. All onboard are killed. Personal weapons cannot damage starships."
+    },
+    "repairs": {
+      "rule": "Takes 1 day and 20 credits in resources to repair 5 HP."
+    },
+    "experience": {
+      "formula": "XP = (Hit Points \u00d7 10) + (Weapons \u00d7 50)",
+      "distribution": {
+        "standard": "Divide XP among all PCs on board (full share). Assistants receive half share.",
+        "escape": "If the encounter is resolved by escaping, award 25% of XP value."
+      }
+    },
+    "external_references": {
+      "starships": "See rules/starships.json",
+      "modifications": "See rules/starship_modifications.json"
+    }
+  }
+}

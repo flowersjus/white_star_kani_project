@@ -1,0 +1,13 @@
+{
+  "saving_throws": {
+    "description": "Represents a character's ability to avoid or resist adverse effects.",
+    "mechanic": "Roll 1d20. Success if roll >= character's Saving Throw value.",
+    "uses": [
+      "Resist Meditations or Gifts",
+      "Resist environmental effects",
+      "Avoid traps",
+      "Reduce or avoid other Referee-determined effects"
+    ],
+    "notes": "Some classes grant bonuses to specific Saving Throws."
+  }
+}

@@ -1,0 +1,235 @@
+[
+  {
+    "name": "Blockade Runner",
+    "description": "Heavily armed and armored ships favored by pirates and galactic criminals. Used to break planetary blockades and support stellar combat.",
+    "armor_class": "2 [17]",
+    "hit_points": 90,
+    "shield_strength": 8,
+    "movement": 9,
+    "targeting": 2,
+    "attack": [
+      {
+        "weapon": "Laser Cannon",
+        "quantity": 6,
+        "damage": "4d6"
+      }
+    ],
+    "modifications": [
+      "Faster-Than-Light Drive"
+    ],
+    "minimum_crew": 6
+  },
+  {
+    "name": "Dreadnought",
+    "description": "The most feared starship in the galaxy, capable of laying siege to entire planets.",
+    "armor_class": "5 [14]",
+    "hit_points": 200,
+    "shield_strength": 20,
+    "movement": 3,
+    "targeting": 3,
+    "attack": [
+      {
+        "weapon": "Heavy Laser",
+        "quantity": 20,
+        "damage": "6d6"
+      },
+      {
+        "weapon": "Ion Charge",
+        "quantity": 8,
+        "damage": "2d6"
+      },
+      {
+        "weapon": "Proton Missile",
+        "quantity": 4,
+        "damage": "8d6"
+      }
+    ],
+    "modifications": [
+      "Advanced Shielding (3)",
+      "Automated Weapons (16)",
+      "Faster-Than-Light Drive",
+      "Ion Charge (8)",
+      "Proton Missiles (4)",
+      "Tractor Beam (2)",
+      "Shield Capacitor"
+    ],
+    "minimum_crew": 100
+  },
+  {
+    "name": "Gunship",
+    "description": "Mobile artillery platforms used to blockade planets and support military operations.",
+    "armor_class": "5 [14]",
+    "hit_points": 85,
+    "shield_strength": 8,
+    "movement": 6,
+    "targeting": 2,
+    "attack": [
+      {
+        "weapon": "Laser Cannon",
+        "quantity": 8,
+        "damage": "4d6"
+      },
+      {
+        "weapon": "Ion Charge",
+        "quantity": 4,
+        "damage": "2d6"
+      },
+      {
+        "weapon": "Proton Missile",
+        "quantity": 2,
+        "damage": "8d6"
+      }
+    ],
+    "modifications": [
+      "Automated Weapons (6+)",
+      "Ion Charge (4)",
+      "Faster-Than-Light Drive",
+      "Proton Missiles (2)",
+      "Shield Capacitor (3)"
+    ],
+    "minimum_crew": 6
+  },
+  {
+    "name": "Heavy Transport",
+    "description": "Flying warehouses with FTL drives used for hauling supplies and ships.",
+    "armor_class": "9 [10]",
+    "hit_points": 80,
+    "shield_strength": 0,
+    "movement": 3,
+    "targeting": 0,
+    "attack": [
+      {
+        "weapon": "Light Laser",
+        "quantity": 1,
+        "damage": "2d6"
+      }
+    ],
+    "modifications": [
+      "Faster-Than-Light Drive",
+      "Tractor Beam"
+    ],
+    "minimum_crew": 6
+  },
+  {
+    "name": "Light Transport",
+    "description": "Common freighters used for cargo transport, often repurposed by smugglers.",
+    "armor_class": "6 [13]",
+    "hit_points": 60,
+    "shield_strength": 0,
+    "movement": 9,
+    "targeting": 0,
+    "attack": [
+      {
+        "weapon": "Light Laser",
+        "quantity": 1,
+        "damage": "2d6"
+      }
+    ],
+    "modifications": [
+      "Faster-Than-Light Drive"
+    ],
+    "minimum_crew": 1
+  },
+  {
+    "name": "Medium Transport",
+    "description": "Larger haulers for livestock or bulk resources, usually with minimal shielding.",
+    "armor_class": "7 [12]",
+    "hit_points": 75,
+    "shield_strength": 3,
+    "movement": 6,
+    "targeting": 0,
+    "attack": [
+      {
+        "weapon": "Light Laser",
+        "quantity": 1,
+        "damage": "2d6"
+      }
+    ],
+    "modifications": [
+      "Faster-Than-Light Drive"
+    ],
+    "minimum_crew": 2
+  },
+  {
+    "name": "Space Mine",
+    "description": "Automated suicide units that detonate on contact, used in blockades.",
+    "armor_class": "2 [17]",
+    "hit_points": 5,
+    "shield_strength": 0,
+    "movement": 18,
+    "targeting": 5,
+    "attack": [
+      {
+        "weapon": "Self-Destruct",
+        "quantity": 1,
+        "damage": "8d6"
+      }
+    ],
+    "modifications": [
+      "Automated Weapons (Self-Destruct)"
+    ],
+    "minimum_crew": 0
+  },
+  {
+    "name": "Space Yacht",
+    "description": "Luxury ships for diplomats and nobles, fast but lightly armed and armored.",
+    "armor_class": "4 [15]",
+    "hit_points": 40,
+    "shield_strength": 1,
+    "movement": 12,
+    "targeting": 0,
+    "attack": [
+      {
+        "weapon": "Light Laser",
+        "quantity": 1,
+        "damage": "2d6"
+      }
+    ],
+    "modifications": [
+      "Faster-Than-Light Drive"
+    ],
+    "minimum_crew": 2
+  },
+  {
+    "name": "Star Cruiser",
+    "description": "Versatile medium-sized ship, frequently modified and adaptable.",
+    "armor_class": "5 [14]",
+    "hit_points": 85,
+    "shield_strength": 2,
+    "movement": 7,
+    "targeting": 0,
+    "attack": [
+      {
+        "weapon": "Laser Cannon",
+        "quantity": 4,
+        "damage": "4d6"
+      }
+    ],
+    "modifications": [
+      "Faster-Than-Light Drive"
+    ],
+    "minimum_crew": 10
+  },
+  {
+    "name": "Stunt Fighter",
+    "description": "Small, agile fighters used in squadrons, often outfitted with lasers or missiles.",
+    "armor_class": "3 [16]",
+    "hit_points": 25,
+    "shield_strength": 3,
+    "movement": 15,
+    "targeting": 2,
+    "attack": [
+      {
+        "weapon": "Laser Cannons",
+        "quantity": 1,
+        "damage": "4d6"
+      }
+    ],
+    "modifications": [
+      "Faster-Than-Light Drive (Optional)",
+      "Ion Charge (Optional)",
+      "Proton Missiles (Optional)"
+    ],
+    "minimum_crew": 1
+  }
+]

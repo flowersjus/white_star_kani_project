@@ -1,0 +1,82 @@
+{
+  "gifts": {
+    "1": [
+      {
+        "name": "Hold Portal",
+        "range": "Touch",
+        "duration": "2 hours",
+        "description": "Prevents a touched door or portal from opening by any means unless destroyed or dispelled."
+      },
+      {
+        "name": "Light",
+        "range": "60 ft",
+        "duration": "2 hours",
+        "description": "Causes a target to emit light equivalent to a torch for a 20 ft radius."
+      },
+      {
+        "name": "Purify Food & Drink",
+        "range": "30 ft",
+        "duration": "Immediate",
+        "description": "Purifies food and water for up to 12 people, removing spoilage, poison, and impurities."
+      },
+      {
+        "name": "Stupor",
+        "range": "240 ft",
+        "duration": "1 hour or until awakened",
+        "description": "Puts targets into deep sleep; affects number of targets based on Hit Dice."
+      }
+    ],
+    "2": [
+      {
+        "name": "Hold Person",
+        "range": "120 ft",
+        "duration": "1 hour",
+        "description": "Target 1d4 individuals (or one at -2 Save); targets cannot move or speak if they fail Save."
+      },
+      {
+        "name": "Invisibility",
+        "range": "Self",
+        "duration": "Until dispelled or attack is made",
+        "description": "Renders caster invisible to sight and sensors; ends if an attack is made."
+      },
+      {
+        "name": "Levitate",
+        "range": "20 ft per level",
+        "duration": "1 turn per level",
+        "description": "Allows vertical movement only; up to 20 ft per level."
+      },
+      {
+        "name": "Phantasmal Force",
+        "range": "240 ft",
+        "duration": "Until negated or dispelled",
+        "description": "Creates a believable illusion that causes real effects if believed."
+      }
+    ],
+    "3": [
+      {
+        "name": "Alter Time",
+        "range": "240 ft",
+        "duration": "3 turns",
+        "description": "Speed or slow time in a 60 ft radius. 4d6 targets affected. Speed: double; Slow: half, Save negates."
+      },
+      {
+        "name": "Dispel Effect",
+        "range": "120 ft",
+        "duration": "Immediate",
+        "description": "Ends any active Meditation or Gift in range."
+      },
+      {
+        "name": "Fly",
+        "range": "Self",
+        "duration": "1d6 turns + 1/level",
+        "description": "Caster can fly at 120 ft per round. Duration rolled secretly by Referee."
+      },
+      {
+        "name": "Invisibility II",
+        "range": "240 ft",
+        "duration": "Until dispelled or attack is made",
+        "description": "Grants invisibility to a target and a 10 ft radius around them. Ends when attacking."
+      }
+    ]
+  }
+}

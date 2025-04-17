@@ -1,0 +1,335 @@
+{
+  "equipment": {
+    "standard_gear": [
+      {
+        "name": "Ammo Bandoleer",
+        "weight": 1,
+        "cost": 5,
+        "description": "Holds up to 20 energy cells."
+      },
+      {
+        "name": "Backpack",
+        "weight": 1,
+        "cost": 5,
+        "description": "Holds up to 30 lbs and 1 cubic foot."
+      },
+      {
+        "name": "Belt Pouch",
+        "weight": 0.25,
+        "cost": 3,
+        "description": "Holds up to 3 lbs of equipment."
+      },
+      {
+        "name": "Binoculars",
+        "weight": 2,
+        "cost": 10,
+        "description": "5x vision range."
+      },
+      {
+        "name": "Dark Vision Binoculars",
+        "weight": 5,
+        "cost": 100,
+        "description": "Night vision capable."
+      },
+      {
+        "name": "Breathing Mask",
+        "weight": 0.25,
+        "cost": 20,
+        "description": "Allows 4 hours of air in hostile atmospheres."
+      },
+      {
+        "name": "Clothing (Common)",
+        "weight": 3,
+        "cost": 5
+      },
+      {
+        "name": "Clothing (Fine)",
+        "weight": 5,
+        "cost": 25
+      },
+      {
+        "name": "Clothing (Exposure)",
+        "weight": 15,
+        "cost": 50
+      },
+      {
+        "name": "Clothing (Space Suit)",
+        "weight": 125,
+        "cost": 250
+      },
+      {
+        "name": "Communicator",
+        "weight": 1,
+        "cost": 25
+      },
+      {
+        "name": "Communicator (Holographic)",
+        "weight": 1,
+        "cost": 50
+      },
+      {
+        "name": "Flares",
+        "weight": 0.25,
+        "cost": 3
+      },
+      {
+        "name": "Flashlight",
+        "weight": 0.5,
+        "cost": 5
+      },
+      {
+        "name": "Jet Pack",
+        "weight": 25,
+        "cost": 100,
+        "description": "Fly at movement 18 for 25 rounds. Refuel = 25 credits."
+      },
+      {
+        "name": "Med Kit",
+        "weight": 1,
+        "cost": 20,
+        "description": "Restores 2d4 HP. Single use."
+      },
+      {
+        "name": "Mini-Computer",
+        "weight": 1,
+        "cost": 100
+      },
+      {
+        "name": "Rations",
+        "weight": 1,
+        "cost": 1
+      },
+      {
+        "name": "Recording Stick",
+        "weight": 1,
+        "cost": 15
+      },
+      {
+        "name": "Rope (50 ft)",
+        "weight": 5,
+        "cost": 5
+      },
+      {
+        "name": "Sleeping Bag",
+        "weight": 1,
+        "cost": 10
+      },
+      {
+        "name": "Tent",
+        "weight": 3,
+        "cost": 20
+      },
+      {
+        "name": "Timepiece",
+        "weight": 0.25,
+        "cost": 10
+      },
+      {
+        "name": "Tool Kit",
+        "weight": 1,
+        "cost": 25
+      }
+    ],
+    "melee_weapons": [
+      {
+        "name": "Battle Axe",
+        "damage": "1d6+1",
+        "weight": 6,
+        "cost": 7
+      },
+      {
+        "name": "Club",
+        "damage": "1d6",
+        "weight": 3,
+        "cost": 0
+      },
+      {
+        "name": "Dagger",
+        "damage": "1d6-1",
+        "weight": 1,
+        "cost": 3
+      },
+      {
+        "name": "Mono-Dagger",
+        "damage": "1d6",
+        "weight": 1,
+        "cost": 15
+      },
+      {
+        "name": "Mono-Sword",
+        "damage": "1d6+1",
+        "weight": 3,
+        "cost": 20
+      },
+      {
+        "name": "Mono-Axe",
+        "damage": "1d6+2",
+        "weight": 6,
+        "cost": 35
+      },
+      {
+        "name": "Spear",
+        "damage": "1d6",
+        "weight": 5,
+        "cost": 2
+      },
+      {
+        "name": "Staff",
+        "damage": "1d6",
+        "weight": 5,
+        "cost": 1
+      },
+      {
+        "name": "Star Sword",
+        "damage": "1d6+4",
+        "weight": 1,
+        "cost": 100
+      },
+      {
+        "name": "Sword",
+        "damage": "1d6",
+        "weight": 3,
+        "cost": 10
+      }
+    ],
+    "ranged_weapons": [
+      {
+        "name": "Bow, Long",
+        "damage": "1d6",
+        "rof": "2",
+        "range": "300 ft",
+        "weight": 20,
+        "cost": 40
+      },
+      {
+        "name": "Bow, Short",
+        "damage": "1d6-1",
+        "rof": "2",
+        "range": "200 ft",
+        "weight": 5,
+        "cost": 25
+      },
+      {
+        "name": "Crossbow, Heavy",
+        "damage": "1d6+1",
+        "rof": "1/2",
+        "range": "250 ft",
+        "weight": 18,
+        "cost": 25
+      },
+      {
+        "name": "Crossbow, Light",
+        "damage": "1d6",
+        "rof": "1/2",
+        "range": "250 ft",
+        "weight": 9,
+        "cost": 15
+      },
+      {
+        "name": "Firearm (Pistol)",
+        "damage": "1d6",
+        "rof": "2",
+        "range": "75 ft",
+        "weight": 2.5,
+        "cost": 45
+      },
+      {
+        "name": "Firearm (Rifle)",
+        "damage": "1d6+1",
+        "rof": "1",
+        "range": "150 ft",
+        "weight": 7.5,
+        "cost": 75
+      },
+      {
+        "name": "Grenade (Concussion)",
+        "damage": "3d6+2",
+        "rof": "1",
+        "range": "30 ft",
+        "weight": 1,
+        "cost": 25
+      },
+      {
+        "name": "Grenade (Fragmentation)",
+        "damage": "2d6+2",
+        "rof": "1",
+        "range": "30 ft",
+        "weight": 1,
+        "cost": 25
+      },
+      {
+        "name": "Laser Pistol",
+        "damage": "1d6+2",
+        "rof": "2",
+        "range": "100 ft",
+        "weight": 2.5,
+        "cost": 50
+      },
+      {
+        "name": "Laser Rifle",
+        "damage": "2d6",
+        "rof": "2",
+        "range": "200 ft",
+        "weight": 5,
+        "cost": 100
+      },
+      {
+        "name": "Arrow (20)",
+        "weight": 1,
+        "cost": 1
+      },
+      {
+        "name": "Bolt (20)",
+        "weight": 1,
+        "cost": 1
+      },
+      {
+        "name": "Bullet (20)",
+        "weight": 0.5,
+        "cost": 10
+      },
+      {
+        "name": "Energy Cell (20)",
+        "weight": 0.25,
+        "cost": 10
+      }
+    ],
+    "armor_and_shields": [
+      {
+        "name": "Heavy",
+        "ac": "-6",
+        "aac": "+6",
+        "weight": 60,
+        "cost": 100
+      },
+      {
+        "name": "Light",
+        "ac": "-2",
+        "aac": "+2",
+        "weight": 15,
+        "cost": 25
+      },
+      {
+        "name": "Medium",
+        "ac": "-4",
+        "aac": "+4",
+        "weight": 30,
+        "cost": 50
+      },
+      {
+        "name": "Shield, Energy",
+        "ac": "-2",
+        "aac": "+2",
+        "weight": 1,
+        "cost": 25
+      },
+      {
+        "name": "Shield, Physical",
+        "ac": "-1",
+        "aac": "+1",
+        "weight": 10,
+        "cost": 10
+      }
+    ]
+  }
+}

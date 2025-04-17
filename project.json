@@ -1,0 +1,54 @@
+{
+  "name": "White Star AI DM",
+  "description": "Kani project file for running solo TTRPG sessions using White Star rules with integrated Mythic GME support.",
+  "folders": {
+    "rules": [
+      "core_combat",
+      "time",
+      "saving_throws",
+      "surprise_search",
+      "experience",
+      "assistants",
+      "starship_combat",
+      "modifications",
+      "alien_creature_combat"
+    ],
+    "equipment": [
+      "standard_gear",
+      "melee_weapons",
+      "ranged_weapons",
+      "armor"
+    ],
+    "advancement": [
+      "aristocrat_advancement",
+      "mercenary_advancement",
+      "pilot_advancement",
+      "robot_advancement",
+      "star_knight_advancement",
+      "star_knight_meditations",
+      "alien_mystic_advancement",
+      "alien_mystic_gifts",
+      "alien_brute_advancement"
+    ],
+    "starships": [
+      "starships",
+      "modifications"
+    ],
+    "npcs": [
+      "aliens",
+      "creatures"
+    ]
+  },
+  "ephemeral": [
+    "current_scene",
+    "gm_notes",
+    "party_state",
+    "inventory",
+    "active_meditations",
+    "active_gifts"
+  ],
+  "plugins": [
+    "mythic_gme_2e",
+    "white_star_dice"
+  ]
+}

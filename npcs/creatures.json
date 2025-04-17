@@ -1,0 +1,327 @@
+{
+  "creatures": [
+    {
+      "name": "Bumble-Dog",
+      "armor_class": "6 [13]",
+      "hit_dice": "1+2",
+      "total_hit_bonus": "+1",
+      "attacks": [
+        {
+          "type": "Bite",
+          "damage": "1d6-2"
+        }
+      ],
+      "saving_throw": 18,
+      "special": "Mimicry",
+      "movement": "12",
+      "hde_xp": "1/15",
+      "description": "Fox-hare hybrids with antennae. They mimic human speech and hunt in packs. Friendly but distracting."
+    },
+    {
+      "name": "Clinger",
+      "armor_class": "7 [12]",
+      "hit_dice": 2,
+      "total_hit_bonus": "+4",
+      "attacks": [
+        {
+          "type": "Clinging bite",
+          "damage": "1d6"
+        }
+      ],
+      "saving_throw": 17,
+      "special": "Surprise Attack, blinds and auto-damages while attached.",
+      "movement": "6",
+      "hde_xp": "2/45",
+      "description": "Crustacean husks that leap and cling to faces. Auto-damage until removed."
+    },
+    {
+      "name": "Giant Flea",
+      "armor_class": "4 [15]",
+      "hit_dice": 5,
+      "total_hit_bonus": "+5",
+      "attacks": [
+        {
+          "type": "Bite",
+          "damage": "1d6"
+        },
+        {
+          "type": "Blood Drain",
+          "damage": "1d6"
+        }
+      ],
+      "saving_throw": 13,
+      "special": "Leap, Surprise Attack",
+      "movement": "15",
+      "hde_xp": "5/325",
+      "description": "Huge fleas that leap from sand. Surprise prey and bite continuously until killed."
+    },
+    {
+      "name": "Insectus, Brain Bug",
+      "armor_class": "4 [15]",
+      "hit_dice": 7,
+      "total_hit_bonus": "+7",
+      "attacks": [
+        {
+          "type": "Slam",
+          "damage": "1d6"
+        }
+      ],
+      "saving_throw": 12,
+      "special": "Psychic Static",
+      "movement": "3",
+      "hde_xp": "7/800",
+      "description": "60-foot psychic slugs. Psychic static causes unconsciousness or -2 To-Hit for 1 turn."
+    },
+    {
+      "name": "Insectus, Fliers",
+      "armor_class": "5 [14]",
+      "hit_dice": "3+3",
+      "total_hit_bonus": "+3",
+      "attacks": [
+        {
+          "type": "Bite",
+          "damage": "1d6"
+        }
+      ],
+      "saving_throw": 16,
+      "special": "Drop Attack (3d6)",
+      "movement": "15 (flying)",
+      "hde_xp": "4/175",
+      "description": "Airborne attackers that drop captured prey from heights, causing 3d6 damage."
+    },
+    {
+      "name": "Insectus, Soldier",
+      "armor_class": "4 [15]",
+      "hit_dice": "2+2",
+      "total_hit_bonus": "+2",
+      "attacks": [
+        {
+          "type": "Bite",
+          "damage": "1d6"
+        }
+      ],
+      "saving_throw": 17,
+      "special": "None",
+      "movement": "15",
+      "hde_xp": "2/30",
+      "description": "Basic swarming foot soldiers of the Insectus horde."
+    },
+    {
+      "name": "Living Asteroid",
+      "armor_class": "1 [18]",
+      "hit_points": 80,
+      "total_hit_bonus": "+5",
+      "attacks": [
+        {
+          "type": "Bite",
+          "damage": "5d6"
+        }
+      ],
+      "saving_throw": 10,
+      "special": "Starship Combat Creature, Surprise Attack",
+      "movement": "6",
+      "hde_xp": "14/2600",
+      "description": "Massive void creatures that attack ships, treated with Starship rules. Often mistaken for real asteroids."
+    },
+    {
+      "name": "Mercurial",
+      "armor_class": "8 [11]",
+      "hit_dice": 3,
+      "total_hit_bonus": "+3",
+      "attacks": [
+        {
+          "type": "Slam",
+          "damage": "1d6"
+        }
+      ],
+      "saving_throw": 16,
+      "special": "Destroy Technology, Engulf",
+      "movement": "3",
+      "hde_xp": "4/185",
+      "description": "Chrome-like ooze that destroys tech and deals automatic damage while engulfing targets."
+    },
+    {
+      "name": "Mind Grub",
+      "armor_class": "6 [13]",
+      "hit_dice": "1-1",
+      "total_hit_bonus": "+0",
+      "attacks": [
+        {
+          "type": "Bite",
+          "damage": "1d6-3"
+        }
+      ],
+      "saving_throw": 19,
+      "special": "Devour Brain, Surprise Attack",
+      "movement": "3",
+      "hde_xp": "<1/15",
+      "description": "Tiny parasites that surprise on a 1\u20135 and devour victims' brains from within."
+    },
+    {
+      "name": "Polaris",
+      "armor_class": "3 [16]",
+      "hit_dice": 6,
+      "total_hit_bonus": "+6",
+      "attacks": [
+        {
+          "type": "Fiery Touch",
+          "damage": "1d6"
+        }
+      ],
+      "saving_throw": 13,
+      "special": "Combustible Touch, Immune to explosions and energy damage",
+      "movement": "12",
+      "hde_xp": "6/525",
+      "description": "Living fire that explodes flammable items but is immune to all energy damage."
+    },
+    {
+      "name": "Power Sucker",
+      "armor_class": "7 [12]",
+      "hit_dice": 2,
+      "total_hit_bonus": "+2",
+      "attacks": [
+        {
+          "type": "Bite",
+          "damage": "1d6"
+        }
+      ],
+      "saving_throw": 17,
+      "special": "Leech Energy from starships",
+      "movement": "12 (flying)",
+      "hde_xp": "2/30",
+      "description": "Disruptive pests that reduce starship Movement when attached."
+    },
+    {
+      "name": "Radfish",
+      "armor_class": "5 [14]",
+      "hit_dice": "4+2",
+      "total_hit_bonus": "+4",
+      "attacks": [
+        {
+          "type": "Bite",
+          "damage": "1d6+2"
+        }
+      ],
+      "saving_throw": 15,
+      "special": "Radiation Poisoning",
+      "movement": "12 (swimming)",
+      "hde_xp": "4/120",
+      "description": "Irradiated aquatic beasts. Inflict 1d6 radiation damage to unprotected targets per round."
+    },
+    {
+      "name": "Sand Worm",
+      "armor_class": "5 [14]",
+      "hit_dice": 5,
+      "total_hit_bonus": "+5",
+      "attacks": [
+        {
+          "type": "Bite",
+          "damage": "1d6+1"
+        }
+      ],
+      "saving_throw": 14,
+      "special": "Burrow",
+      "movement": "12",
+      "hde_xp": "5/240",
+      "description": "Large worms that burrow under sand to ambush prey. Range from 15 to hundreds of feet long."
+    },
+    {
+      "name": "Skytopus",
+      "armor_class": "6 [13]",
+      "hit_dice": "3+3",
+      "total_hit_bonus": "+3",
+      "attacks": [
+        {
+          "type": "Bite",
+          "damage": "1d6"
+        }
+      ],
+      "saving_throw": 16,
+      "special": "None",
+      "movement": "12 (flying)",
+      "hde_xp": "3/60",
+      "description": "Octopus-like flying beasts with beaks and melodic humming sounds. Carrion feeders."
+    },
+    {
+      "name": "Space Monkey",
+      "armor_class": "7 [12]",
+      "hit_dice": "1+1",
+      "total_hit_bonus": "+1",
+      "attacks": [
+        {
+          "type": "Bite",
+          "damage": "1d6"
+        },
+        {
+          "type": "Scream",
+          "damage": "1d6"
+        }
+      ],
+      "saving_throw": 18,
+      "special": "Scream causes deafness (Save or be deaf for 1 hour)",
+      "movement": "12",
+      "hde_xp": "1/15",
+      "description": "Blue-furred chimps with antennae that scream painfully when threatened."
+    },
+    {
+      "name": "Spider-Fly",
+      "armor_class": "4 [15]",
+      "hit_dice": "4+4",
+      "total_hit_bonus": "+4",
+      "attacks": [
+        {
+          "type": "Bite",
+          "damage": "1d6"
+        }
+      ],
+      "saving_throw": 15,
+      "special": "Paralysis",
+      "movement": "12 (15 flying)",
+      "hde_xp": "5/325",
+      "description": "Massive web-building predators with paralyzing bites. Known to drag paralyzed prey into high-altitude webs."
+    },
+    {
+      "name": "Stellar Dragon",
+      "armor_class": "-2 [21]",
+      "hit_dice": 15,
+      "hit_points": 90,
+      "total_hit_bonus": "+15",
+      "attacks": [
+        {
+          "type": "Bite",
+          "damage": "3d6"
+        }
+      ],
+      "saving_throw": 5,
+      "special": "Breath Weapon (equal to max HP), Immune to Meditations & Gifts, Survives in space",
+      "movement": "12 (24 flying)",
+      "hde_xp": "15/3,200",
+      "description": "Mythic space serpents with solar radiation breath. Immune to magic and capable of damaging starships."
+    },
+    {
+      "name": "Thunder Lizard",
+      "armor_class": "0 [19]",
+      "hit_dice": 13,
+      "total_hit_bonus": "+13",
+      "attacks": [
+        {
+          "type": "Bite",
+          "damage": "4d6"
+        },
+        {
+          "type": "Claw",
+          "damage": "3d6"
+        },
+        {
+          "type": "Breath Weapon",
+          "damage": "4d6"
+        }
+      ],
+      "saving_throw": 6,
+      "special": "None",
+      "movement": "15",
+      "hde_xp": "14/2,600",
+      "description": "Colossal magma-breathing monsters from ocean depths. Wield claws, bite, and molten breath."
+    }
+  ]
+}

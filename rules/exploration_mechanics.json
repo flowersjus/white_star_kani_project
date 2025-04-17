@@ -1,0 +1,15 @@
+{
+  "exploration_mechanics": {
+    "surprise": {
+      "description": "Some characters or parties may surprise others at the start of an encounter.",
+      "default_rule": "Roll 1d6; surprise occurs on a result of 1\u20132.",
+      "notes": "Referee may determine surprise narratively or modify chance based on conditions."
+    },
+    "secret_doors": {
+      "description": "Characters can attempt to detect concealed or secret doors.",
+      "searching": "Roll 1d6; success on a 1 when a character actively searches.",
+      "passive": "Some creatures may detect doors passively or have better chances.",
+      "notes": "Player must specify they are searching; Referee may increase chance for certain species or items."
+    }
+  }
+}
