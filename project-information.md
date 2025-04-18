@@ -188,18 +188,23 @@ white_star_kani_project/
 - Tasks / Requests / Quests
   - Log active missions, objectives, and progress
   - Stored in `ephemeral/quests.json` or similar
-
 - 🎬 Scene setup with Chaos Factor
 - Faction or Location Tracker
 - 📖 Summarizing last scene
 - 📜 Scene logging
   - 🧾 Log each major scene to `scene_log/<character>.json` with a description and timestamp
   - Makes it easier to resume or recap later
+  - Possibly use Kani's suggestion `Chat History`
+    - [Kani Read the Docs-Chat History](https://kani.readthedocs.io/en/latest/customization/chat_history.html)
 - Mythic GME
 
 ### AI
 
 - Consider migrating to another ai (local or openrouter)
+- Optimization
+  - [Subkani](https://kani.readthedocs.io/en/latest/advanced/subkani.html)
+    - Uses a smaller context (cheaper) model as a parent that makes calls to a larger context model
+
 
 ## 💡 Tips for Future You
 
