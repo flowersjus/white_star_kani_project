@@ -1,0 +1,64 @@
+{
+  "melee_weapons": [
+    {
+      "name": "Battle Axe",
+      "damage": "1d6+1",
+      "weight": 6,
+      "cost": 7
+    },
+    {
+      "name": "Club",
+      "damage": "1d6",
+      "weight": 3,
+      "cost": 0
+    },
+    {
+      "name": "Dagger",
+      "damage": "1d6-1",
+      "weight": 1,
+      "cost": 3
+    },
+    {
+      "name": "Mono-Dagger",
+      "damage": "1d6",
+      "weight": 1,
+      "cost": 15
+    },
+    {
+      "name": "Mono-Sword",
+      "damage": "1d6+1",
+      "weight": 3,
+      "cost": 20
+    },
+    {
+      "name": "Mono-Axe",
+      "damage": "1d6+2",
+      "weight": 6,
+      "cost": 35
+    },
+    {
+      "name": "Spear",
+      "damage": "1d6",
+      "weight": 5,
+      "cost": 2
+    },
+    {
+      "name": "Staff",
+      "damage": "1d6",
+      "weight": 5,
+      "cost": 1
+    },
+    {
+      "name": "Star Sword",
+      "damage": "1d6+4",
+      "weight": 1,
+      "cost": 100
+    },
+    {
+      "name": "Sword",
+      "damage": "1d6",
+      "weight": 3,
+      "cost": 10
+    }
+  ]
+}

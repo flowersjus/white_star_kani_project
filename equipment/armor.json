@@ -1,0 +1,39 @@
+{
+  "armor_and_shields": [
+    {
+      "name": "Heavy",
+      "ac": "-6",
+      "aac": "+6",
+      "weight": 60,
+      "cost": 100
+    },
+    {
+      "name": "Light",
+      "ac": "-2",
+      "aac": "+2",
+      "weight": 15,
+      "cost": 25
+    },
+    {
+      "name": "Medium",
+      "ac": "-4",
+      "aac": "+4",
+      "weight": 30,
+      "cost": 50
+    },
+    {
+      "name": "Shield, Energy",
+      "ac": "-2",
+      "aac": "+2",
+      "weight": 1,
+      "cost": 25
+    },
+    {
+      "name": "Shield, Physical",
+      "ac": "-1",
+      "aac": "+1",
+      "weight": 10,
+      "cost": 10
+    }
+  ]
+}

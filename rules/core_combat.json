@@ -150,11 +150,6 @@
           "required_roll": 28
         }
       ]
-    },
-    "time": {
-      "round": "1 minute",
-      "turn": "10 minutes",
-      "notes": "A round is used for combat and fast-paced actions. A turn is used for slower exploration activities. The Referee may also rule that longer spans of time (hours, days, or months) pass depending on the context."
     }
   }
 }

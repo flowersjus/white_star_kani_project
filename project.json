@@ -6,12 +6,8 @@
       "core_combat",
       "time",
       "saving_throws",
-      "surprise_search",
-      "experience",
       "assistants",
-      "starship_combat",
-      "modifications",
-      "alien_creature_combat"
+      "starship_combat"
     ],
     "equipment": [
       "standard_gear",
@@ -32,7 +28,7 @@
     ],
     "starships": [
       "starships",
-      "modifications"
+      "starship_modifications"
     ],
     "npcs": [
       "aliens",

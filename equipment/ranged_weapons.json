@@ -1,0 +1,104 @@
+{
+  "ranged_weapons": [
+    {
+      "name": "Bow, Long",
+      "damage": "1d6",
+      "rof": "2",
+      "range": "300 ft",
+      "weight": 20,
+      "cost": 40
+    },
+    {
+      "name": "Bow, Short",
+      "damage": "1d6-1",
+      "rof": "2",
+      "range": "200 ft",
+      "weight": 5,
+      "cost": 25
+    },
+    {
+      "name": "Crossbow, Heavy",
+      "damage": "1d6+1",
+      "rof": "1/2",
+      "range": "250 ft",
+      "weight": 18,
+      "cost": 25
+    },
+    {
+      "name": "Crossbow, Light",
+      "damage": "1d6",
+      "rof": "1/2",
+      "range": "250 ft",
+      "weight": 9,
+      "cost": 15
+    },
+    {
+      "name": "Firearm (Pistol)",
+      "damage": "1d6",
+      "rof": "2",
+      "range": "75 ft",
+      "weight": 2.5,
+      "cost": 45
+    },
+    {
+      "name": "Firearm (Rifle)",
+      "damage": "1d6+1",
+      "rof": "1",
+      "range": "150 ft",
+      "weight": 7.5,
+      "cost": 75
+    },
+    {
+      "name": "Grenade (Concussion)",
+      "damage": "3d6+2",
+      "rof": "1",
+      "range": "30 ft",
+      "weight": 1,
+      "cost": 25
+    },
+    {
+      "name": "Grenade (Fragmentation)",
+      "damage": "2d6+2",
+      "rof": "1",
+      "range": "30 ft",
+      "weight": 1,
+      "cost": 25
+    },
+    {
+      "name": "Laser Pistol",
+      "damage": "1d6+2",
+      "rof": "2",
+      "range": "100 ft",
+      "weight": 2.5,
+      "cost": 50
+    },
+    {
+      "name": "Laser Rifle",
+      "damage": "2d6",
+      "rof": "2",
+      "range": "200 ft",
+      "weight": 5,
+      "cost": 100
+    },
+    {
+      "name": "Arrow (20)",
+      "weight": 1,
+      "cost": 1
+    },
+    {
+      "name": "Bolt (20)",
+      "weight": 1,
+      "cost": 1
+    },
+    {
+      "name": "Bullet (20)",
+      "weight": 0.5,
+      "cost": 10
+    },
+    {
+      "name": "Energy Cell (20)",
+      "weight": 0.25,
+      "cost": 10
+    }
+  ]
+}
