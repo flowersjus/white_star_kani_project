@@ -33,6 +33,18 @@
     "npcs": [
       "aliens",
       "creatures"
+    ],
+    "character_creation": [
+      "character_classes",
+      "character_races"
+    ],
+    "characters": [
+      "jax_varn"
+    ],
+    "ai_dm": [
+      "ai_dm_white_star_solo_setup",
+      "mythic_config",
+      "scene_loop_instructions"
     ]
   },
   "ephemeral": [

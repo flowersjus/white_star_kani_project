@@ -1,0 +1,116 @@
+{
+  "character_races": [
+    {
+      "name": "Human",
+      "description": "Versatile and ambitious, humans adapt easily to any class or situation.",
+      "special_abilities": "None by default, but may receive bonus XP or starting credits at Referee's discretion.",
+      "movement": "12",
+      "notes": "Default baseline race for most characters."
+    },
+    {
+      "name": "Cyborg, Metallic",
+      "description": "Metallic Cyborgs are escaped former slaves turned warriors, standing nearly 7 feet tall with chrome bodies and glowing red eyes.",
+      "special_abilities": "None",
+      "movement": "12",
+      "notes": "Converted from alien entry. Stats may need referee approval."
+    },
+    {
+      "name": "Cyborg, Replica",
+      "description": "Rulers of cyborg society, these near-perfect human replicas infiltrate civilization unnoticed.",
+      "special_abilities": "Appears completely human and is skilled in infiltration.",
+      "movement": "12",
+      "notes": "Converted from alien entry. Stats may need referee approval."
+    },
+    {
+      "name": "Falcon-Men",
+      "description": "Humanoid figures with large feathered wings, often wearing robes and shouting with dramatic flair.",
+      "special_abilities": "Flight",
+      "movement": "12 (land or flight)",
+      "notes": "Converted from alien entry. Stats may need referee approval."
+    },
+    {
+      "name": "Felinoids",
+      "description": "Tall feline humanoids with natural climbing claws and night vision. Agile and territorial.",
+      "special_abilities": "Dark vision 90 ft, Climb",
+      "movement": "12 (climbing: 12)",
+      "notes": "Converted from alien entry. Stats may need referee approval."
+    },
+    {
+      "name": "Greys",
+      "description": "Mysterious slick-skinned creatures with black eyes and telepathic abilities.",
+      "special_abilities": "Psychic Blast, Detect Thoughts",
+      "movement": "8",
+      "notes": "Converted from alien entry. Stats may need referee approval."
+    },
+    {
+      "name": "Mindoids",
+      "description": "Humanlike beings with enormous craniums and immense psychic power. Emit damaging psychic bursts.",
+      "special_abilities": "Detect Invisible, Detect Thoughts, Expand Senses, +2 Initiative",
+      "movement": "12",
+      "notes": "Converted from alien entry. Stats may need referee approval."
+    },
+    {
+      "name": "Odays",
+      "description": "Small, wise, and riddle-speaking aliens who act as mentors to many Star Knights.",
+      "special_abilities": "Meditations as 7th level Star Knight",
+      "movement": "6",
+      "notes": "Converted from alien entry. Stats may need referee approval."
+    },
+    {
+      "name": "Procyon",
+      "description": "Aggressive raccoon-like beings with a gift for advanced weapons and tactics.",
+      "special_abilities": "+1 To-Hit with laser weapons and grenades",
+      "movement": "9",
+      "notes": "Converted from alien entry. Stats may need referee approval."
+    },
+    {
+      "name": "Qinlons",
+      "description": "Honor-driven warriors with ridged foreheads and brutal melee strength.",
+      "special_abilities": "+1 to melee damage",
+      "movement": "12",
+      "notes": "Converted from alien entry. Stats may need referee approval."
+    },
+    {
+      "name": "Soldier",
+      "description": "Generic military personnel, mercenaries, or pirates. Highly customizable per scenario.",
+      "special_abilities": "None",
+      "movement": "12",
+      "notes": "Converted from alien entry. Stats may need referee approval."
+    },
+    {
+      "name": "Space Savages",
+      "description": "Feral space marauders who scream, kill, and never negotiate. Immune to mental control.",
+      "special_abilities": "Immune to mind-influencing effects",
+      "movement": "15",
+      "notes": "Converted from alien entry. Stats may need referee approval."
+    },
+    {
+      "name": "Uttins",
+      "description": "Rodent-like scavengers in cowls. Love salvage and wield special ion pistols.",
+      "special_abilities": "Ion pistol does double damage to robots",
+      "movement": "6",
+      "notes": "Converted from alien entry. Stats may need referee approval."
+    },
+    {
+      "name": "Void Knight",
+      "description": "Fallen Star Knights who wield dark power. Use Meditations and deadly psychic abilities.",
+      "special_abilities": "Star Knight Meditations, Corrupted Energy, Force of Will (insta-kill)",
+      "movement": "12",
+      "notes": "Converted from alien entry. Stats may need referee approval."
+    },
+    {
+      "name": "Wolflings",
+      "description": "Wolf-like humanoids who excel in packs. Gain +1 To-Hit when fighting with two or more allies.",
+      "special_abilities": "Group Tactics, Keen Senses",
+      "movement": "12",
+      "notes": "Converted from alien entry. Stats may need referee approval."
+    },
+    {
+      "name": "Yabnabs",
+      "description": "Short, bear-like primitives with an intense curiosity for the stars.",
+      "special_abilities": "None",
+      "movement": "6",
+      "notes": "Converted from alien entry. Stats may need referee approval."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "Jax Varn",
+  "class": "Mercenary",
+  "race": "Human",
+  "level": 1,
+  "hp": 10,
+  "max_hp": 10,
+  "credits": 75,
+  "inventory": [
+    "Laser Pistol",
+    "Energy Cell (x3)",
+    "Combat Knife",
+    "Light Armor",
+    "Rations (3 days)",
+    "Med Kit"
+  ],
+  "saving_throw_bonus": "+2 vs death and poison",
+  "special_abilities": [
+    "Combat Machine: Extra attacks per level vs 1 HD foes",
+    "Weapon/Armor Proficiency: No restrictions"
+  ],
+  "status": "Active",
+  "background": "Former colony enforcer turned merc-for-hire. Carries a chip on his shoulder and a blaster on his hip.",
+  "goals": [
+    "Track down the rogue AI that destroyed his crew",
+    "Earn enough credits to upgrade to a ship of his own"
+  ]
+}
