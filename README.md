@@ -244,6 +244,8 @@ white_star_kani_project/
 
   - ```python
     import json
+    import os
+    from dotenv import load_dotenv
     from kani import Kani, chat_in_terminal
     from kani.engines.openai import OpenAIEngine
     from tools import (
@@ -286,7 +288,11 @@ white_star_kani_project/
     """
     
     # Connect to OpenAI
-    api_key = "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"  # your actual key
+    load_dotenv()
+    api_key = os.getenv("OPENAI_API_KEY")
+    
+    if not api_key:
+        raise ValueError("No OpenAI API key found in environment. Set OPENAI_API_KEY in .env.")
     engine = OpenAIEngine(api_key, model="gpt-4o")
     
     # Create Kani with system prompt and registered tools
@@ -311,7 +317,6 @@ white_star_kani_project/
     
     # Launch terminal chat
     chat_in_terminal(ai)
-    
     ```
 
 - `tools.py`
@@ -725,9 +730,6 @@ white_star_kani_project/
     roll_dice = AIFunction(roll_dice)
     start_scenario = AIFunction(start_scenario)
     log_scene = AIFunction(log_scene)
-    
-    
-    
     ```
     
   - 
