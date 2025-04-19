@@ -2,8 +2,12 @@ import json
 import random
 import re
 import os
-from kani.ai_function import AIFunction
+from kani.ai_function import AIFunction, ai_function
 from datetime import datetime
+
+# Configuration
+NUM_RECENT_USER_MESSAGES = 10  # Change this value to adjust the summary range
+SCENE_LOG_PATH = "ephemeral/scene_log.json"
 
 def log_transaction(entry: dict):
     """Append a transaction entry to ledger.json with a timestamp."""
@@ -330,9 +334,26 @@ async def show_ledger(character: str = "Jax Varn") -> str:
 
     return "\n".join(lines)
 
+@ai_function()
 async def start_scenario() -> str:
-    """Generate a basic adventure scenario: location, situation, and hook."""
-    
+    """Generate a basic adventure scenario with a brief recap of recent events."""
+
+    # Attempt to include scene recap
+    SCENE_LOG_PATH = "ephemeral/scene_log.json"
+    recap = ""
+    try:
+        if os.path.exists(SCENE_LOG_PATH):
+            with open(SCENE_LOG_PATH, "r") as f:
+                logs = json.load(f)
+                if logs:
+                    recent = logs[-3:]  # Get last 3 scenes
+                    bullet_points = [f"- {entry['summary']}" for entry in recent if entry.get("summary")]
+                    if bullet_points:
+                        recap = "📖 **Previously on Jax Varn’s journey:**\n" + "\n".join(bullet_points) + "\n\n"
+    except Exception as e:
+        recap = ""  # Fallback to no recap if something goes wrong
+
+    # Scenario generation
     locations = [
         "Tycho-221, a rusting mining station orbiting a dead moon",
         "Krellar’s Drift, a smuggler outpost on the edge of lawful space",
@@ -363,35 +384,107 @@ async def start_scenario() -> str:
 **Location:** {random.choice(locations)}
 **Situation:** {random.choice(situations)}
 **Detail:** {random.choice(npc_or_detail)}
-"""
-    return scenario.strip()
+""".strip()
 
-import os
-from datetime import datetime
+    return recap + scenario
+
 
 async def log_scene(character: str, title: str, summary: str) -> str:
-    """Save a scene description under a specific character's log."""
-    LOG_DIR = "scene_log"
-    os.makedirs(LOG_DIR, exist_ok=True)
-    log_path = os.path.join(LOG_DIR, f"{character.replace(' ', '_').lower()}.json")
-
-    try:
-        with open(log_path, "r") as f:
-            log = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        log = []
-
-    entry = {
-        "timestamp": datetime.utcnow().isoformat(),
+    """Logs a summarized scene entry for the specified character."""
+    log_entry = {
+        "timestamp": datetime.now().isoformat(),
         "title": title,
         "summary": summary
     }
-    log.append(entry)
 
-    with open(log_path, "w") as f:
-        json.dump(log, f, indent=2)
+    try:
+        if os.path.exists(SCENE_LOG_PATH):
+            with open(SCENE_LOG_PATH, "r") as f:
+                content = f.read().strip()
+                data = json.loads(content) if content else []
+        else:
+            data = []
 
-    return f"Scene '{title}' logged for {character}."
+        data.append(log_entry)
+
+        with open(SCENE_LOG_PATH, "w") as f:
+            json.dump(data, f, indent=2)
+
+        return f'The scene "{title}" has been logged for {character}. {summary}'
+    except Exception as e:
+        return f"Failed to log scene: {e}"
+
+async def summarize_recent_chat(character: str) -> str:
+    """
+    Summarize the last N user/AI message pairs for the specified character.
+    """
+    log_path = f"chat_log/{character.lower().replace(' ', '_')}.jsonl"
+    try:
+        with open(log_path, "r") as f:
+            lines = f.readlines()
+    except FileNotFoundError:
+        return f"No chat log found for {character}."
+
+    # Parse and reverse for recent-first
+    messages = [json.loads(line) for line in lines][::-1]
+
+    user_msg_count = 0
+    summary_block = []
+    for msg in messages:
+        summary_block.insert(0, msg)
+        if msg["role"] == "user":
+            user_msg_count += 1
+        if user_msg_count >= NUM_RECENT_USER_MESSAGES:
+            break
+
+    if not summary_block:
+        return "Not enough recent chat data to summarize."
+
+    # Convert to text transcript
+    transcript = ""
+    for msg in summary_block:
+        prefix = "You" if msg["role"] == "user" else "GM"
+        transcript += f"{prefix}: {msg['message']}\n"
+
+    # Call the LLM to summarize
+    return (
+        "Summarize this recent gameplay log into a short paragraph:\n\n"
+        + transcript
+    )
+
+CHAT_LOG_DIR = "chat_log"
+
+def append_to_chat_log(character: str, role: str, message: str):
+    os.makedirs(CHAT_LOG_DIR, exist_ok=True)
+    log_path = os.path.join(CHAT_LOG_DIR, f"{character.replace(' ', '_').lower()}.jsonl")
+
+    entry = {
+        "timestamp": datetime.utcnow().isoformat(),
+        "role": role,
+        "message": message.strip()
+    }
+
+    with open(log_path, "a") as f:
+        f.write(json.dumps(entry) + "\n")
+
+async def summarize_scene_log_function(character: str) -> str:
+    """Summarize the full scene log for a given character."""
+    if not os.path.exists(SCENE_LOG_PATH):
+        return f"No scene log exists for {character}."
+
+    with open(SCENE_LOG_PATH, "r") as f:
+        try:
+            data = json.load(f)
+        except json.JSONDecodeError:
+            return "Scene log could not be read."
+
+    if not data:
+        return f"There are no logged scenes for {character}."
+
+    # Optional: filter by character if needed
+    summaries = [entry["summary"] for entry in data]
+    combined = "\n".join(f"- {summary}" for summary in summaries)
+    return f"Here is a summary of all scenes involving {character}:\n\n{combined}"
 
 # ✅ Simpler wrapping for current AIFunction version
 add_inventory = AIFunction(add_inventory)
@@ -406,5 +499,6 @@ show_ledger = AIFunction(show_ledger)
 roll_dice = AIFunction(roll_dice)
 start_scenario = AIFunction(start_scenario)
 log_scene = AIFunction(log_scene)
-
+summarize_recent_chat = AIFunction(summarize_recent_chat)
+summarize_scene_log = AIFunction(summarize_scene_log_function)
 

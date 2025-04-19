@@ -70,6 +70,40 @@ Supported functions:
 - `/remove_inventory "Jax Varn", "Energy Cell", 1`
 - `/show_inventory` or `/show_inventory "Jax Varn"`
 
+## ✅ Current Capabilities (Updated)
+
+### 🧾 Credit + Economy System
+
+- **Credits stored in:** `ephemeral/credits.json`
+- Characters can:
+  - `/add_credits`, `/spend_credits`, `/show_credits`
+  - `/transfer_credits` to other characters
+  - `/buy_item` using prices from `equipment/*.json` (fuzzy matched)
+- Each transaction is recorded in `ephemeral/ledger.json` with timestamps:
+  - `/show_ledger` shows the last 10 transactions for a character
+
+### 🎲 Dice Tools
+
+- `/roll_dice "2d6+1"` rolls and returns real results
+- AI is instructed *not* to make up rolls—only use the tool
+
+### 🎬 Scenario Generator
+
+- `/start_scenario "Character Name"` begins a new adventure
+  - Includes **Location**, **Situation**, **Narrative Detail**
+  - Auto-includes last 3 scene summaries if available
+
+### 📖 Scene Logging + Summary
+
+- `/log_scene` stores a title + summary to `ephemeral/scene_log.json`
+- `/summarize_scene_log` returns a list of all summaries so far
+- Full support for multi-scene memory, even across sessions
+
+### 🧠 Chat Memory
+
+- All messages are saved to `chat_log/<character>.jsonl`
+- `/summarize_recent_chat` summarizes the last 10 user+AI exchanges
+
 Internally, each of these is defined as an `async def` Python function and wrapped using `AIFunction()`.
 
 ### 🧰 Tools Created
@@ -128,7 +162,29 @@ white_star_kani_project/
 
 ## 📝 TODO / Roadmap
 
+### 🧪 In Progress
+
+- ✅ Full working tool for:
+  - **Credits + Inventory + Purchases**
+  - **Dice rolling**
+  - **Scene generation and summaries**
+- ✍️ **Add character bios/motives** via `/recall_character`
+- 🔁 **`/reset_character`** to start clean
+- 🧠 Add `/summarize_last_scene` from recent chat and auto-log it
+- 🌍 Begin worldbuilding structure (`sectors/`, `contacts/`, etc.)
+
+### 🧠 Future AI Enhancements
+
+- 🔄 Consider using [OpenRouter](https://openrouter.ai/) for higher-context or cheaper summarization
+  - Use a `SubKani` or background summarizer
+- 🤖 Offline (local) model integration optional later
+
 ### 📈 Short-Term
+
+- ~~📅 `/summarize_scene_log` — auto-recap *entire mission* from scene summaries~~
+- 🧠 `/recall_character` — pull bio/motivation/logged notes on NPCs
+- 🔁 `/reset_character` — start a new adventure with clean logs
+- 🌌 `/set_location` — AI tracks location so future prompts reflect it
 
 - Create a tool `/summarize_last_scene` that:
   - Looks at the scene
@@ -184,7 +240,7 @@ white_star_kani_project/
 
 ### Narrative
 
-- 🧪 Dice rolling tools (`/roll 2d6+1`)
+- ~~🧪 Dice rolling tools (`/roll 2d6+1`)~~
 - Tasks / Requests / Quests
   - Log active missions, objectives, and progress
   - Stored in `ephemeral/quests.json` or similar
@@ -197,6 +253,17 @@ white_star_kani_project/
   - Possibly use Kani's suggestion `Chat History`
     - [Kani Read the Docs-Chat History](https://kani.readthedocs.io/en/latest/customization/chat_history.html)
 - Mythic GME
+- #### 🧠 Smarter Scene Summary
+
+  Instead of a flat list:
+
+  - Group scenes by date or location
+  - Add character tags or keywords for filtering
+  - Create a “recap” prompt that converts the whole log into 1–2 paragraphs
+- #### 🧾 Optional Enhancements
+
+  - Add a `character` key to each log entry for filtering multiple protagonists
+  - Log not just summaries, but *choices* or *dice outcomes* (this might help you write a “previously on...”)
 
 ### AI
 
@@ -261,6 +328,9 @@ white_star_kani_project/
         roll_dice,
         start_scenario,
         log_scene,
+        append_to_chat_log,
+        summarize_recent_chat,
+        summarize_scene_log,
     )
     
     # Load the character inventory manually
@@ -312,11 +382,38 @@ white_star_kani_project/
             roll_dice,
             start_scenario,
             log_scene,
+            summarize_recent_chat,
+            summarize_scene_log,
         ],
     )
     
     # Launch terminal chat
-    chat_in_terminal(ai)
+    import asyncio
+    
+    async def custom_chat_loop():
+        print("USER: ", end="", flush=True)
+        while True:
+            try:
+                user_input = input()
+            except (EOFError, KeyboardInterrupt):
+                print("\nExiting chat.")
+                break
+    
+            if not user_input.strip():
+                continue
+    
+            append_to_chat_log("Jax Varn", "user", user_input)
+            reply_parts = []
+            async for part in ai.full_round_str(user_input):
+                reply_parts.append(part)
+            reply = "".join(reply_parts)
+            append_to_chat_log("Jax Varn", "ai", reply)
+            print(f"AI: {reply}\n")
+            print("USER: ", end="", flush=True)
+    
+    asyncio.run(custom_chat_loop())
+    
+    
     ```
 
 - `tools.py`
@@ -326,8 +423,12 @@ white_star_kani_project/
     import random
     import re
     import os
-    from kani.ai_function import AIFunction
+    from kani.ai_function import AIFunction, ai_function
     from datetime import datetime
+    
+    # Configuration
+    NUM_RECENT_USER_MESSAGES = 10  # Change this value to adjust the summary range
+    SCENE_LOG_PATH = "ephemeral/scene_log.json"
     
     def log_transaction(entry: dict):
         """Append a transaction entry to ledger.json with a timestamp."""
@@ -654,9 +755,26 @@ white_star_kani_project/
     
         return "\n".join(lines)
     
+    @ai_function()
     async def start_scenario() -> str:
-        """Generate a basic adventure scenario: location, situation, and hook."""
-        
+        """Generate a basic adventure scenario with a brief recap of recent events."""
+    
+        # Attempt to include scene recap
+        SCENE_LOG_PATH = "ephemeral/scene_log.json"
+        recap = ""
+        try:
+            if os.path.exists(SCENE_LOG_PATH):
+                with open(SCENE_LOG_PATH, "r") as f:
+                    logs = json.load(f)
+                    if logs:
+                        recent = logs[-3:]  # Get last 3 scenes
+                        bullet_points = [f"- {entry['summary']}" for entry in recent if entry.get("summary")]
+                        if bullet_points:
+                            recap = "📖 **Previously on Jax Varn’s journey:**\n" + "\n".join(bullet_points) + "\n\n"
+        except Exception as e:
+            recap = ""  # Fallback to no recap if something goes wrong
+    
+        # Scenario generation
         locations = [
             "Tycho-221, a rusting mining station orbiting a dead moon",
             "Krellar’s Drift, a smuggler outpost on the edge of lawful space",
@@ -687,35 +805,107 @@ white_star_kani_project/
     **Location:** {random.choice(locations)}
     **Situation:** {random.choice(situations)}
     **Detail:** {random.choice(npc_or_detail)}
-    """
-        return scenario.strip()
+    """.strip()
     
-    import os
-    from datetime import datetime
+        return recap + scenario
+    
     
     async def log_scene(character: str, title: str, summary: str) -> str:
-        """Save a scene description under a specific character's log."""
-        LOG_DIR = "scene_log"
-        os.makedirs(LOG_DIR, exist_ok=True)
-        log_path = os.path.join(LOG_DIR, f"{character.replace(' ', '_').lower()}.json")
-    
-        try:
-            with open(log_path, "r") as f:
-                log = json.load(f)
-        except (FileNotFoundError, json.JSONDecodeError):
-            log = []
-    
-        entry = {
-            "timestamp": datetime.utcnow().isoformat(),
+        """Logs a summarized scene entry for the specified character."""
+        log_entry = {
+            "timestamp": datetime.now().isoformat(),
             "title": title,
             "summary": summary
         }
-        log.append(entry)
     
-        with open(log_path, "w") as f:
-            json.dump(log, f, indent=2)
+        try:
+            if os.path.exists(SCENE_LOG_PATH):
+                with open(SCENE_LOG_PATH, "r") as f:
+                    content = f.read().strip()
+                    data = json.loads(content) if content else []
+            else:
+                data = []
     
-        return f"Scene '{title}' logged for {character}."
+            data.append(log_entry)
+    
+            with open(SCENE_LOG_PATH, "w") as f:
+                json.dump(data, f, indent=2)
+    
+            return f'The scene "{title}" has been logged for {character}. {summary}'
+        except Exception as e:
+            return f"Failed to log scene: {e}"
+    
+    async def summarize_recent_chat(character: str) -> str:
+        """
+        Summarize the last N user/AI message pairs for the specified character.
+        """
+        log_path = f"chat_log/{character.lower().replace(' ', '_')}.jsonl"
+        try:
+            with open(log_path, "r") as f:
+                lines = f.readlines()
+        except FileNotFoundError:
+            return f"No chat log found for {character}."
+    
+        # Parse and reverse for recent-first
+        messages = [json.loads(line) for line in lines][::-1]
+    
+        user_msg_count = 0
+        summary_block = []
+        for msg in messages:
+            summary_block.insert(0, msg)
+            if msg["role"] == "user":
+                user_msg_count += 1
+            if user_msg_count >= NUM_RECENT_USER_MESSAGES:
+                break
+    
+        if not summary_block:
+            return "Not enough recent chat data to summarize."
+    
+        # Convert to text transcript
+        transcript = ""
+        for msg in summary_block:
+            prefix = "You" if msg["role"] == "user" else "GM"
+            transcript += f"{prefix}: {msg['message']}\n"
+    
+        # Call the LLM to summarize
+        return (
+            "Summarize this recent gameplay log into a short paragraph:\n\n"
+            + transcript
+        )
+    
+    CHAT_LOG_DIR = "chat_log"
+    
+    def append_to_chat_log(character: str, role: str, message: str):
+        os.makedirs(CHAT_LOG_DIR, exist_ok=True)
+        log_path = os.path.join(CHAT_LOG_DIR, f"{character.replace(' ', '_').lower()}.jsonl")
+    
+        entry = {
+            "timestamp": datetime.utcnow().isoformat(),
+            "role": role,
+            "message": message.strip()
+        }
+    
+        with open(log_path, "a") as f:
+            f.write(json.dumps(entry) + "\n")
+    
+    async def summarize_scene_log_function(character: str) -> str:
+        """Summarize the full scene log for a given character."""
+        if not os.path.exists(SCENE_LOG_PATH):
+            return f"No scene log exists for {character}."
+    
+        with open(SCENE_LOG_PATH, "r") as f:
+            try:
+                data = json.load(f)
+            except json.JSONDecodeError:
+                return "Scene log could not be read."
+    
+        if not data:
+            return f"There are no logged scenes for {character}."
+    
+        # Optional: filter by character if needed
+        summaries = [entry["summary"] for entry in data]
+        combined = "\n".join(f"- {summary}" for summary in summaries)
+        return f"Here is a summary of all scenes involving {character}:\n\n{combined}"
     
     # ✅ Simpler wrapping for current AIFunction version
     add_inventory = AIFunction(add_inventory)
@@ -730,6 +920,8 @@ white_star_kani_project/
     roll_dice = AIFunction(roll_dice)
     start_scenario = AIFunction(start_scenario)
     log_scene = AIFunction(log_scene)
+    summarize_recent_chat = AIFunction(summarize_recent_chat)
+    summarize_scene_log = AIFunction(summarize_scene_log_function)
     ```
     
   - 

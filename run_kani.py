@@ -16,6 +16,9 @@ from tools import (
     roll_dice,
     start_scenario,
     log_scene,
+    append_to_chat_log,
+    summarize_recent_chat,
+    summarize_scene_log,
 )
 
 # Load the character inventory manually
@@ -67,8 +70,34 @@ ai = Kani(
         roll_dice,
         start_scenario,
         log_scene,
+        summarize_recent_chat,
+        summarize_scene_log,
     ],
 )
 
 # Launch terminal chat
-chat_in_terminal(ai)
+import asyncio
+
+async def custom_chat_loop():
+    print("USER: ", end="", flush=True)
+    while True:
+        try:
+            user_input = input()
+        except (EOFError, KeyboardInterrupt):
+            print("\nExiting chat.")
+            break
+
+        if not user_input.strip():
+            continue
+
+        append_to_chat_log("Jax Varn", "user", user_input)
+        reply_parts = []
+        async for part in ai.full_round_str(user_input):
+            reply_parts.append(part)
+        reply = "".join(reply_parts)
+        append_to_chat_log("Jax Varn", "ai", reply)
+        print(f"AI: {reply}\n")
+        print("USER: ", end="", flush=True)
+
+asyncio.run(custom_chat_loop())
+
