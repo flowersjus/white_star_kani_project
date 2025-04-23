@@ -486,6 +486,35 @@ async def summarize_scene_log_function(character: str) -> str:
     combined = "\n".join(f"- {summary}" for summary in summaries)
     return f"Here is a summary of all scenes involving {character}:\n\n{combined}"
 
+import os
+
+async def choose_character() -> str:
+    """Prompt the user to select a character from existing files or create a new one."""
+    characters_dir = "characters"
+    character_files = [
+        f for f in os.listdir(characters_dir)
+        if f.endswith(".json") and not f.startswith("summary_")
+    ]
+    character_names = [os.path.splitext(f)[0].replace("_", " ").title() for f in character_files]
+
+    print("\n🎭 Welcome to White Star. Choose your character:\n")
+    for idx, name in enumerate(character_names, 1):
+        print(f"{idx}. {name}")
+    print(f"{len(character_names) + 1}. Create a new character")
+
+    while True:
+        try:
+            choice = int(input("\nEnter your choice: "))
+            if 1 <= choice <= len(character_names):
+                selected = character_names[choice - 1]
+                print(f"\n✨ You selected: {selected}")
+                return selected
+            elif choice == len(character_names) + 1:
+                return "__NEW__"
+        except ValueError:
+            pass
+        print("Invalid input. Please choose a valid number.")
+
 # ✅ Simpler wrapping for current AIFunction version
 add_inventory = AIFunction(add_inventory)
 remove_inventory = AIFunction(remove_inventory)

@@ -112,5 +112,35 @@
       "movement": "6",
       "notes": "Converted from alien entry. Stats may need referee approval."
     }
+    {
+      "name": "Alien Brute",
+      "description": "A hulking alien creature with immense strength and resilience, often used as a muscle in various factions.",
+      "special_abilities": "Increased damage resistance, powerful melee attacks, keen senses.",
+      "movement": "12",
+      "saving_throws": {
+        "Physical": 2
+      }
+      "notes": "large, strong species. Whether they’re eight-foot tall walking carpets or ridge-headed, honor-bound warriors, this class reflects non-human characters from a martial culture. Whether by genetic predisposition or eons of cultural influence, they are masters of combat who serve as loyal allies and fierce adversaries."
+      "modifiers": {
+        "Strength": 2,
+        "Dexterity": -1,
+        "Constitution": 1
+      }
+    }
+    {
+      "name": "Alien Mystic",
+      "description": "A mysterious alien with psychic abilities and a deep connection to the cosmos.",
+      "special_abilities": "Telepathy, psychic powers, enhanced perception.",
+      "movement": "12",
+      "saving_throws": {
+        "Mental": 2
+      }
+      "notes": "Whether they’re little green gnomes with powerful magic or near-human psychics, the Alien Mystic reflects a more peaceful, introspective, and thoughtful being than is usually found in the galaxy at large. That is not to say that Alien Mystics are pacifists. Many are trained in the ways of war, though it is not their first course of action. They would much prefer to rely on their exotic abilities than a laser pistol, but pragmatism demands adaptation."
+      "modifiers": {
+        "Intelligence": 2,
+        "Wisdom": 1,
+        "Charisma": -1
+      }
+    }
   ]
 }

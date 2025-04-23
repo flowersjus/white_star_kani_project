@@ -1,0 +1,14 @@
+{
+  "name": "Enis Polorn",
+  "class": "Mercenary",
+  "race": "Human",
+  "alignment": "Lawful",
+  "attributes": {
+    "Strength": 14,
+    "Intelligence": 14,
+    "Wisdom": 11,
+    "Constitution": 14,
+    "Dexterity": 9,
+    "Charisma": 10
+  }
+}
