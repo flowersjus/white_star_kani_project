@@ -1,0 +1,42 @@
+{
+  "name": "Dier Portor",
+  "class": "Aristocrat",
+  "race": "Human",
+  "alignment": "Lawful",
+  "attributes": {
+    "Strength": 15,
+    "Intelligence": 11,
+    "Wisdom": 11,
+    "Constitution": 12,
+    "Dexterity": 10,
+    "Charisma": 8
+  },
+  "class_description": "Charismatic leaders and social manipulators who inspire allies and command followers.",
+  "class_features": [
+    "Powerful Speaker: +1 to all To-Hit and Saving Throw rolls for allies after 1 round speech (lasts 6 turns).",
+    "Silver Tongue: Mimics 'Charm Person' effect with a 1 round speech if target fails Save.",
+    "+2 to Saves against influence or mind-affecting effects.",
+    "Retinue (4th): Gains 1st/2nd level Merc bodyguard and 2d6 followers.",
+    "Planetary Ruler (8th): May establish a base of power, gaining loyal followers."
+  ],
+  "weapon_armor_restrictions": "May use clubs, daggers, firearms, grenades, laser pistols, mono-daggers, mono-swords, staffs, swords. Light Armor only, no shields.",
+  "xp_bonus": {
+    "attribute": "charisma",
+    "thresholds": {
+      "13-14": "5%",
+      "15+": "10%"
+    }
+  },
+  "race_description": "Versatile and ambitious, humans adapt easily to any class or situation.",
+  "race_special_abilities": "None by default, but may receive bonus XP or starting credits at Referee's discretion.",
+  "race_movement": "12",
+  "race_notes": "Default baseline race for most characters.",
+  "race_modifiers": {
+    "Strength": 0,
+    "Dexterity": 0,
+    "Constitution": 0,
+    "Intelligence": 0,
+    "Wisdom": 0,
+    "Charisma": 0
+  }
+}
