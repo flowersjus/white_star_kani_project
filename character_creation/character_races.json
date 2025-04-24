@@ -5,63 +5,169 @@
       "description": "Versatile and ambitious, humans adapt easily to any class or situation.",
       "special_abilities": "None by default, but may receive bonus XP or starting credits at Referee's discretion.",
       "movement": "12",
-      "notes": "Default baseline race for most characters."
+      "notes": "Default baseline race for most characters.",
+      "saving_throws": {
+        "Physical": 0,
+        "Mental": 0
+      },
+      "modifiers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Constitution": 0,
+        "Intelligence": 0,
+        "Wisdom": 0,
+        "Charisma": 0
+      }
+    },
+    {
+      "name": "Assimilant",
+      "description": "Terrible hybrids of human and machine, They have given over their humanity and uniqueness to become part of a hive mind controlled by a master artificial intelligence.",
+      "special_abilities": "Equipped with an internal laser pistol and a force field generator.",
+      "movement": "9",
+      "notes": "Assimilants seek to draw all sentient beings into their fold.",
+      "saving_throws": {
+        "physical": 2
+      },
+      "modifiers": {
+        "Strength": 1,
+        "Dexterity": -1,
+        "Constitution": -1
+      }
+    },
+    {
+      "name": "Cannicks",
+      "description": "Cannicks appear as cylindrical robotic beings who stand about five (5) feet in height and move around by hovering on a large magnetic energy field.",
+      "special_abilities": "None",
+      "movement": "10",
+      "notes": "They believe only their species should exist in the universe and destroy any other they encounter, often repeating the phrase “OBLITERATE!” continually over and over again in a harsh, metallic voice.",
+      "saving_throws": {
+        "Physical": 2
+      },
+      "modifiers": {
+        "Strength": -1,
+        "Constitution": 1
+      }
     },
     {
       "name": "Cyborg, Metallic",
       "description": "Metallic Cyborgs are escaped former slaves turned warriors, standing nearly 7 feet tall with chrome bodies and glowing red eyes.",
       "special_abilities": "None",
       "movement": "12",
-      "notes": "Converted from alien entry. Stats may need referee approval."
+      "notes": "Aggressive, but intelligent and very tactical in combat.",
+      "saving_throws": {
+        "Physical": 2
+      },
+      "modifiers": {
+        "Strength": 2,
+        "Dexterity": -1,
+        "Constitution": 1
+      }
     },
     {
       "name": "Cyborg, Replica",
       "description": "Rulers of cyborg society, these near-perfect human replicas infiltrate civilization unnoticed.",
       "special_abilities": "Appears completely human and is skilled in infiltration.",
       "movement": "12",
-      "notes": "Converted from alien entry. Stats may need referee approval."
+      "notes": "Converted from alien entry. Stats may need referee approval.",
+      "saving_throws": {
+        "Physical": 0
+      },
+      "modifiers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Constitution": 0
+      }
     },
     {
       "name": "Falcon-Men",
       "description": "Humanoid figures with large feathered wings, often wearing robes and shouting with dramatic flair.",
       "special_abilities": "Flight",
       "movement": "12 (land or flight)",
-      "notes": "Converted from alien entry. Stats may need referee approval."
+      "notes": "Converted from alien entry. Stats may need referee approval.",
+      "saving_throws": {
+        "Physical": 0
+      },
+      "modifiers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Constitution": 0
+      }
     },
     {
       "name": "Felinoids",
       "description": "Tall feline humanoids with natural climbing claws and night vision. Agile and territorial.",
       "special_abilities": "Dark vision 90 ft, Climb",
       "movement": "12 (climbing: 12)",
-      "notes": "Converted from alien entry. Stats may need referee approval."
+      "notes": "Converted from alien entry. Stats may need referee approval.",
+      "saving_throws": {
+        "Dexterity": 2
+      },
+      "modifiers": {
+        "Strength": 0,
+        "Dexterity": 2,
+        "Constitution": 1
+      }
     },
     {
       "name": "Greys",
-      "description": "Mysterious slick-skinned creatures with black eyes and telepathic abilities.",
-      "special_abilities": "Psychic Blast, Detect Thoughts",
+      "description": "Mysterious slick-skinned creatures with black eyes and telepathic abilities with grey skin.",
+      "special_abilities": "Psychic Blast (1d6 points of energy damage within 60 ft), Detect Thoughts",
       "movement": "8",
-      "notes": "Converted from alien entry. Stats may need referee approval."
+      "notes": "Converted from alien entry. Stats may need referee approval.",
+      "saving_throws": {
+        "Mental": 2
+      },
+      "modifiers": {
+        "Intelligence": 2,
+        "Wisdom": 1,
+        "Charisma": -1,
+        "Physical": -2
+      }
     },
     {
       "name": "Mindoids",
       "description": "Humanlike beings with enormous craniums and immense psychic power. Emit damaging psychic bursts.",
-      "special_abilities": "Detect Invisible, Detect Thoughts, Expand Senses, +2 Initiative",
+      "special_abilities": "Detect Invisible, Detect Thoughts, Expand Senses, +2 Initiative, Psychic Blast (2d6 damage) within 30 ft.",
       "movement": "12",
-      "notes": "Converted from alien entry. Stats may need referee approval."
+      "notes": "Converted from alien entry. Stats may need referee approval.",
+      "saving_throws": {
+        "Mental": 2
+      },
+      "modifiers": {
+        "Intelligence": 2,
+        "Wisdom": 1,
+        "Physical": 0
+      }
     },
     {
       "name": "Odays",
-      "description": "Small, wise, and riddle-speaking aliens who act as mentors to many Star Knights.",
+      "description": "Small, wise, and riddle-speaking aliens who act as mentors to many Star Knights. Pointed ears and oddly-colored skin.",
       "special_abilities": "Meditations as 7th level Star Knight",
       "movement": "6",
-      "notes": "Converted from alien entry. Stats may need referee approval."
+      "notes": "Converted from alien entry. Stats may need referee approval.",
+      "saving_throws": {
+        "Mental": 2
+      },
+      "modifiers": {
+        "Intelligence": 1,
+        "Wisdom": 2,
+        "Charisma": 1
+      }
     },
     {
       "name": "Procyon",
-      "description": "Aggressive raccoon-like beings with a gift for advanced weapons and tactics.",
+      "description": "Aggressive raccoon-like beings with a gift for advanced weapons and tactics. Half the size of a human.",
       "special_abilities": "+1 To-Hit with laser weapons and grenades",
       "movement": "9",
-      "notes": "Converted from alien entry. Stats may need referee approval."
+      "notes": "Typically well armed and react to intruders with extreme hostility.",
+      "saving_throws": {
+        "Physical": 0
+      },
+      "modifiers": {
+        "Strength": -1,
+        "Dexterity": 2,
+        "Constitution": 0
+      }
     },
     {
       "name": "Qinlons",
@@ -111,7 +217,7 @@
       "special_abilities": "None",
       "movement": "6",
       "notes": "Converted from alien entry. Stats may need referee approval."
-    }
+    },
     {
       "name": "Alien Brute",
       "description": "A hulking alien creature with immense strength and resilience, often used as a muscle in various factions.",
@@ -119,14 +225,14 @@
       "movement": "12",
       "saving_throws": {
         "Physical": 2
-      }
-      "notes": "large, strong species. Whether they’re eight-foot tall walking carpets or ridge-headed, honor-bound warriors, this class reflects non-human characters from a martial culture. Whether by genetic predisposition or eons of cultural influence, they are masters of combat who serve as loyal allies and fierce adversaries."
+      },
+      "notes": "large, strong species. Whether they’re eight-foot tall walking carpets or ridge-headed, honor-bound warriors, this class reflects non-human characters from a martial culture. Whether by genetic predisposition or eons of cultural influence, they are masters of combat who serve as loyal allies and fierce adversaries.",
       "modifiers": {
         "Strength": 2,
         "Dexterity": -1,
         "Constitution": 1
       }
-    }
+    },
     {
       "name": "Alien Mystic",
       "description": "A mysterious alien with psychic abilities and a deep connection to the cosmos.",
@@ -134,12 +240,27 @@
       "movement": "12",
       "saving_throws": {
         "Mental": 2
-      }
-      "notes": "Whether they’re little green gnomes with powerful magic or near-human psychics, the Alien Mystic reflects a more peaceful, introspective, and thoughtful being than is usually found in the galaxy at large. That is not to say that Alien Mystics are pacifists. Many are trained in the ways of war, though it is not their first course of action. They would much prefer to rely on their exotic abilities than a laser pistol, but pragmatism demands adaptation."
+      },
+      "notes": "Whether they’re little green gnomes with powerful magic or near-human psychics, the Alien Mystic reflects a more peaceful, introspective, and thoughtful being than is usually found in the galaxy at large. That is not to say that Alien Mystics are pacifists. Many are trained in the ways of war, though it is not their first course of action. They would much prefer to rely on their exotic abilities than a laser pistol, but pragmatism demands adaptation.",
       "modifiers": {
         "Intelligence": 2,
         "Wisdom": 1,
         "Charisma": -1
+      }
+    },
+    {
+      "name": "Robot",
+      "description": "A mechanical being with advanced technology and programming, often used for various tasks.",
+      "special_abilities": "Immunity to poison, disease, and mind control.",
+      "movement": "12",
+      "saving_throws": {
+        "Physical": 2
+      },
+      "notes": "Robots are purely automated lifeforms. Electricity is their blood and metal is their skin. Yet, their programming is so complex that they seem to have emotions and thoughts just like a human. They can be programmed for any number of tasks from manual labor, technology interface, zero-g functionality, and even combat. Each Robot is designed for a single specific purpose, but their complex programming allows them to learn to adapt as much as any living and sentient being.",
+      "modifiers": {
+        "Strength": 1,
+        "Dexterity": 1,
+        "Constitution": 2
       }
     }
   ]

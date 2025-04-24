@@ -95,16 +95,6 @@ async def create_character() -> str:
                 except ValueError:
                     pass
         rolls = [assigned[attr] for attr in ATTRS]
-        # Build baseline attributes
-        final_attributes = dict(zip(ATTRS, rolls))
-
-        # Apply race-based attribute modifiers
-        modifiers = selected_race.get("modifiers", {})
-        for attr, mod in modifiers.items():
-            attr_cap = attr.capitalize()
-            if attr_cap in final_attributes:
-                final_attributes[attr_cap] += mod
-                print(f"🧬 {attr_cap} modified by {mod} from race: {final_attributes[attr_cap]}")
 
     # Step 3: Class, race, alignment
     print("\nAvailable classes:")
@@ -130,17 +120,38 @@ async def create_character() -> str:
     for i, race in enumerate(races_data, 1):
         print(f"{i}. {race['name']}: {race['description']}")
 
+    # Initialize selected_race with a default value
+    selected_race = None
+    
     while True:
         try:
             race_choice = int(input("\nChoose a race by number: "))
             if 1 <= race_choice <= len(races_data):
                 selected_race = races_data[race_choice - 1]
                 break
+            else:
+                print(f"Please enter a number between 1 and {len(races_data)}.")
         except ValueError:
-            pass
-        print("Invalid input. Please enter a valid number.")
-
+            print("Invalid input. Please enter a valid number.")
+    
+    if selected_race is None:
+        # Fallback to Human if something went wrong
+        print("Error in race selection. Defaulting to Human race.")
+        for race in races_data:
+            if race["name"] == "Human":
+                selected_race = race
+                break
+    
     char_race = selected_race["name"]
+
+    # ✅ Single final_attributes and modifier application here:
+    final_attributes = dict(zip(ATTRS, rolls))
+    modifiers = selected_race.get("modifiers", {}) if selected_race else {}
+    for attr, mod in modifiers.items():
+        attr_cap = attr.capitalize()
+        if attr_cap in final_attributes:
+            final_attributes[attr_cap] += mod
+            print(f"🧬 {attr_cap} modified by {mod} from race: {final_attributes[attr_cap]}")
 
     char_alignment = input("Enter alignment (e.g., Lawful): ").strip().title()
 
@@ -153,14 +164,14 @@ async def create_character() -> str:
     "race": char_race,
     "alignment": char_alignment,
     "attributes": final_attributes,
-    "class_description": char_class_data["description"],
-    "class_features": char_class_data["class_features"],
-    "weapon_armor_restrictions": char_class_data["weapon_armor_restrictions"],
+    "class_description": char_class_data.get("description", "No description available"),
+    "class_features": char_class_data.get("class_features", []),
+    "weapon_armor_restrictions": char_class_data.get("weapon_armor_restrictions", {}),
     "xp_bonus": char_class_data.get("xp_bonus", {}),
-    "race_description": selected_race["description"],
-    "race_special_abilities": selected_race["special_abilities"],
-    "race_movement": selected_race["movement"],
-    "race_notes": selected_race["notes"]
+    "race_description": selected_race.get("description", "No description available"),
+    "race_special_abilities": selected_race.get("special_abilities", "None"),
+    "race_movement": selected_race.get("movement", "12"),
+    "race_notes": selected_race.get("notes", "No additional notes"),
     "race_modifiers": modifiers,
     }
 
