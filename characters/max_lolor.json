@@ -4,12 +4,36 @@
   "race": "Human",
   "alignment": "Lawful",
   "attributes": {
-    "Strength": 11,
-    "Intelligence": 6,
-    "Wisdom": 11,
-    "Constitution": 10,
-    "Dexterity": 10,
-    "Charisma": 10
+    "Strength": {
+      "base": 11,
+      "race_mod": 0,
+      "total": 11
+    },
+    "Intelligence": {
+      "base": 6,
+      "race_mod": 0,
+      "total": 6
+    },
+    "Wisdom": {
+      "base": 11,
+      "race_mod": 0,
+      "total": 11
+    },
+    "Constitution": {
+      "base": 10,
+      "race_mod": 0,
+      "total": 10
+    },
+    "Dexterity": {
+      "base": 10,
+      "race_mod": 0,
+      "total": 10
+    },
+    "Charisma": {
+      "base": 10,
+      "race_mod": 0,
+      "total": 10
+    }
   },
   "class_description": "Mystical warriors who blend martial skill with spiritual meditations.",
   "class_features": [

@@ -144,14 +144,22 @@ async def create_character() -> str:
     
     char_race = selected_race["name"]
 
-    # ✅ Single final_attributes and modifier application here:
-    final_attributes = dict(zip(ATTRS, rolls))
+    # ✅ Create structured attributes with base values, race modifiers, and totals:
+    base_attributes = dict(zip(ATTRS, rolls))
     modifiers = selected_race.get("modifiers", {}) if selected_race else {}
-    for attr, mod in modifiers.items():
-        attr_cap = attr.capitalize()
-        if attr_cap in final_attributes:
-            final_attributes[attr_cap] += mod
-            print(f"🧬 {attr_cap} modified by {mod} from race: {final_attributes[attr_cap]}")
+    structured_attributes = {}
+    
+    for attr in ATTRS:
+        race_mod = modifiers.get(attr, 0)
+        base_val = base_attributes[attr]
+        total = base_val + race_mod
+        structured_attributes[attr] = {
+            "base": base_val,
+            "race_mod": race_mod,
+            "total": total
+        }
+        if race_mod != 0:
+            print(f"🧬 {attr} modified by {race_mod} from race: {total}")
 
     char_alignment = input("Enter alignment (e.g., Lawful): ").strip().title()
 
@@ -163,7 +171,7 @@ async def create_character() -> str:
     "class": char_class,
     "race": char_race,
     "alignment": char_alignment,
-    "attributes": final_attributes,
+    "attributes": structured_attributes,
     "class_description": char_class_data.get("description", "No description available"),
     "class_features": char_class_data.get("class_features", []),
     "weapon_armor_restrictions": char_class_data.get("weapon_armor_restrictions", {}),
@@ -171,8 +179,7 @@ async def create_character() -> str:
     "race_description": selected_race.get("description", "No description available"),
     "race_special_abilities": selected_race.get("special_abilities", "None"),
     "race_movement": selected_race.get("movement", "12"),
-    "race_notes": selected_race.get("notes", "No additional notes"),
-    "race_modifiers": modifiers,
+    "race_notes": selected_race.get("notes", "No additional notes")
     }
 
     with open(char_file, "w") as f:

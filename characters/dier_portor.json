@@ -4,12 +4,36 @@
   "race": "Human",
   "alignment": "Lawful",
   "attributes": {
-    "Strength": 15,
-    "Intelligence": 11,
-    "Wisdom": 11,
-    "Constitution": 12,
-    "Dexterity": 10,
-    "Charisma": 8
+    "Strength": {
+      "base": 15,
+      "race_mod": 0,
+      "total": 15
+    },
+    "Intelligence": {
+      "base": 11,
+      "race_mod": 0,
+      "total": 11
+    },
+    "Wisdom": {
+      "base": 11,
+      "race_mod": 0,
+      "total": 11
+    },
+    "Constitution": {
+      "base": 12,
+      "race_mod": 0,
+      "total": 12
+    },
+    "Dexterity": {
+      "base": 10,
+      "race_mod": 0,
+      "total": 10
+    },
+    "Charisma": {
+      "base": 8,
+      "race_mod": 0,
+      "total": 8
+    }
   },
   "class_description": "Charismatic leaders and social manipulators who inspire allies and command followers.",
   "class_features": [
@@ -30,13 +54,5 @@
   "race_description": "Versatile and ambitious, humans adapt easily to any class or situation.",
   "race_special_abilities": "None by default, but may receive bonus XP or starting credits at Referee's discretion.",
   "race_movement": "12",
-  "race_notes": "Default baseline race for most characters.",
-  "race_modifiers": {
-    "Strength": 0,
-    "Dexterity": 0,
-    "Constitution": 0,
-    "Intelligence": 0,
-    "Wisdom": 0,
-    "Charisma": 0
-  }
+  "race_notes": "Default baseline race for most characters."
 }

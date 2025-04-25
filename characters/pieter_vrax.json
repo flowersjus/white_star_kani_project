@@ -4,12 +4,36 @@
   "race": "Human",
   "alignment": "Lawful",
   "attributes": {
-    "Strength": 10,
-    "Intelligence": 15,
-    "Wisdom": 7,
-    "Constitution": 6,
-    "Dexterity": 5,
-    "Charisma": 14
+    "Strength": {
+      "base": 10,
+      "race_mod": 0,
+      "total": 10
+    },
+    "Intelligence": {
+      "base": 15,
+      "race_mod": 0,
+      "total": 15
+    },
+    "Wisdom": {
+      "base": 7,
+      "race_mod": 0,
+      "total": 7
+    },
+    "Constitution": {
+      "base": 6,
+      "race_mod": 0,
+      "total": 6
+    },
+    "Dexterity": {
+      "base": 5,
+      "race_mod": 0,
+      "total": 5
+    },
+    "Charisma": {
+      "base": 14,
+      "race_mod": 0,
+      "total": 14
+    }
   },
   "class_description": "Experts in starship operation, repair, and quick thinking under pressure.",
   "class_features": [
@@ -30,13 +54,5 @@
   "race_description": "Versatile and ambitious, humans adapt easily to any class or situation.",
   "race_special_abilities": "None by default, but may receive bonus XP or starting credits at Referee's discretion.",
   "race_movement": "12",
-  "race_notes": "Default baseline race for most characters.",
-  "race_modifiers": {
-    "Strength": 0,
-    "Dexterity": 0,
-    "Constitution": 0,
-    "Intelligence": 0,
-    "Wisdom": 0,
-    "Charisma": 0
-  }
+  "race_notes": "Default baseline race for most characters."
 }

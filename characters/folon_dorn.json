@@ -4,12 +4,36 @@
   "race": "Human",
   "alignment": "Lawful",
   "attributes": {
-    "Strength": 9,
-    "Intelligence": 8,
-    "Wisdom": 8,
-    "Constitution": 5,
-    "Dexterity": 9,
-    "Charisma": 13
+    "Strength": {
+      "base": 9,
+      "race_mod": 0,
+      "total": 9
+    },
+    "Intelligence": {
+      "base": 8,
+      "race_mod": 0,
+      "total": 8
+    },
+    "Wisdom": {
+      "base": 8,
+      "race_mod": 0,
+      "total": 8
+    },
+    "Constitution": {
+      "base": 5,
+      "race_mod": 0,
+      "total": 5
+    },
+    "Dexterity": {
+      "base": 9,
+      "race_mod": 0,
+      "total": 9
+    },
+    "Charisma": {
+      "base": 13,
+      "race_mod": 0,
+      "total": 13
+    }
   },
   "class_description": "Experts in starship operation, repair, and quick thinking under pressure.",
   "class_features": [

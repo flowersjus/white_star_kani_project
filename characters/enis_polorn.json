@@ -4,11 +4,35 @@
   "race": "Human",
   "alignment": "Lawful",
   "attributes": {
-    "Strength": 14,
-    "Intelligence": 14,
-    "Wisdom": 11,
-    "Constitution": 14,
-    "Dexterity": 9,
-    "Charisma": 10
+    "Strength": {
+      "base": 14,
+      "race_mod": 0,
+      "total": 14
+    },
+    "Intelligence": {
+      "base": 14,
+      "race_mod": 0,
+      "total": 14
+    },
+    "Wisdom": {
+      "base": 11,
+      "race_mod": 0,
+      "total": 11
+    },
+    "Constitution": {
+      "base": 14,
+      "race_mod": 0,
+      "total": 14
+    },
+    "Dexterity": {
+      "base": 9,
+      "race_mod": 0,
+      "total": 9
+    },
+    "Charisma": {
+      "base": 10,
+      "race_mod": 0,
+      "total": 10
+    }
   }
 }
