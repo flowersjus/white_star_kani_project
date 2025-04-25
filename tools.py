@@ -370,11 +370,15 @@ async def start_scenario() -> str:
         "you're hunting a bounty that may not be what it seems"
     ]
 
+    # Generate a random contact name if needed
+    contact_names = ["Whisper", "Echo", "Cipher", "Shadow", "Pulse", "Flare", "Vortex", "Nexus", "Specter", "Mirage"]
+    contact_name = random.choice(contact_names)
+    
     npc_or_detail = [
         "A woman with mirrored eyes is watching you from a distance",
-        "Your contact, code-named 'Sable,' is running late",
+        f"Your enigmatic contact, known only as '{contact_name},' is delayed—perhaps intentionally",
         "The power keeps flickering every 20 seconds — like clockwork",
-        "A child’s voice keeps playing over the station intercom, though no children are registered on board",
+        "A child's voice keeps playing over the station intercom, though no children are registered on board",
         "Everyone here seems to know your name — and not in a good way"
     ]
 
@@ -530,4 +534,3 @@ start_scenario = AIFunction(start_scenario)
 log_scene = AIFunction(log_scene)
 summarize_recent_chat = AIFunction(summarize_recent_chat)
 summarize_scene_log = AIFunction(summarize_scene_log_function)
-

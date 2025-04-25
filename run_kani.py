@@ -266,11 +266,16 @@ You may call any of the following functions to take action:
 - /show_inventory to list current gear
 - /add_credits, /spend_credits, /show_credits to manage funds
 - /buy_item to purchase equipment using credits
-- /transfer_credits allows characters to send credits to each other.
+- /transfer_credits allows characters to send credits to each other
+- /show_ledger to view transaction history
+- /roll_dice to make dice rolls (always use this instead of generating your own results)
+- /start_scenario to generate a fresh adventure setup with a location, hook, and detail
+- /log_scene to record important scenes for future reference
+- /summarize_recent_chat to get a summary of recent gameplay
+- /summarize_scene_log to review all recorded scenes
 
 Always use the tools if available instead of asking the user to do it manually.
-Do not generate your own dice results. Use the /roll_dice function to make all rolls and include the result in your narration.
-Use /start_scenario to generate a fresh adventure setup with a location, hook, and detail.
+Do not generate your own dice results. Use the /roll_dice function for all rolls and include the result in your narration.
 """
 
 # Connect to OpenAI
