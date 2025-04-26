@@ -23,31 +23,42 @@ This project uses [Kani](https://github.com/zhudotexe/kani) to serve as a fully 
 
 -----
 
-## 🧪 Quickstart (How to Resume Project)
+## 🧪 Quickstart
 
-### With Script
+### First-Time Setup
 
-```bash
-./run.sh
-```
-
-### Without Script
+If this is your first time running the project or if your virtual environment was deleted:
 
 ```bash
 # Navigate to the project directory
 cd ~/Github/white_star_kani_project
 
-# Activate virtual environment
+# (Optional) Create virtual environment if missing
+python3 -m venv kani-env
+
+# Activate the virtual environment
+source kani-env/bin/activate
+
+# Install required packages
+pip install -r requirements.txt
+```
+
+### Running the Game
+
+Using the provided script
+
+```bash
+./run.sh
+```
+
+Manual Launch
+
+```
+# Activate the virtual environment
 source kani-env/bin/activate
 
 # Run the AI DM
 python run_kani.py
-```
-
-### In case of loss of environment
-
-```bash
-pip install -r requirements.txt
 ```
 
 ---
