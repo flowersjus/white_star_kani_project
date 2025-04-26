@@ -54,5 +54,11 @@
   "race_description": "Terrible hybrids of human and machine, They have given over their humanity and uniqueness to become part of a hive mind controlled by a master artificial intelligence.",
   "race_special_abilities": "Equipped with an internal laser pistol and a force field generator.",
   "race_movement": "9",
-  "race_notes": "Assimilants seek to draw all sentient beings into their fold."
+  "race_notes": "Assimilants seek to draw all sentient beings into their fold.",
+  "level": 1,
+  "experience": 0,
+  "bhb": "+0",
+  "st": 14,
+  "hp": 2,
+  "max_hp": 2
 }

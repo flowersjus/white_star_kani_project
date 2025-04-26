@@ -1,18 +1,18 @@
 {
-  "name": "Folon Dorn",
+  "name": "Lolick Tinon",
   "class": "Pilot",
   "race": "Human",
   "alignment": "Lawful",
   "attributes": {
     "Strength": {
-      "base": 9,
+      "base": 12,
       "race_mod": 0,
-      "total": 9
+      "total": 12
     },
     "Intelligence": {
-      "base": 8,
+      "base": 11,
       "race_mod": 0,
-      "total": 8
+      "total": 11
     },
     "Wisdom": {
       "base": 8,
@@ -20,19 +20,19 @@
       "total": 8
     },
     "Constitution": {
-      "base": 5,
+      "base": 7,
       "race_mod": 0,
-      "total": 5
+      "total": 7
     },
     "Dexterity": {
-      "base": 9,
+      "base": 8,
       "race_mod": 0,
-      "total": 9
+      "total": 8
     },
     "Charisma": {
-      "base": 13,
+      "base": 14,
       "race_mod": 0,
-      "total": 13
+      "total": 14
     }
   },
   "class_description": "Experts in starship operation, repair, and quick thinking under pressure.",
@@ -51,10 +51,14 @@
       "15+": "10%"
     }
   },
+  "race_description": "Versatile and ambitious, humans adapt easily to any class or situation.",
+  "race_special_abilities": "None by default, but may receive bonus XP or starting credits at Referee's discretion.",
+  "race_movement": "12",
+  "race_notes": "Default baseline race for most characters.",
   "level": 1,
   "experience": 0,
   "bhb": "+0",
   "st": 14,
-  "hp": 2,
-  "max_hp": 2
+  "hp": 1,
+  "max_hp": 1
 }

@@ -1,0 +1,105 @@
+{
+  "skill_checks": {
+    "description": "A system for resolving uncertain actions using attribute checks against difficulty classes.",
+    "mechanic": "Roll 1d20 + attribute modifier vs. Difficulty Class (DC)",
+    "when_to_use": [
+      "When there is meaningful risk or reward",
+      "When the outcome is uncertain (not obvious)",
+      "When the task is extraordinary, dangerous, or resisted"
+    ],
+    "when_not_to_use": [
+      "For simple/common actions with no risk",
+      "When the character would logically succeed without challenge"
+    ],
+    "difficulty_classes": [
+      {
+        "name": "Easy",
+        "dc": 10,
+        "examples": ["Climbing a ladder", "Recalling common knowledge"]
+      },
+      {
+        "name": "Average",
+        "dc": 14,
+        "examples": ["Climbing a steep wall", "Hacking a standard terminal"]
+      },
+      {
+        "name": "Hard",
+        "dc": 18,
+        "examples": ["Climbing a smooth surface", "Hacking a secure system"]
+      },
+      {
+        "name": "Very Hard",
+        "dc": 22,
+        "examples": ["Climbing a slick, overhanging surface", "Hacking a military system"]
+      },
+      {
+        "name": "Nearly Impossible",
+        "dc": 26,
+        "examples": ["Climbing a ceiling", "Hacking an alien AI"]
+      }
+    ],
+    "attribute_guidelines": {
+      "strength": {
+        "description": "Physical force, lifting, breaking",
+        "examples": ["Forcing open a door", "Lifting a heavy object", "Breaking restraints"]
+      },
+      "intelligence": {
+        "description": "Knowledge, memory, reasoning, technical skills",
+        "examples": ["Recalling information", "Solving a puzzle", "Understanding alien technology"]
+      },
+      "wisdom": {
+        "description": "Perception, intuition, willpower, survival",
+        "examples": ["Spotting hidden objects", "Sensing danger", "Tracking in wilderness"]
+      },
+      "constitution": {
+        "description": "Endurance, stamina, resisting physical effects",
+        "examples": ["Enduring extreme temperatures", "Resisting disease", "Holding breath"]
+      },
+      "dexterity": {
+        "description": "Agility, balance, stealth, reflexes",
+        "examples": ["Moving silently", "Maintaining balance", "Performing acrobatics"]
+      },
+      "charisma": {
+        "description": "Social interaction, leadership, deception",
+        "examples": ["Persuading an NPC", "Intimidating a guard", "Bluffing past security"]
+      }
+    },
+    "outcomes": {
+      "critical_success": {
+        "trigger": "Natural 20 (unmodified)",
+        "description": "Exceptional results beyond normal success",
+        "examples": ["Additional benefits", "Faster completion", "Bonus effects"]
+      },
+      "success": {
+        "trigger": "Total ≥ DC",
+        "description": "The character accomplishes the action as intended"
+      },
+      "failure": {
+        "trigger": "Total < DC",
+        "description": "The character fails to accomplish the action",
+        "consequences": "Normal consequences for failure"
+      },
+      "critical_failure": {
+        "trigger": "Natural 1 (unmodified)",
+        "description": "Something goes wrong beyond simple failure",
+        "examples": ["Complications", "Damage", "Other negative consequences"]
+      }
+    },
+    "passive_checks": {
+      "formula": "10 + attribute modifier",
+      "uses": [
+        "Spotting hidden dangers",
+        "Noticing ambushes",
+        "Detecting subtle environmental changes"
+      ],
+      "notes": "Used when characters might notice something without actively searching"
+    },
+    "integration": {
+      "combat": "Continue to use attack rolls for combat actions",
+      "saving_throws": "Use saving throws for resisting effects",
+      "skill_checks": "Use for ability-based challenges outside of combat"
+    },
+    "function_syntax": "/skill_check <character> <attribute> <difficulty> <description>",
+    "example_usage": "/skill_check \"Jax Varn\" strength 14 \"force open the airlock door\""
+  }
+}

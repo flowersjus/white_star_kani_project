@@ -24,5 +24,8 @@
   "goals": [
     "Track down the rogue AI that destroyed his crew",
     "Earn enough credits to upgrade to a ship of his own"
-  ]
+  ],
+  "experience": 0,
+  "bhb": "+0",
+  "st": 14
 }

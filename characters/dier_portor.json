@@ -54,5 +54,11 @@
   "race_description": "Versatile and ambitious, humans adapt easily to any class or situation.",
   "race_special_abilities": "None by default, but may receive bonus XP or starting credits at Referee's discretion.",
   "race_movement": "12",
-  "race_notes": "Default baseline race for most characters."
+  "race_notes": "Default baseline race for most characters.",
+  "level": 1,
+  "experience": 0,
+  "bhb": "+0",
+  "st": 14,
+  "hp": 6,
+  "max_hp": 6
 }

@@ -1,18 +1,18 @@
 {
-  "name": "Max Lolor",
-  "class": "Star_Knight",
+  "name": "Benden Farish",
+  "class": "Mercenary",
   "race": "Human",
   "alignment": "Lawful",
   "attributes": {
     "Strength": {
-      "base": 11,
+      "base": 9,
       "race_mod": 0,
-      "total": 11
+      "total": 9
     },
     "Intelligence": {
-      "base": 6,
+      "base": 12,
       "race_mod": 0,
-      "total": 6
+      "total": 12
     },
     "Wisdom": {
       "base": 11,
@@ -20,31 +20,30 @@
       "total": 11
     },
     "Constitution": {
-      "base": 10,
+      "base": 12,
       "race_mod": 0,
-      "total": 10
+      "total": 12
     },
     "Dexterity": {
-      "base": 10,
+      "base": 8,
       "race_mod": 0,
-      "total": 10
+      "total": 8
     },
     "Charisma": {
-      "base": 10,
+      "base": 12,
       "race_mod": 0,
-      "total": 10
+      "total": 12
     }
   },
-  "class_description": "Mystical warriors who blend martial skill with spiritual meditations.",
+  "class_description": "Combat specialists who excel in weapon use and survivability.",
   "class_features": [
-    "Meditations: Can prepare/activate Meditations per level (see Meditation Table).",
-    "Star Sword Duelist: +1 to-hit with Star Sword. Starts with one for free.",
-    "+2 to Saves vs Meditations and Gifts.",
-    "Establish Monastery (10th): Attract followers to a secluded training center."
+    "Combat Machine: Extra attacks vs 1HD or fewer enemies (1 per level).",
+    "+2 on Saves vs death/poison.",
+    "Establish Stronghold (9th): Attract loyal soldiers as strike force."
   ],
-  "weapon_armor_restrictions": "Daggers, laser pistols, Star Swords. Light Armor + shields.",
+  "weapon_armor_restrictions": "No restrictions.",
   "xp_bonus": {
-    "attribute": "wisdom",
+    "attribute": "strength",
     "thresholds": {
       "13-14": "5%",
       "15+": "10%"

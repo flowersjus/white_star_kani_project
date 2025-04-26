@@ -34,5 +34,11 @@
       "race_mod": 0,
       "total": 10
     }
-  }
+  },
+  "level": 1,
+  "experience": 0,
+  "bhb": "+0",
+  "st": 14,
+  "hp": 8,
+  "max_hp": 8
 }
