@@ -279,6 +279,16 @@ Expect regular feature updates, gameplay expansions, and narrative enhancements!
 
 ---
 
+## 📜 Citation
+This project uses [Kani](https://github.com/zhudotexe/kani) for AI orchestration.
+If you use this project or build upon it, please consider citing Kani:
+```
+Andrew Zhu, Liam Dugan, Alyssa Hwang, Chris Callison-Burch. 2023. Kani: A Lightweight and Highly Hackable Framework for Building Language Model Applications. Proceedings of the 3rd Workshop for Natural Language Processing Open Source Software (NLP-OSS 2023), pages 65–77, Singapore. Association for Computational Linguistics. https://doi.org/10.18653/v1/2023.nlposs-1.8
+```
+
+---
+
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
+
