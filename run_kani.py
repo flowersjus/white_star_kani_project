@@ -63,34 +63,57 @@ async def create_character() -> str:
     char_class = char_class_key.title()
     char_class_data = classes_data[char_class_key]
 
-    # Step 2: Choose race
-    print("\nAvailable races:")
-    for i, race in enumerate(races_data, 1):
-        print(f"{i}. {race['name']}: {race['description']}")
-
-    # Initialize selected_race with a default value
-    selected_race = None
-    
-    while True:
-        try:
-            race_choice = int(input("\nChoose a race by number: "))
-            if 1 <= race_choice <= len(races_data):
-                selected_race = races_data[race_choice - 1]
-                break
-            else:
-                print(f"Please enter a number between 1 and {len(races_data)}.")
-        except ValueError:
-            print("Invalid input. Please enter a valid number.")
-    
-    if selected_race is None:
-        # Fallback to Human if something went wrong
-        print("Error in race selection. Defaulting to Human race.")
+    # Check if Robot class was selected
+    if char_class_key.lower() == "robot":
+        # Automatically set race to Robot
+        selected_race = None
         for race in races_data:
-            if race["name"] == "Human":
+            if race["name"] == "Robot":
                 selected_race = race
+                char_race = "Robot"
+                print("\nAs a Robot class character, your race is automatically set to Robot.")
                 break
-    
-    char_race = selected_race["name"]
+        
+        # Fallback in case Robot race is not found (shouldn't happen)
+        if selected_race is None:
+            print("Error: Robot race not found. Defaulting to Human race.")
+            for race in races_data:
+                if race["name"] == "Human":
+                    selected_race = race
+                    char_race = "Human"
+                    break
+    else:
+        # Only show race selection for non-Robot classes
+        print("\nAvailable races:")
+        # Filter out Robot race for non-Robot classes to avoid confusion
+        available_races = [race for race in races_data if race["name"] != "Robot"]
+        
+        for i, race in enumerate(available_races, 1):
+            print(f"{i}. {race['name']}: {race['description']}")
+
+        # Initialize selected_race with a default value
+        selected_race = None
+        
+        while True:
+            try:
+                race_choice = int(input("\nChoose a race by number: "))
+                if 1 <= race_choice <= len(available_races):
+                    selected_race = available_races[race_choice - 1]
+                    break
+                else:
+                    print(f"Please enter a number between 1 and {len(available_races)}.")
+            except ValueError:
+                print("Invalid input. Please enter a valid number.")
+        
+        if selected_race is None:
+            # Fallback to Human if something went wrong
+            print("Error in race selection. Defaulting to Human race.")
+            for race in races_data:
+                if race["name"] == "Human":
+                    selected_race = race
+                    break
+        
+        char_race = selected_race["name"]
 
     # Step 3: Now that we have class and race, handle name generation
     print("\nHow would you like to name your character?")

@@ -10,7 +10,7 @@ mercenary_names = [
     "Brak", "Tov", "Jax", "Korr", "Vren", "Daxin", "Ryka", "Morn", "Drav", "Zek"
 ]
 pilot_names = [
-    "Kira", "Tarin", "Zade", "Vessa", "Orin", "Sela", "Drex", "Lyra", "Kairos", "Mira"
+    "Kira", "Tarin", "Zade", "Vessa", "Orin", "Sela", "Drex", "Lyra", "Kairos", "Mira", "Cassian"
 ]
 star_knight_names = [
     "Daelen", "Veyra", "Khalon", "Seris", "Talora", "Jorvan", "Mythra", "Keren", "Vaelen", "Soraya"
