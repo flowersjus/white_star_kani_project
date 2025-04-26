@@ -16,3 +16,9 @@ venv/
 
 # Development notes
 notes/
+
+# User data directories
+characters/
+chat_log/
+scene_log/
+ephemeral/
