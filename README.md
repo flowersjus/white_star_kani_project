@@ -261,3 +261,9 @@ Expect regular feature updates, gameplay expansions, and narrative enhancements!
 - Python 3.12
 - Kani 1.4.2 (editable install from GitHub)
 - Installed with: `pip install -e ".[openai]"`
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
