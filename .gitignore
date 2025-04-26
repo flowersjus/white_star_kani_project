@@ -17,8 +17,18 @@ venv/
 # Development notes
 notes/
 
-# User data directories
-characters/
-chat_log/
-scene_log/
-ephemeral/
+# User data directories - ignore contents but keep structure
+characters/*
+!characters/README_characters.md
+!characters/summary_cards/
+characters/summary_cards/*
+!characters/summary_cards/.gitkeep
+
+chat_log/*
+!chat_log/.gitkeep
+
+scene_log/*
+!scene_log/.gitkeep
+
+ephemeral/*
+!ephemeral/.gitkeep
