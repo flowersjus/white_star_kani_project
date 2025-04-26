@@ -549,10 +549,22 @@ async def custom_chat_loop():
             continue
 
         append_to_chat_log(chosen_character, "user", user_input)
-        reply_parts = []
-        async for part in ai.full_round_str(user_input):
-            reply_parts.append(part)
-        reply = "".join(reply_parts)
+        
+        # Check if the input is a /help command
+        if user_input.strip().startswith("/help"):
+            # Parse the command
+            parts = user_input.strip().split(maxsplit=1)
+            command_arg = parts[1] if len(parts) > 1 else ""  # Empty string instead of None
+            
+            # Call the help_command function directly
+            reply = await help_command(command_arg)
+        else:
+            # Normal AI processing for other inputs
+            reply_parts = []
+            async for part in ai.full_round_str(user_input):
+                reply_parts.append(part)
+            reply = "".join(reply_parts)
+        
         append_to_chat_log(chosen_character, "ai", reply)
         print(f"AI: {reply}\n")
         print("USER: ", end="", flush=True)

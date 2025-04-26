@@ -1001,7 +1001,7 @@ async def show_advancement(character: str) -> str:
     
     return "\n".join(lines)
 
-async def help_command(command: str = None) -> str:
+async def help_command(command: str = "") -> str:
     """
     Display a list of all available commands or detailed help for a specific command.
     
@@ -1035,7 +1035,7 @@ async def help_command(command: str = None) -> str:
         "help": "Display this help information"
     }
     
-    if command:
+    if command and command.strip():
         # Show detailed help for a specific command
         command = command.lower().strip('/')
         if command not in commands:
@@ -1043,15 +1043,58 @@ async def help_command(command: str = None) -> str:
         
         # Get the function object to access its docstring
         current_module = sys.modules[__name__]
-        func_name = command + "_command" if command == "help" else command
-        func = getattr(current_module, func_name, None)
         
-        if func and hasattr(func, "__wrapped__"):
-            # For AIFunction objects, get the wrapped function
-            wrapped_func = func.__wrapped__
-            signature = inspect.signature(wrapped_func)
-            params = []
+        # Try to get the function directly
+        func = getattr(current_module, command, None)
+        
+        # If not found, try with _command suffix (for help_command)
+        if func is None and command == "help":
+            func = getattr(current_module, "help_command", None)
             
+        # If still not found, try with other common patterns
+        if func is None:
+            # Try some common variations
+            variations = [
+                command,                  # exact match
+                command + "_command",     # command suffix
+                command + "_function",    # function suffix
+                "summarize_" + command    # summarize prefix
+            ]
+            
+            for var in variations:
+                func = getattr(current_module, var, None)
+                if func is not None:
+                    break
+        
+        # Special case for summarize_scene_log which uses a different function name
+        if command == "summarize_scene_log" and func is None:
+            func = getattr(current_module, "summarize_scene_log_function", None)
+        
+        if func:
+            # Try to get the docstring directly from the function
+            doc = inspect.getdoc(func) or "No documentation available."
+            
+            # If the function is an AIFunction, try to get the wrapped function
+            if hasattr(func, "__wrapped__"):
+                wrapped_func = func.__wrapped__
+                try:
+                    signature = inspect.signature(wrapped_func)
+                    doc = inspect.getdoc(wrapped_func) or doc  # Use wrapped docstring if available
+                except (ValueError, TypeError):
+                    # If we can't get the signature from wrapped function, try the original
+                    try:
+                        signature = inspect.signature(func)
+                    except (ValueError, TypeError):
+                        return f"Detailed help for '/{command}' is not available (cannot get signature)."
+            else:
+                # Try to get signature directly
+                try:
+                    signature = inspect.signature(func)
+                except (ValueError, TypeError):
+                    return f"Detailed help for '/{command}' is not available (cannot get signature)."
+            
+            # Extract parameters
+            params = []
             for name, param in signature.parameters.items():
                 if name == 'return':
                     continue
@@ -1062,9 +1105,6 @@ async def help_command(command: str = None) -> str:
                 else:
                     default = "None" if param.default is None else param.default
                     params.append(f"{name} (default: {default})")
-            
-            # Get docstring
-            doc = inspect.getdoc(wrapped_func) or "No documentation available."
             
             return f"""**/{command}**
             
@@ -1077,7 +1117,7 @@ Details:
 {doc}
 """
         else:
-            return f"Detailed help for '/{command}' is not available."
+            return f"Detailed help for '/{command}' is not available (function not found)."
     else:
         # Show list of all commands
         lines = ["**Available Commands:**"]
