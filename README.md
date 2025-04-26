@@ -41,6 +41,10 @@ source kani-env/bin/activate
 
 # Install required packages
 pip install -r requirements.txt
+
+# Set up your OpenAI API key
+cp .env.example .env
+# Edit the .env file and replace 'your_api_key_here' with your actual OpenAI API key
 ```
 
 ### Running the Game
