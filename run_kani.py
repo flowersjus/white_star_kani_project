@@ -37,6 +37,60 @@ with open("character_creation/character_classes.json") as f:
 with open("character_creation/character_races.json") as f:
     races_data = json.load(f)["character_races"]
 
+async def generate_ai_backstory(name: str, char_class: str, char_race: str, char_alignment: str, attributes: dict, engine) -> str:
+    """Generate an AI-crafted backstory based on character attributes and choices."""
+    # Define possible character flaws
+    character_flaws = [
+        "haunted by a betrayal they couldn't prevent",
+        "secretly blames themselves for a past tragedy",
+        "trusts no one completely, not even allies",
+        "harbors guilt over abandoning someone long ago",
+        "feels unworthy of the respect they receive",
+        "is obsessed with controlling every situation to avoid disaster",
+        "nurses a quiet hatred for authority after being wronged",
+        "suffers nightmares of their worst mistake",
+        "believes deep down that survival always comes at a cost",
+        "keeps a carefully guarded secret about their true origins"
+    ]
+    
+    # Select a random flaw
+    selected_flaw = random.choice(character_flaws)
+    
+    # Create a prompt that incorporates character details
+    highest_attrs = sorted(
+        [(k, v["total"]) for k, v in attributes.items()],
+        key=lambda x: x[1],
+        reverse=True
+    )[:2]  # Get top 2 attributes
+    
+    prompt = f"""
+    Create a 3-5 sentence character backstory for a {char_race} {char_class} named {name} with {char_alignment} alignment.
+    Their highest attributes are {highest_attrs[0][0]} ({highest_attrs[0][1]}) and {highest_attrs[1][0]} ({highest_attrs[1][1]}).
+    
+    The backstory should:
+    1. Explain how the character developed their strongest attributes through struggle, hardship, or morally grey experiences.
+    2. Tie in their alignment and class choice naturally.
+    3. Include a defining event that left a scar: a loss, betrayal, mistake, or harsh reality.
+    4. Emphasize survival, difficult choices, or the cost of success when appropriate.
+    5. Keep the tone grounded, realistic, and willing to acknowledge flaws, regrets, and internal conflicts.
+    6. Avoid portraying characters as perfect heroes; instead, show how their background shaped them into who they are — for better or worse.
+    7. Fit naturally within a sci-fi universe rich with danger, opportunity, and moral complexity.
+    
+    Additionally, subtly weave this personal flaw into the backstory: "{selected_flaw}"
+    
+    Write in a vivid, concise style (3–5 sentences), focusing more on the character's internal motivations than external achievements.
+    """
+    
+    # Create a temporary Kani instance for backstory generation using the existing engine
+    temp_ai = Kani(engine, system_prompt="You are a character backstory writer for a sci-fi RPG.")
+    
+    # Get AI response
+    response = ""
+    async for part in temp_ai.full_round_str(prompt):
+        response += part
+    
+    return response.strip()
+
 async def create_character() -> str:
     import re
     from tools import roll_dice
@@ -232,6 +286,55 @@ async def create_character() -> str:
         if race_mod != 0:
             print(f"🧬 {attr} modified by {race_mod} from race: {total}")
 
+    # After alignment selection and before saving character data, add:
+    print("\nWould you like to write a custom backstory for your character or have the AI create one?")
+    print("1. Write your own backstory")
+    print("2. AI generated backstory")
+    
+    backstory = ""
+    while True:
+        choice = input("\nEnter your choice (1-2): ").strip()
+        if choice == "1":
+            print("\nWrite your character's backstory (press Enter twice when done):")
+            lines = []
+            while True:
+                line = input()
+                if not line and lines and not lines[-1]:  # Two empty lines in a row
+                    break
+                lines.append(line)
+            backstory = "\n".join(lines[:-1])  # Remove the last empty line
+            break
+        elif choice == "2":
+            print("\nGenerating AI backstory based on your character's attributes and choices...")
+            # Create OpenAI engine instance
+            load_dotenv()
+            api_key = os.getenv("OPENAI_API_KEY")
+            if not api_key:
+                print("Error: OpenAI API key not found. Defaulting to manual backstory entry.")
+                print("\nWrite your character's backstory (press Enter twice when done):")
+                lines = []
+                while True:
+                    line = input()
+                    if not line and lines and not lines[-1]:
+                        break
+                    lines.append(line)
+                backstory = "\n".join(lines[:-1])
+            else:
+                engine = OpenAIEngine(api_key, model="gpt-4")
+                while True:
+                    backstory = await generate_ai_backstory(
+                        name, char_class, char_race, char_alignment, structured_attributes, engine
+                    )
+                    print(f"\nGenerated Backstory:\n{backstory}")
+                    
+                    # Ask if they like the backstory
+                    approval = input(f"\nDo you like this backstory for {name}? (Y/n): ").strip().lower()
+                    if approval in ['', 'y', 'yes']:
+                        break
+                    print("\nGenerating a new backstory...")
+            break
+        else:
+            print("Invalid choice. Please enter 1 or 2.")
 
     # Step 6: Save character JSON
     slug = name.lower().replace(" ", "_")
@@ -256,6 +359,7 @@ async def create_character() -> str:
     "class": char_class,
     "race": char_race,
     "alignment": char_alignment,
+    "backstory": backstory,
     "level": 1,
     "experience": 0,
     "hp": initial_hp,
@@ -394,6 +498,11 @@ def display_character_welcome(character_name, char_data, char_inventory, char_cr
                 print(f"{attr}: {values['total']}")
             else:
                 print(f"{attr}: {values}")
+    
+    # After displaying attributes and before special abilities, add:
+    if 'backstory' in char_data and char_data['backstory']:
+        print("\n📖 BACKSTORY:")
+        print(char_data['backstory'])
     
     # Display special abilities if available
     if 'special_abilities' in char_data and char_data['special_abilities']:
