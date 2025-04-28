@@ -5,8 +5,12 @@
 ## 🧪 In Progress
 
 - ✍️ **Add Personal Quest System and Dynamic Goals**
+  - Give players the ability to create a backstory for their character
   - Characters can select or generate long-term personal goals.
   - Completing goals grants bonus XP or unique rewards.
+
+- **Character Creation**
+  - Create a randomized inventory on character creation
 
 - 📖 **Procedural Scene Generator (Scene Engine)**
   - Lightweight system to generate random scene beats.
