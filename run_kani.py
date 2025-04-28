@@ -139,14 +139,16 @@ async def create_character() -> str:
                     break
                 elif choice == len(generated_names) + 1:
                     generated_names = generate_full_name(char_class_key, count=5)
+                    continue
                 elif choice == len(generated_names) + 2:
                     name = input("Enter a name for your character: ").strip()
                     if name and re.match("^[a-zA-Z0-9 _-]+$", name):
                         break
                     print("Invalid name. Use letters, numbers, spaces, dashes, or underscores only.")
+                else:
+                    print("Invalid input. Please choose a valid option.")
             except ValueError:
-                pass
-            print("Invalid input. Please choose a valid option.")
+                print("Invalid input. Please choose a valid option.")
     else:
         # Original manual name entry
         while True:
