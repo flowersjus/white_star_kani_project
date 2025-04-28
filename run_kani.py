@@ -124,24 +124,21 @@ async def create_character() -> str:
 
     if name_choice == "2":
         # Generate and display name suggestions based on the already selected class
-        generated_names = generate_full_name(char_class_key, count=3)
-        print("\nHere are some suggested names:")
-        for idx, name in enumerate(generated_names, 1):
-            print(f"{idx}. {name}")
-        print(f"{len(generated_names) + 1}. Generate more names")
-        print(f"{len(generated_names) + 2}. Enter a name manually")
-        
+        generated_names = generate_full_name(char_class_key, count=5)
         while True:
+            print("\nHere are some suggested names:")
+            for idx, name in enumerate(generated_names, 1):
+                print(f"{idx}. {name}")
+            print(f"{len(generated_names) + 1}. Generate more names")
+            print(f"{len(generated_names) + 2}. Enter a name manually")
+            
             try:
                 choice = int(input("\nChoose a name: "))
                 if 1 <= choice <= len(generated_names):
                     name = generated_names[choice - 1]
                     break
                 elif choice == len(generated_names) + 1:
-                    generated_names = generate_full_name(char_class_key, count=3)
-                    print("\nHere are more suggested names:")
-                    for idx, name in enumerate(generated_names, 1):
-                        print(f"{idx}. {name}")
+                    generated_names = generate_full_name(char_class_key, count=5)
                 elif choice == len(generated_names) + 2:
                     name = input("Enter a name for your character: ").strip()
                     if name and re.match("^[a-zA-Z0-9 _-]+$", name):
