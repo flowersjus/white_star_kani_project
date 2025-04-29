@@ -3,6 +3,7 @@ import os
 import asyncio
 import re
 import random
+import glob
 from dotenv import load_dotenv
 from kani import Kani, chat_in_terminal
 from kani.engines.openai import OpenAIEngine
@@ -90,6 +91,213 @@ async def generate_ai_backstory(name: str, char_class: str, char_race: str, char
         response += part
     
     return response.strip()
+
+def load_equipment_data():
+    """Load all equipment data from JSON files in the equipment directory."""
+    equipment_data = {}
+    equipment_files = glob.glob("equipment/*.json")
+    
+    for file_path in equipment_files:
+        category = os.path.splitext(os.path.basename(file_path))[0]
+        with open(file_path, 'r') as f:
+            data = json.load(f)
+            # Extract the array from the wrapper object
+            key = list(data.keys())[0]  # Get the first (and should be only) key
+            equipment_data[category] = data[key]
+    
+    return equipment_data
+
+def display_equipment_menu(equipment_data, remaining_credits):
+    """Display available equipment categories."""
+    print(f"\nChoose a category to browse (Remaining credits: {remaining_credits}):")
+    categories = list(equipment_data.keys())
+    for i, category in enumerate(categories, 1):
+        print(f"{i}. {category.replace('_', ' ').title()}")
+    print(f"{len(categories) + 1}. Show Current Gear")
+    print(f"{len(categories) + 2}. Finalize purchases")
+    return categories
+
+def display_current_gear(inventory):
+    """Display the character's current inventory and total items."""
+    print("\n🎒 Current Inventory:")
+    if not inventory:
+        print("- Empty")
+    else:
+        for item, quantity in inventory.items():
+            print(f"- {item} × {quantity}")
+    print("\nPress Enter to return to category selection...")
+    input()
+
+def display_category_items(category_data, category_name):
+    """Display items in a category with their costs and descriptions."""
+    print(f"\n{category_name.replace('_', ' ').title()} Items:")
+    for i, item in enumerate(category_data, 1):
+        print(f"{i}. {item['name']} - {item['cost']} credits")
+        if 'damage' in item:
+            print(f"   Damage: {item['damage']}")
+        if 'description' in item:
+            print(f"   Description: {item['description']}")
+        if 'weight' in item:
+            print(f"   Weight: {item['weight']}")
+    print(f"{len(category_data) + 1}. Back to Gear Categories")
+    return category_data
+
+def auto_assign_gear(equipment_data, starting_credits):
+    """Automatically assign gear based on weighted probabilities and budget."""
+    assigned_gear = []
+    total_cost = 0
+    
+    # Helper function to check if we can afford an item
+    def can_afford(item_cost):
+        return (total_cost + item_cost) <= (starting_credits - 10)
+    
+    # Armor selection (30% chance)
+    if random.random() < 0.3:
+        armor_weights = {'light': 0.7, 'medium': 0.2, 'heavy': 0.1}
+        armor_type = random.choices(list(armor_weights.keys()), 
+                                  list(armor_weights.values()))[0]
+        
+        # Filter armor by type and affordability
+        affordable_armor = [
+            item for item in equipment_data['armor']
+            if item.get('type', '').lower() == armor_type and can_afford(item['cost'])
+        ]
+        
+        if affordable_armor:
+            selected_armor = random.choice(affordable_armor)
+            assigned_gear.append(selected_armor)
+            total_cost += selected_armor['cost']
+    
+    # Melee weapon (80% chance)
+    if random.random() < 0.8:
+        affordable_melee = [
+            item for item in equipment_data['melee_weapons']
+            if can_afford(item['cost'])
+        ]
+        if affordable_melee:
+            selected_melee = random.choice(affordable_melee)
+            assigned_gear.append(selected_melee)
+            total_cost += selected_melee['cost']
+    
+    # Ranged weapon (50% chance)
+    ranged_weapon = None
+    if random.random() < 0.5:
+        affordable_ranged = [
+            item for item in equipment_data['ranged_weapons']
+            if can_afford(item['cost'])
+        ]
+        if affordable_ranged:
+            ranged_weapon = random.choice(affordable_ranged)
+            assigned_gear.append(ranged_weapon)
+            total_cost += ranged_weapon['cost']
+    
+    # Add ammo if needed
+    if ranged_weapon and 'ammo_type' in ranged_weapon:
+        ammo_items = [
+            item for item in equipment_data['standard_gear']
+            if item.get('type') == 'ammo' and 
+            item.get('ammo_type') == ranged_weapon.get('ammo_type') and
+            can_afford(item['cost'])
+        ]
+        if ammo_items:
+            ammo = random.choice(ammo_items)
+            assigned_gear.append(ammo)
+            total_cost += ammo['cost']
+    
+    # Standard gear (2-5 items)
+    num_standard_items = random.randint(2, 5)
+    affordable_standard = [
+        item for item in equipment_data['standard_gear']
+        if item.get('type') != 'ammo' and can_afford(item['cost'])
+    ]
+    
+    # Sort by utility (if defined) then cost
+    affordable_standard.sort(key=lambda x: (-x.get('utility', 0), x['cost']))
+    
+    for _ in range(num_standard_items):
+        if not affordable_standard or not can_afford(affordable_standard[0]['cost']):
+            break
+        item = affordable_standard.pop(0)
+        assigned_gear.append(item)
+        total_cost += item['cost']
+    
+    return assigned_gear, total_cost
+
+async def handle_equipment_selection(starting_credits, character_name):
+    """Handle the equipment selection process."""
+    equipment_data = load_equipment_data()
+    inventory = {}
+    remaining_credits = starting_credits
+    
+    print("\nHow would you like to equip your character?")
+    print("1. Shop for gear manually")
+    print("2. Let fate decide (auto-assign gear)")
+    
+    while True:
+        choice = input("\nEnter your choice (1-2): ").strip()
+        
+        if choice == "1":
+            # Manual shopping
+            while True:
+                categories = display_equipment_menu(equipment_data, remaining_credits)
+                try:
+                    category_choice = int(input("\nEnter your choice: "))
+                    if category_choice == len(categories) + 2:  # Finalize purchases
+                        confirm = input("\nFinalize purchases and continue? (y/N): ").lower()
+                        if confirm in ['y', 'yes']:
+                            break
+                        continue
+                    elif category_choice == len(categories) + 1:  # Show Current Gear
+                        display_current_gear(inventory)
+                        continue
+                    elif 1 <= category_choice <= len(categories):
+                        category = categories[category_choice - 1]
+                        while True:
+                            category_data = display_category_items(equipment_data[category], category)
+                            try:
+                                item_choice = int(input("\nEnter your choice: "))
+                                if item_choice == len(category_data) + 1:
+                                    break
+                                
+                                if 1 <= item_choice <= len(category_data):
+                                    item = category_data[item_choice - 1]
+                                    if item['cost'] <= remaining_credits:
+                                        confirm = input(f"\nPurchase {item['name']} for {item['cost']} credits? (y/N): ").lower()
+                                        if confirm in ['y', 'yes']:
+                                            inventory[item['name']] = inventory.get(item['name'], 0) + 1
+                                            remaining_credits -= item['cost']
+                                            print(f"\nPurchased {item['name']}. Remaining credits: {remaining_credits}")
+                                    else:
+                                        print("\nNot enough credits!")
+                            except ValueError:
+                                print("Invalid choice. Please enter a number.")
+                except ValueError:
+                    print("Invalid choice. Please enter a number.")
+            break
+            
+        elif choice == "2":
+            # Auto-assign gear
+            assigned_gear, total_cost = auto_assign_gear(equipment_data, starting_credits)
+            remaining_credits = starting_credits - total_cost
+            
+            print(f"\n🎒 Auto-assigned gear (Total cost: {total_cost} credits):")
+            for item in assigned_gear:
+                inventory[item['name']] = inventory.get(item['name'], 0) + 1
+                print(f"- {item['name']}")
+            print(f"Remaining credits: {remaining_credits}")
+            
+            confirm = input("\nAccept this equipment loadout? (Y/n): ").lower()
+            if confirm in ['', 'y', 'yes']:
+                break
+            else:
+                inventory = {}
+                remaining_credits = starting_credits
+                continue
+        
+        else:
+            print("Invalid choice. Please enter 1 or 2.")
+    
+    return inventory, remaining_credits
 
 async def create_character() -> str:
     import re
@@ -398,6 +606,13 @@ async def create_character() -> str:
     credits_value = int(credits_roll.split("→ Total: ")[-1]) * 10
     print(f"Starting credits: {credits_value}")
     
+    # Add equipment selection
+    char_inventory, remaining_credits = await handle_equipment_selection(credits_value, name)
+    
+    # Update the credits value to remaining amount
+    credits_value = remaining_credits
+    
+    # Continue with existing code...
     credits_path = "ephemeral/credits.json"
     try:
         with open(credits_path, "r") as f:
@@ -407,6 +622,17 @@ async def create_character() -> str:
     credits[name] = credits_value
     with open(credits_path, "w") as f:
         json.dump(credits, f, indent=2)
+
+    # Update inventory
+    inventory_path = "ephemeral/inventory.json"
+    try:
+        with open(inventory_path, "r") as f:
+            inventory = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        inventory = {}
+    inventory[name] = char_inventory
+    with open(inventory_path, "w") as f:
+        json.dump(inventory, f, indent=2)
 
     return name
 
