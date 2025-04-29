@@ -123,12 +123,22 @@ python run_kani.py
     - Narrative summary of recent adventures
   - Includes a "Press Enter to continue" prompt
 - Character creation with:
+  - Origin selection (Human, Machine Hybrid, Alien, Robot)
+  - Race selection based on origin with unique options for each
+  - Class restrictions based on origin and race combinations
+  - Suggested alignments shown for applicable classes (e.g., "Most Star Knights are Lawful")
   - 3 rolling methods (3d6 in order, assignable 3d6, 4d6 drop-lowest)
   - Class and race selection from `character_creation/*.json`
   - Attribute modifiers from race (`modifiers` field)
   - Saves class features, XP bonus rules, and race abilities
   - Auto-creates inventory and credit records
   - Starting credits determined by rolling 3d6×10 (as per White Star rules)
+  - AI-generated or manual backstory creation
+- Equipment selection:
+  - Manual shopping with categorized equipment lists
+  - Auto-assign option for quick equipment loadouts
+  - Budget management with remaining credits display
+  - Equipment restrictions based on class
 - Markov chain name generator:
   - Generates first names based on character class
   - Generates last names from a common pool of sci-fi/fantasy surnames
