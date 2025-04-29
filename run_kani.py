@@ -494,7 +494,61 @@ async def create_character() -> str:
 
     print(f"\nWelcome, {name}!")
 
-    # Step 5: Choose rolling method
+    # Step 5: Choose gender and pronouns
+    print("\nChoose your character's gender:")
+    print("1. Male")
+    print("2. Female")
+    print("3. Other")
+    
+    gender_choice = None
+    while gender_choice is None:
+        try:
+            choice = int(input("\nChoose a gender (1-3): "))
+            if 1 <= choice <= 3:
+                gender_choice = choice
+            else:
+                print("Please enter a number between 1 and 3.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+    
+    # Set gender and pronouns based on choice
+    if gender_choice == 1:  # Male
+        gender = "Male"
+        pronouns = {
+            "subject": "he",
+            "object": "him",
+            "possessive_adjective": "his",
+            "possessive_pronoun": "his",
+            "reflexive": "himself"
+        }
+    elif gender_choice == 2:  # Female
+        gender = "Female"
+        pronouns = {
+            "subject": "she",
+            "object": "her",
+            "possessive_adjective": "her",
+            "possessive_pronoun": "hers",
+            "reflexive": "herself"
+        }
+    else:  # Other
+        gender = input("Enter your character's gender: ").strip()
+        print("\nPlease enter your character's pronouns:")
+        print("(You can enter any pronouns you prefer)")
+        subject = input("Subject pronoun (he/she/they): ").strip().lower()
+        object_pronoun = input("Object pronoun (him/her/them): ").strip().lower()
+        poss_adj = input("Possessive adjective (his/her/their): ").strip().lower()
+        poss_pronoun = input("Possessive pronoun (his/hers/theirs): ").strip().lower()
+        reflexive = input("Reflexive (himself/herself/themselves): ").strip().lower()
+        
+        pronouns = {
+            "subject": subject,
+            "object": object_pronoun,
+            "possessive_adjective": poss_adj,
+            "possessive_pronoun": poss_pronoun,
+            "reflexive": reflexive
+        }
+
+    # Step 6: Choose rolling method
     methods = [
         "Roll 3d6 in order for each attribute.",
         "Roll 3d6 six times and assign freely.",
@@ -547,7 +601,7 @@ async def create_character() -> str:
                     pass
         rolls = [assigned[attr] for attr in ATTRS]
 
-    # Step 6: Choose alignment
+    # Step 7: Choose alignment
     suggested = classes_data[char_class_key].get("suggested_alignment", "Any")
     if suggested in ["Lawful", "Chaotic"]:
         print(f"\nMost {char_class}s are {suggested}")
@@ -620,7 +674,7 @@ async def create_character() -> str:
         else:
             print("Invalid choice. Please enter 1 or 2.")
 
-    # Step 7: Save character JSON
+    # Step 8: Save character JSON
     slug = name.lower().replace(" ", "_")
     char_file = f"characters/{slug}.json"
     
@@ -642,6 +696,8 @@ async def create_character() -> str:
     "name": name,
     "class": char_class,
     "race": char_race,
+    "gender": gender,
+    "pronouns": pronouns,
     "alignment": char_alignment,
     "backstory": backstory,
     "level": 1,
@@ -665,7 +721,7 @@ async def create_character() -> str:
         json.dump(character_data, f, indent=2)
     print(f"\n✅ Character '{name}' created and saved to {char_file}")
 
-    # Step 8: Initialize inventory and credits
+    # Step 9: Initialize inventory and credits
     inventory_path = "ephemeral/inventory.json"
     try:
         with open(inventory_path, "r") as f:
