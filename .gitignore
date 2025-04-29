@@ -3,9 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Virtual environment
+# Virtual environments
 venv/
+.env/
 .env
+kani-env/
 
 # macOS cruft
 .DS_Store
