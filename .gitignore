@@ -4,20 +4,38 @@ __pycache__/
 *$py.class
 
 # Virtual environments
-venv/
 .env/
 .env
+venv/
 kani-env/
+env/
+ENV/
+
+# VS Code / Editor config
+.vscode/
+.idea/
+*.code-workspace
 
 # macOS cruft
 .DS_Store
 
+# Windows crap
+Thumbs.db
+desktop.ini
+
 # System/editor files
 *.swp
 *~
+*.bak
+*.log
 
 # Development notes
 notes/
+
+# Python packaging
+*.egg-info/
+dist/
+build/
 
 # User data directories - ignore contents but keep structure
 characters/*
