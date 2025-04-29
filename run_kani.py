@@ -30,6 +30,7 @@ from tools import (
     improve_attribute,
     show_advancement,
     help_command,
+    quit_game,
 )
 
 with open("character_creation/character_classes.json") as f:
@@ -967,6 +968,7 @@ ai = Kani(
         improve_attribute,
         show_advancement,
         help_command,
+        quit_game,
     ],
 )
 
@@ -982,6 +984,24 @@ async def custom_chat_loop():
 
         if not user_input.strip():
             continue
+
+        # Handle quit command
+        if user_input.strip().lower() == "/quit":
+            # Get a summary from the AI for the session end
+            reply_parts = []
+            async for part in ai.full_round_str("Generate a brief, one-sentence session end summary that captures the current situation or recent events."):
+                reply_parts.append(part)
+            summary = "".join(reply_parts).strip()
+            
+            # Log final scene with AI-generated summary
+            await log_scene(
+                chosen_character,
+                "Session End",
+                summary
+            )
+            print(f"\n🌟 Saving progress for {chosen_character}...")
+            print("👋 Until our next adventure! May the stars guide your path.\n")
+            break
 
         append_to_chat_log(chosen_character, "user", user_input)
         

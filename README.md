@@ -101,14 +101,28 @@ python run_kani.py
 
 ### 📖 Scene Logging + Summary
 
-- `/log_scene` stores a title + summary to `ephemeral/scene_log.json`
-- `/summarize_scene_log` returns a list of all summaries so far
+- Character-specific scene logs stored in `scene_log/<character_slug>.json`
+- `/log_scene` stores a title + summary with timestamps
+- `/summarize_scene_log` returns a chronological list of all scenes
+- Intelligent handling of session end logs:
+  - AI-generated contextual summaries for session ends
+  - Prevents duplicate session end entries within an hour
+  - Updates existing session end entries instead of creating duplicates
 - Full support for multi-scene memory, even across sessions
 
 ### 🧠 Chat Memory
 
 - All messages are saved to `chat_log/<character>.jsonl`
 - `/summarize_recent_chat` summarizes the last 10 user+AI exchanges
+
+### 🎮 Session Management
+
+- `/quit` command for graceful session endings:
+  - AI generates a contextual summary of the current situation
+  - Automatically logs the session end with the summary
+  - Prevents duplicate session end entries
+  - Updates existing session end entries if within an hour
+  - Saves all progress before exiting
 
 ### 🧩 Character Management
 

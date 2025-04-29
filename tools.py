@@ -7,6 +7,7 @@ import inspect
 import sys
 from kani.ai_function import AIFunction, ai_function
 from datetime import datetime
+from character_creation.name_generator import generate_name_by_class, generate_last_name
 
 # Configuration
 NUM_RECENT_USER_MESSAGES = 10  # Change this value to adjust the summary range
@@ -114,29 +115,24 @@ async def remove_inventory(character: str, item: str, quantity: int = 1) -> str:
 
     return f"Removed {quantity} × {item} from {character}'s inventory."
 
-async def show_inventory(character: str = "Jax Varn") -> str:
-    """Show the full inventory for a character. Defaults to Jax Varn if no name is given."""
-    INVENTORY_PATH = "ephemeral/inventory.json"
+async def show_inventory(character: str = None) -> str:
+    """Show the full inventory for a character."""
+    if character is None:
+        return "Please specify a character name."
 
     try:
-        with open(INVENTORY_PATH, "r") as f:
+        with open("ephemeral/inventory.json", "r") as f:
             inventory = json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
-        return f"Could not access inventory data."
-
-    if character not in inventory:
         return f"No inventory found for {character}."
 
-    character_inventory = inventory[character]
-
-    if not character_inventory:
+    char_inventory = inventory.get(character, {})
+    if not char_inventory:
         return f"{character} has no items in their inventory."
 
-    lines = [f"**{character}'s Inventory:**"]
-    for item, quantity in character_inventory.items():
-        lines.append(f"- {item} × {quantity}")
-
-    return "\n".join(lines)
+    # Format the inventory nicely
+    items = [f"- {item}: {quantity}" for item, quantity in char_inventory.items()]
+    return f"🎒 {character}'s Inventory:\n" + "\n".join(items)
 
 async def add_credits(character: str, amount: int) -> str:
     """Add credits to a character's balance."""
@@ -192,18 +188,19 @@ async def spend_credits(character: str, amount: int) -> str:
 
     return f"{character} now has {credits[character]} credits."
 
-async def show_credits(character: str = "Jax Varn") -> str:
-    """Show how many credits a character currently has."""
-    CREDITS_PATH = "ephemeral/credits.json"
+async def show_credits(character: str = None) -> str:
+    """Show the current credits for a character."""
+    if character is None:
+        return "Please specify a character name."
 
     try:
-        with open(CREDITS_PATH, "r") as f:
+        with open("ephemeral/credits.json", "r") as f:
             credits = json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
-        return f"Could not access credit records."
+        return f"No credits found for {character}."
 
-    amount = credits.get(character, 0)
-    return f"{character} has {amount} credits."
+    char_credits = credits.get(character, 0)
+    return f"💰 {character}'s Credits: {char_credits}"
 
 async def buy_item(character: str, item: str, quantity: int = 1) -> str:
     """Buy one or more of an item if the character has enough credits."""
@@ -314,36 +311,55 @@ async def transfer_credits(sender: str, receiver: str, amount: int) -> str:
 
     return f"{sender} transferred {amount} credits to {receiver}. New balances: {sender} = {credits[sender]}, {receiver} = {credits[receiver]}"
 
-async def show_ledger(character: str = "Jax Varn") -> str:
-    """Display a brief summary of transactions involving the character."""
-    LEDGER_PATH = "ephemeral/ledger.json"
+async def show_ledger(character: str = None) -> str:
+    """Show the last 10 transactions for a character."""
+    if character is None:
+        return "Please specify a character name."
 
     try:
-        with open(LEDGER_PATH, "r") as f:
+        with open("ephemeral/ledger.json", "r") as f:
             ledger = json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
-        return "No transaction history found."
+        return f"No transaction history found for {character}."
 
-    relevant = [
-        entry for entry in ledger
-        if entry.get("character") == character or entry.get("from") == character or entry.get("to") == character
+    # Filter transactions for this character
+    char_transactions = [
+        t for t in ledger 
+        if character in [t.get("sender"), t.get("receiver")]
     ]
 
-    if not relevant:
+    if not char_transactions:
         return f"No transactions found for {character}."
 
-    lines = [f"**Transaction history for {character}:**"]
-    for entry in relevant[-10:]:  # last 10
-        lines.append(f"- [{entry['timestamp']}] {entry['type'].title()} - {entry}")
+    # Get the last 10 transactions, most recent first
+    recent = char_transactions[-10:][::-1]
+    
+    # Format each transaction
+    formatted = []
+    for t in recent:
+        if t["type"] == "transfer":
+            if t["sender"] == character:
+                msg = f"Sent {t['amount']} credits to {t['receiver']}"
+            else:
+                msg = f"Received {t['amount']} credits from {t['sender']}"
+        else:
+            msg = f"{t['type'].title()}: {t['amount']} credits"
+            if t.get("reason"):
+                msg += f" ({t['reason']})"
+        
+        # Add timestamp if available
+        if "timestamp" in t:
+            timestamp = datetime.fromisoformat(t["timestamp"]).strftime("%Y-%m-%d %H:%M")
+            msg = f"{timestamp}: {msg}"
+            
+        formatted.append(msg)
 
-    return "\n".join(lines)
+    return f"📜 Recent transactions for {character}:\n" + "\n".join(f"- {t}" for t in formatted)
 
 @ai_function()
-async def start_scenario() -> str:
-    """Generate a basic adventure scenario with a brief recap of recent events."""
-
-    # Attempt to include scene recap
-    SCENE_LOG_PATH = "ephemeral/scene_log.json"
+async def start_scenario(character: str) -> str:
+    """Generate a new scenario setup with location, hook, and detail."""
+    # Try to include recent scene summaries if available
     recap = ""
     try:
         if os.path.exists(SCENE_LOG_PATH):
@@ -353,20 +369,20 @@ async def start_scenario() -> str:
                     recent = logs[-3:]  # Get last 3 scenes
                     bullet_points = [f"- {entry['summary']}" for entry in recent if entry.get("summary")]
                     if bullet_points:
-                        recap = "📖 **Previously on Jax Varn’s journey:**\n" + "\n".join(bullet_points) + "\n\n"
+                        recap = f"📖 **Previously on {character}'s journey:**\n" + "\n".join(bullet_points) + "\n\n"
     except Exception as e:
         recap = ""  # Fallback to no recap if something goes wrong
 
     # Scenario generation
-    locations = [
+    location = [
         "Tycho-221, a rusting mining station orbiting a dead moon",
-        "Krellar’s Drift, a smuggler outpost on the edge of lawful space",
+        "Krellar's Drift, a smuggler outpost on the edge of lawful space",
         "The Verdant Wreck, a crashed science vessel overtaken by vegetation",
         "Bastion Core, a half-functional AI-run defense platform",
         "Drifter's Coil, a rotating casino/fuel depot hybrid"
     ]
 
-    situations = [
+    situation = [
         "a mysterious signal has been broadcasting a looping distress call",
         "someone has stolen a vital piece of your ship's hardware",
         "a shady deal is about to go wrong — and you're caught in the middle",
@@ -374,9 +390,24 @@ async def start_scenario() -> str:
         "you're hunting a bounty that may not be what it seems"
     ]
 
-    # Generate a random contact name if needed
-    contact_names = ["Whisper", "Echo", "Cipher", "Shadow", "Pulse", "Flare", "Vortex", "Nexus", "Specter", "Mirage"]
-    contact_name = random.choice(contact_names)
+    arrival = [
+        "You intercepted a distress call while plotting a hyperspace course nearby.",
+        "Your freighter was obligated by law to investigate a registered emergency beacon.",
+        "You were hired to retrieve an item supposedly located here.",
+        "You were ambushed and forced to land under duress.",
+        "A rogue AI on your ship rerouted your course to this station against your will."
+    ]
+
+    companion = [
+        "You're accompanied by a jittery mechanic named Rix.",
+        f"Your only company is an unreliable AI named {generate_last_name()}.",
+        "You travel alone — no backup, no guarantees.",
+        "A bounty hunter named Lysa trails you, offering reluctant help.",
+        "You've been forced to collaborate with a suspicious android called Unit 7."
+    ]
+
+    # Generate a contact name using the Markov chain generator
+    contact_name = generate_name_by_class("Mercenary")  # Using mercenary class for a gritty feel
     
     npc_or_detail = [
         "A woman with mirrored eyes is watching you from a distance",
@@ -386,12 +417,22 @@ async def start_scenario() -> str:
         "Everyone here seems to know your name — and not in a good way"
     ]
 
+    scene_elements = {
+        "location": random.choice(location),
+        "situation": random.choice(situation),
+        "arrival": random.choice(arrival),
+        "companion": random.choice(companion),
+        "npc_or_detail": random.choice(npc_or_detail)
+    }
+
     scenario = f"""
 🪐 **SCENARIO START**
 
-**Location:** {random.choice(locations)}
-**Situation:** {random.choice(situations)}
-**Detail:** {random.choice(npc_or_detail)}
+**Location:** {scene_elements["location"]}
+**Arrival Context:** {scene_elements["arrival"]}
+**Situation:** {scene_elements["situation"]}
+**Companion/Alone Status:** {scene_elements["companion"]}
+**Detail:** {scene_elements["npc_or_detail"]}
 """.strip()
 
     return recap + scenario
@@ -399,6 +440,13 @@ async def start_scenario() -> str:
 
 async def log_scene(character: str, title: str, summary: str) -> str:
     """Logs a summarized scene entry for the specified character."""
+    # Create scene_log directory if it doesn't exist
+    os.makedirs("scene_log", exist_ok=True)
+    
+    # Create character-specific log file path
+    char_slug = character.lower().replace(" ", "_")
+    log_path = f"scene_log/{char_slug}.json"
+    
     log_entry = {
         "timestamp": datetime.now().isoformat(),
         "title": title,
@@ -406,19 +454,40 @@ async def log_scene(character: str, title: str, summary: str) -> str:
     }
 
     try:
-        if os.path.exists(SCENE_LOG_PATH):
-            with open(SCENE_LOG_PATH, "r") as f:
+        # Load existing log or create new one
+        if os.path.exists(log_path):
+            with open(log_path, "r") as f:
                 content = f.read().strip()
                 data = json.loads(content) if content else []
         else:
             data = []
 
+        # Check for similar recent entries to prevent duplicates
+        if data:
+            last_entry = data[-1]
+            # Parse timestamps
+            last_time = datetime.fromisoformat(last_entry["timestamp"])
+            current_time = datetime.fromisoformat(log_entry["timestamp"])
+            time_diff = (current_time - last_time).total_seconds()
+            
+            # If it's a session end and the last entry was also a session end
+            # within the last hour, update the existing entry instead
+            if (title == "Session End" and 
+                last_entry["title"] == "Session End" and 
+                time_diff < 3600):  # 1 hour in seconds
+                data[-1] = log_entry
+                with open(log_path, "w") as f:
+                    json.dump(data, f, indent=2)
+                return f'📝 Updated session end log for {character}.'
+
+        # Append new entry
         data.append(log_entry)
 
-        with open(SCENE_LOG_PATH, "w") as f:
+        # Save updated log
+        with open(log_path, "w") as f:
             json.dump(data, f, indent=2)
 
-        return f'The scene "{title}" has been logged for {character}. {summary}'
+        return f'📝 Scene "{title}" has been logged for {character}.'
     except Exception as e:
         return f"Failed to log scene: {e}"
 
@@ -477,22 +546,31 @@ def append_to_chat_log(character: str, role: str, message: str):
 
 async def summarize_scene_log_function(character: str) -> str:
     """Summarize the full scene log for a given character."""
-    if not os.path.exists(SCENE_LOG_PATH):
-        return f"No scene log exists for {character}."
+    # Create character-specific log file path
+    char_slug = character.lower().replace(" ", "_")
+    log_path = f"scene_log/{char_slug}.json"
 
-    with open(SCENE_LOG_PATH, "r") as f:
+    if not os.path.exists(log_path):
+        return f"📖 No scene log exists yet for {character}."
+
+    with open(log_path, "r") as f:
         try:
             data = json.load(f)
         except json.JSONDecodeError:
             return "Scene log could not be read."
 
     if not data:
-        return f"There are no logged scenes for {character}."
+        return f"📖 There are no logged scenes for {character}."
 
-    # Optional: filter by character if needed
-    summaries = [entry["summary"] for entry in data]
-    combined = "\n".join(f"- {summary}" for summary in summaries)
-    return f"Here is a summary of all scenes involving {character}:\n\n{combined}"
+    # Format the scenes chronologically
+    scenes = []
+    for entry in data:
+        timestamp = datetime.fromisoformat(entry["timestamp"]).strftime("%Y-%m-%d %H:%M")
+        scenes.append(f"⌚ {timestamp}")
+        scenes.append(f"📌 {entry['title']}")
+        scenes.append(f"{entry['summary']}\n")
+
+    return f"📖 Scene log for {character}:\n\n" + "\n".join(scenes)
 
 import os
 
@@ -1032,7 +1110,8 @@ async def help_command(command: str = "") -> str:
         "show_xp": "Display current XP and progress to next level",
         "improve_attribute": "Increase an attribute by 1 point",
         "show_advancement": "View the advancement table for a character's class",
-        "help": "Display this help information"
+        "help": "Display this help information",
+        "quit": "Save progress and exit the game"
     }
     
     if command and command.strip():
@@ -1129,6 +1208,25 @@ Details:
         
         return "\n".join(lines)
 
+async def quit_game(character: str) -> str:
+    """
+    Log the final scene and quit the game gracefully.
+    
+    Args:
+        character: The character's name
+    
+    Returns:
+        A farewell message
+    """
+    # Log the final scene
+    await log_scene(
+        character,
+        "Session End",
+        f"End of gaming session for {character}. Their story continues another time..."
+    )
+    
+    return f"🌟 Saving progress for {character}...\n👋 Until our next adventure! May the stars guide your path."
+
 # ✅ Simpler wrapping for current AIFunction version
 add_inventory = AIFunction(add_inventory)
 remove_inventory = AIFunction(remove_inventory)
@@ -1150,3 +1248,4 @@ show_xp = AIFunction(show_xp)
 improve_attribute = AIFunction(improve_attribute)
 show_advancement = AIFunction(show_advancement)
 help_command = AIFunction(help_command)
+quit_game = AIFunction(quit_game)
