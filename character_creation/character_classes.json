@@ -1,7 +1,8 @@
 {
   "classes": {
-    "aristocrat": {
+    "Aristocrat": {
       "description": "Charismatic leaders and social manipulators who inspire allies and command followers.",
+      "suggested_alignment": "Any",
       "xp_bonus": {
         "attribute": "charisma",
         "thresholds": {
@@ -19,8 +20,9 @@
       "weapon_armor_restrictions": "May use clubs, daggers, firearms, grenades, laser pistols, mono-daggers, mono-swords, staffs, swords. Light Armor only, no shields.",
       "advancement_table": "tables/aristocrat_advancement.json"
     },
-    "mercenary": {
-      "description": "Combat specialists who excel in weapon use and survivability.",
+    "Mercenary": {
+      "description": "Combat specialists for hire who excel in weapon use and survivability.",
+      "suggested_alignment": "Any",
       "xp_bonus": {
         "attribute": "strength",
         "thresholds": {
@@ -36,8 +38,9 @@
       "weapon_armor_restrictions": "No restrictions.",
       "advancement_table": "tables/mercenary_advancement.json"
     },
-    "pilot": {
+    "Pilot": {
       "description": "Experts in starship operation, repair, and quick thinking under pressure.",
+      "suggested_alignment": "Any",
       "xp_bonus": {
         "attribute": "dexterity",
         "thresholds": {
@@ -55,8 +58,9 @@
       "weapon_armor_restrictions": "Light Armor only. Weapons: clubs, daggers, firearms, grenades, mono-daggers, mono-swords, laser pistols.",
       "advancement_table": "tables/pilot_advancement.json"
     },
-    "star_knight": {
+    "Star Knight": {
       "description": "Mystical warriors who blend martial skill with spiritual meditations.",
+      "suggested_alignment": "Lawful",
       "xp_bonus": {
         "attribute": "wisdom",
         "thresholds": {
@@ -76,8 +80,9 @@
         "meditations": "tables/star_knight_meditation_advancement.json"
       }
     },
-    "alien_brute": {
+    "Alien Brute": {
       "description": "Physically dominant alien warriors with unarmed combat skills and keen senses.",
+      "suggested_alignment": "Any",
       "xp_bonus": {
         "attribute": "strength",
         "thresholds": {}
@@ -92,8 +97,9 @@
       "weapon_armor_restrictions": "No restrictions.",
       "advancement_table": "tables/alien_brute_advancement.json"
     },
-    "alien_mystic": {
+    "Alien Mystic": {
       "description": "Psychic and spiritual aliens who use ancient rituals to wield Gifts.",
+      "suggested_alignment": "Any",
       "xp_bonus": {
         "attribute": "wisdom",
         "thresholds": {}
@@ -110,8 +116,9 @@
         "gifts": "tables/alien_mystic_gift_advancement.json"
       }
     },
-    "robot": {
-      "description": "Sentient machines with specialized models, scanning abilities, and self-repair routines.",
+    "Servitor": {
+      "description": "Built for service but yearning for purpose, Servitors are robots designed to assist others — in labor, war, or diplomacy. Some embrace their programmed roles; others seek freedom among the stars.",
+      "suggested_alignment": "Any",
       "xp_bonus": {
         "attribute": "none",
         "thresholds": {}
@@ -126,6 +133,66 @@
       ],
       "weapon_armor_restrictions": "Weapons vary by model. Defaults: clubs, daggers, laser pistols.",
       "advancement_table": "tables/robot_advancement.json"
+    },
+    "Soldier": {
+      "description": "Generic military personnel, mercenaries, or pirates.",
+      "suggested_alignment": "Any",
+      "xp_bonus": {
+        "attribute": "strength",
+        "thresholds": {
+          "13-14": "5%",
+          "15+": "10%"
+        }
+      },
+      "class_features": [
+        "Combat Machine: Extra attacks vs 1HD or fewer enemies (1 per level).",
+        "Unarmed Combat: 1d6+1 damage unarmed.",
+        "+2 to Saves vs poison or death.",
+        "Languages: Common and others per Referee discretion.",
+        "Establish Stronghold (9th): Attract loyal soldiers as strike force."
+      ],
+      "weapon_armor_restrictions": "No restrictions.",
+      "advancement_table": "tables/soldier_advancement.json"
+    },
+    "Space Savage": {
+      "description": "Feral space marauders who scream, kill, and never negotiate. Immune to mental control.",
+      "suggested_alignment": "Chaotic",
+      "xp_bonus": {
+        "attribute": "strength",
+        "thresholds": {
+          "13-14": "5%",
+          "15+": "10%"
+        }
+      },
+      "class_features": [
+        "Immune to mind-influencing effects.",
+        "Unarmed Combat: 1d6+1 damage unarmed.",
+        "Languages: Common."
+      ],
+      "weapon_armor_restrictions": "Melee weapons only.",
+      "advancement_table": "tables/space_savage_advancement.json"
+    },
+    "Void Knight": {
+      "description": "Fallen Star Knights who wield dark power. Use Meditations and deadly psychic abilities.",
+      "suggested_alignment": "Chaotic",
+      "xp_bonus": {
+        "attribute": "wisdom",
+        "thresholds": {
+          "13-14": "5%",
+          "15+": "10%"
+        }
+      },
+      "class_features": [
+        "Meditations: Can prepare/activate Meditations per level (see Meditation Table).",
+        "Star Sword Duelist: +1 to-hit with Star Sword. Starts with one for free.",
+        "+2 to Saves vs Meditations and Gifts.",
+        "Establish Corrupted Monastery (10th): Attract followers to a secluded training center."
+      ],
+      "weapon_armor_restrictions": "Daggers, laser pistols, Star Swords. Light Armor + shields.",
+      "advancement_table": "tables/void_knight_advancement.json",
+      "extra_tables": {
+        "meditations": "tables/void_knight_meditation_advancement.json"
+      }
     }
   }
 }

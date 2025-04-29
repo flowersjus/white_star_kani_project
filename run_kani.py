@@ -272,7 +272,7 @@ async def handle_equipment_selection(starting_credits, character_name):
                             except ValueError:
                                 print("Invalid choice. Please enter a number.")
                 except ValueError:
-                    print("Invalid choice. Please enter a number.")
+                    print("Invalid choice. Please enter a valid number.")
             break
             
         elif choice == "2":
@@ -305,12 +305,135 @@ async def create_character() -> str:
 
     print("\n🛠 Let's create a new character!")
 
-    # Step 1: Choose class
-    print("\nAvailable classes:")
-    class_keys = list(classes_data.keys())
+    # Step 1: Choose Origin
+    print("\nChoose your origin:")
+    print("1. Human")
+    print("   Ambitious and adaptable, humans carve their mark across the stars.")
+    print("2. Machine Hybrid")
+    print("   Blending flesh and machine, hybrids walk the line between humanity and cold efficiency.")
+    print("3. Alien")
+    print("   From mysterious psychics to primal hunters, aliens shape the galaxy in ways beyond human comprehension.")
+    print("4. Robot")
+    print("   Built, not born — robots forge their own destinies amid the stars.")
+
+    origin_choice = None
+    while origin_choice is None:
+        try:
+            choice = int(input("\nChoose your origin (1-4): "))
+            if 1 <= choice <= 4:
+                origin_choice = choice
+            else:
+                print("Please enter a number between 1 and 4.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+    # Step 2: Handle Race Selection based on Origin
+    if origin_choice == 1:  # Human
+        print("\nYou chose to be a human.")
+        print("Ambitious and adaptable, humans carve their mark across the stars.")
+        selected_race = next(race for race in races_data if race["name"] == "Human")
+        char_race = "Human"
+        # Define available classes for humans
+        available_classes = {
+            key: classes_data[key] for key in [
+                "Aristocrat", "Mercenary", "Pilot", "Star Knight",
+                "Soldier", "Space Savage", "Void Knight"
+            ] if key in classes_data
+        }
+    else:
+        # Filter races based on origin
+        available_races = []
+        if origin_choice == 2:  # Machine Hybrid
+            print("\nYou chose to be a hybrid.")
+            print("Blending flesh and machine, hybrids walk the line between humanity and cold efficiency.")
+            available_races = [
+                race for race in races_data 
+                if race["name"] in ["Cyborg, Metallic", "Cyborg, Replica"]
+            ]
+        elif origin_choice == 3:  # Alien
+            print("\nYou chose to be an alien.")
+            print("From mysterious psychics to primal hunters, aliens shape the galaxy in ways beyond human comprehension.")
+            available_races = [
+                race for race in races_data 
+                if race["name"] in [
+                    "Falcon-Men", "Felinoids", "Greys", "Mindoids", "Odays",
+                    "Procyon", "Qinlons", "Uttins", "Wolflings", "Yabnabs"
+                ]
+            ]
+        else:  # Robot
+            print("\nYou chose to be a robot.")
+            print("Built, not born — robots forge their own destinies amid the stars.")
+            available_races = [
+                race for race in races_data 
+                if race["name"] in ["Humanoid", "Cannick"]
+            ]
+
+        # Display available races
+        print("\nAvailable races:")
+        for i, race in enumerate(available_races, 1):
+            print(f"{i}. {race['name']}: {race['description']}")
+
+        # Select race
+        while True:
+            try:
+                race_choice = int(input("\nChoose a race by number: "))
+                if 1 <= race_choice <= len(available_races):
+                    selected_race = available_races[race_choice - 1]
+                    char_race = selected_race["name"]
+                    break
+                else:
+                    print(f"Please enter a number between 1 and {len(available_races)}.")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+
+        # Define available classes based on origin and race
+        if origin_choice == 2:  # Machine Hybrid
+            if char_race == "Cyborg, Metallic":
+                available_classes = {
+                    key: classes_data[key] for key in [
+                        "Soldier", "Space Savage"
+                    ] if key in classes_data
+                }
+            else:  # Cyborg, Replica
+                available_classes = {
+                    key: classes_data[key] for key in [
+                        "Aristocrat", "Mercenary", "Pilot",
+                        "Soldier", "Space Savage"
+                    ] if key in classes_data
+                }
+        elif origin_choice == 3:  # Alien
+            available_classes = {
+                key: classes_data[key] for key in [
+                    "Alien Brute", "Alien Mystic", "Space Savage"
+                ] if key in classes_data
+            }
+        else:  # Robot
+            if char_race == "Cannick":
+                available_classes = {
+                    key: classes_data[key] for key in [
+                        "Soldier", "Mercenary", "Space Savage"
+                    ] if key in classes_data
+                }
+            else:  # Humanoid
+                available_classes = {
+                    key: classes_data[key] for key in ["Servitor"]
+                    if key in classes_data
+                }
+
+    # Step 3: Choose class
+    print("\nAvailable classes for your origin and race:")
+    class_keys = list(available_classes.keys())
+
+    if not class_keys:
+        print("Error: No valid classes found for your origin/race combination.")
+        print("Defaulting to available basic classes...")
+        available_classes = {
+            "Soldier": classes_data["Soldier"]
+        }
+        class_keys = list(available_classes.keys())
 
     for i, key in enumerate(class_keys, 1):
-        print(f"{i}. {key.title()}: {classes_data[key]['description']}")
+        print(f"{i}. {key}: {available_classes[key]['description']}")
 
     while True:
         try:
@@ -318,66 +441,15 @@ async def create_character() -> str:
             if 1 <= choice <= len(class_keys):
                 char_class_key = class_keys[choice - 1]
                 break
+            else:
+                print(f"Please enter a number between 1 and {len(class_keys)}.")
         except ValueError:
-            pass
-        print("Invalid input. Please enter a valid number.")
+            print("Invalid input. Please enter a valid number.")
 
-    char_class = char_class_key.title()
+    char_class = char_class_key  # No need to title() since we're using exact keys
     char_class_data = classes_data[char_class_key]
 
-    # Check if Robot class was selected
-    if char_class_key.lower() == "robot":
-        # Automatically set race to Robot
-        selected_race = None
-        for race in races_data:
-            if race["name"] == "Robot":
-                selected_race = race
-                char_race = "Robot"
-                print("\nAs a Robot class character, your race is automatically set to Robot.")
-                break
-        
-        # Fallback in case Robot race is not found (shouldn't happen)
-        if selected_race is None:
-            print("Error: Robot race not found. Defaulting to Human race.")
-            for race in races_data:
-                if race["name"] == "Human":
-                    selected_race = race
-                    char_race = "Human"
-                    break
-    else:
-        # Only show race selection for non-Robot classes
-        print("\nAvailable races:")
-        # Filter out Robot race for non-Robot classes to avoid confusion
-        available_races = [race for race in races_data if race["name"] != "Robot"]
-        
-        for i, race in enumerate(available_races, 1):
-            print(f"{i}. {race['name']}: {race['description']}")
-
-        # Initialize selected_race with a default value
-        selected_race = None
-        
-        while True:
-            try:
-                race_choice = int(input("\nChoose a race by number: "))
-                if 1 <= race_choice <= len(available_races):
-                    selected_race = available_races[race_choice - 1]
-                    break
-                else:
-                    print(f"Please enter a number between 1 and {len(available_races)}.")
-            except ValueError:
-                print("Invalid input. Please enter a valid number.")
-        
-        if selected_race is None:
-            # Fallback to Human if something went wrong
-            print("Error in race selection. Defaulting to Human race.")
-            for race in races_data:
-                if race["name"] == "Human":
-                    selected_race = race
-                    break
-        
-        char_race = selected_race["name"]
-
-    # Step 3: Now that we have class and race, handle name generation
+    # Step 4: Now that we have class and race, handle name generation
     print("\nHow would you like to name your character?")
     print("1. Enter a name manually")
     print("2. Generate a name based on your character class")
@@ -421,7 +493,7 @@ async def create_character() -> str:
 
     print(f"\nWelcome, {name}!")
 
-    # Step 4: Choose rolling method
+    # Step 5: Choose rolling method
     methods = [
         "Roll 3d6 in order for each attribute.",
         "Roll 3d6 six times and assign freely.",
@@ -474,8 +546,11 @@ async def create_character() -> str:
                     pass
         rolls = [assigned[attr] for attr in ATTRS]
 
-    # Step 5: Choose alignment
-    char_alignment = input("Enter alignment (e.g., Lawful): ").strip().title()
+    # Step 6: Choose alignment
+    suggested = classes_data[char_class_key].get("suggested_alignment", "Any")
+    if suggested in ["Lawful", "Chaotic"]:
+        print(f"\nMost {char_class}s are {suggested}")
+    char_alignment = input("Enter alignment (e.g., Lawful, Neutral, Chaotic): ").strip().title()
 
     # ✅ Create structured attributes with base values, race modifiers, and totals:
     base_attributes = dict(zip(ATTRS, rolls))
@@ -544,7 +619,7 @@ async def create_character() -> str:
         else:
             print("Invalid choice. Please enter 1 or 2.")
 
-    # Step 6: Save character JSON
+    # Step 7: Save character JSON
     slug = name.lower().replace(" ", "_")
     char_file = f"characters/{slug}.json"
     
@@ -589,7 +664,7 @@ async def create_character() -> str:
         json.dump(character_data, f, indent=2)
     print(f"\n✅ Character '{name}' created and saved to {char_file}")
 
-    # Step 7: Initialize inventory and credits
+    # Step 8: Initialize inventory and credits
     inventory_path = "ephemeral/inventory.json"
     try:
         with open(inventory_path, "r") as f:
@@ -634,7 +709,7 @@ async def create_character() -> str:
     with open(inventory_path, "w") as f:
         json.dump(inventory, f, indent=2)
 
-    return name
+    return name, True
 
 
 async def choose_character() -> str:
@@ -657,7 +732,7 @@ async def choose_character() -> str:
             if 1 <= choice <= len(character_names):
                 selected = character_names[choice - 1]
                 print(f"\n✨ You selected: {selected}")
-                return selected
+                return selected, False
             elif choice == len(character_names) + 1:
                 return await create_character()
         except ValueError:
@@ -700,12 +775,15 @@ async def generate_adventure_summary(character_name, scene_log_entries, engine):
     
     return response.strip()
 
-def display_character_welcome(character_name, char_data, char_inventory, char_credits, adventure_summary):
+def display_character_welcome(character_name, char_data, char_inventory, char_credits, adventure_summary, is_new_character=False):
     """Display a welcome message with character info, inventory, credits, and recent adventures."""
     
     # Display welcome message
     print(f"\n{'=' * 60}")
-    print(f"Welcome back, {character_name}!")
+    if is_new_character:
+        print(f"Your journey begins now, {character_name}!")
+    else:
+        print(f"Welcome back, {character_name}!")
     print(f"{'=' * 60}")
     
     # Display character info
@@ -765,7 +843,7 @@ def display_character_welcome(character_name, char_data, char_inventory, char_cr
     input("\nPress Enter to continue your journey...")
 
 # Select character interactively
-chosen_character = asyncio.run(choose_character())
+chosen_character, is_new_character = asyncio.run(choose_character())
 char_slug = chosen_character.lower().replace(" ", "_")
 char_path = f"characters/{char_slug}.json"
 
@@ -807,7 +885,7 @@ if recent_adventures:
         adventure_summary = asyncio.run(generate_adventure_summary(chosen_character, recent_adventures, engine_for_summary))
 
 # Display welcome with the AI-generated summary
-display_character_welcome(chosen_character, char_data, char_inventory, char_credits, adventure_summary)
+display_character_welcome(chosen_character, char_data, char_inventory, char_credits, adventure_summary, is_new_character)
 
 # Build the system prompt
 system_prompt = f"""

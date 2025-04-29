@@ -26,7 +26,7 @@
       "movement": "9",
       "notes": "Assimilants seek to draw all sentient beings into their fold.",
       "saving_throws": {
-        "physical": 2
+        "Physical": 2
       },
       "modifiers": {
         "Strength": 1,
@@ -35,11 +35,11 @@
       }
     },
     {
-      "name": "Cannicks",
-      "description": "Cannicks appear as cylindrical robotic beings who stand about five (5) feet in height and move around by hovering on a large magnetic energy field.",
+      "name": "Cannick",
+      "description": "Programmed for total species superiority, Cannicks sweep across the stars chanting \"OBLITERATE!\" Their only directive: to destroy all who are not their own.",
       "special_abilities": "None",
       "movement": "10",
-      "notes": "They believe only their species should exist in the universe and destroy any other they encounter, often repeating the phrase “OBLITERATE!” continually over and over again in a harsh, metallic voice.",
+      "notes": "They believe only their species should exist in the universe and destroy any other they encounter, often repeating the phrase \"OBLITERATE!\" continually over and over again in a harsh, metallic voice.",
       "saving_throws": {
         "Physical": 2
       },
@@ -174,93 +174,75 @@
       "description": "Honor-driven warriors with ridged foreheads and brutal melee strength.",
       "special_abilities": "+1 to melee damage",
       "movement": "12",
-      "notes": "Converted from alien entry. Stats may need referee approval."
-    },
-    {
-      "name": "Soldier",
-      "description": "Generic military personnel, mercenaries, or pirates. Highly customizable per scenario.",
-      "special_abilities": "None",
-      "movement": "12",
-      "notes": "Converted from alien entry. Stats may need referee approval."
-    },
-    {
-      "name": "Space Savages",
-      "description": "Feral space marauders who scream, kill, and never negotiate. Immune to mental control.",
-      "special_abilities": "Immune to mind-influencing effects",
-      "movement": "15",
-      "notes": "Converted from alien entry. Stats may need referee approval."
+      "notes": "Converted from alien entry. Stats may need referee approval.",
+      "saving_throws": {
+        "Physical": 0
+      },
+      "modifiers": {
+        "Strength": 2,
+        "Constitution": 1,
+        "Charisma": -1
+      }
     },
     {
       "name": "Uttins",
       "description": "Rodent-like scavengers in cowls. Love salvage and wield special ion pistols.",
       "special_abilities": "Ion pistol does double damage to robots",
       "movement": "6",
-      "notes": "Converted from alien entry. Stats may need referee approval."
-    },
-    {
-      "name": "Void Knight",
-      "description": "Fallen Star Knights who wield dark power. Use Meditations and deadly psychic abilities.",
-      "special_abilities": "Star Knight Meditations, Corrupted Energy, Force of Will (insta-kill)",
-      "movement": "12",
-      "notes": "Converted from alien entry. Stats may need referee approval."
+      "notes": "Converted from alien entry. Stats may need referee approval.",
+      "saving_throws": {
+        "Physical": 0
+      },
+      "modifiers": {
+        "Dexterity": 1,
+        "Intelligence": 1,
+        "Charisma": -1
+      }
     },
     {
       "name": "Wolflings",
       "description": "Wolf-like humanoids who excel in packs. Gain +1 To-Hit when fighting with two or more allies.",
       "special_abilities": "Group Tactics, Keen Senses",
       "movement": "12",
-      "notes": "Converted from alien entry. Stats may need referee approval."
+      "notes": "Converted from alien entry. Stats may need referee approval.",
+      "saving_throws": {
+        "Physical": 1
+      },
+      "modifiers": {
+        "Strength": 1,
+        "Dexterity": 1,
+        "Constitution": 0
+      }
     },
     {
       "name": "Yabnabs",
       "description": "Short, bear-like primitives with an intense curiosity for the stars.",
       "special_abilities": "None",
       "movement": "6",
-      "notes": "Converted from alien entry. Stats may need referee approval."
-    },
-    {
-      "name": "Alien Brute",
-      "description": "A hulking alien creature with immense strength and resilience, often used as a muscle in various factions.",
-      "special_abilities": "Increased damage resistance, powerful melee attacks, keen senses.",
-      "movement": "12",
+      "notes": "Converted from alien entry. Stats may need referee approval.",
       "saving_throws": {
-        "Physical": 2
+        "Physical": 0
       },
-      "notes": "large, strong species. Whether they’re eight-foot tall walking carpets or ridge-headed, honor-bound warriors, this class reflects non-human characters from a martial culture. Whether by genetic predisposition or eons of cultural influence, they are masters of combat who serve as loyal allies and fierce adversaries.",
       "modifiers": {
-        "Strength": 2,
-        "Dexterity": -1,
+        "Strength": -1,
+        "Dexterity": 1,
         "Constitution": 1
       }
     },
     {
-      "name": "Alien Mystic",
-      "description": "A mysterious alien with psychic abilities and a deep connection to the cosmos.",
-      "special_abilities": "Telepathy, psychic powers, enhanced perception.",
+      "name": "Humanoid",
+      "description": "Mechanical beings shaped to mirror human appearance, but driven by programmed purpose rather than flesh and blood.",
+      "special_abilities": "Immune to poison and disease, does not need to breathe, +2 to saves vs. mind-affecting abilities",
       "movement": "12",
+      "notes": "Requires regular maintenance and recharging.",
       "saving_throws": {
-        "Mental": 2
+        "Physical": 2,
+        "Mental": 0
       },
-      "notes": "Whether they’re little green gnomes with powerful magic or near-human psychics, the Alien Mystic reflects a more peaceful, introspective, and thoughtful being than is usually found in the galaxy at large. That is not to say that Alien Mystics are pacifists. Many are trained in the ways of war, though it is not their first course of action. They would much prefer to rely on their exotic abilities than a laser pistol, but pragmatism demands adaptation.",
-      "modifiers": {
-        "Intelligence": 2,
-        "Wisdom": 1,
-        "Charisma": -1
-      }
-    },
-    {
-      "name": "Robot",
-      "description": "A mechanical being with advanced technology and programming, often used for various tasks.",
-      "special_abilities": "Immunity to poison, disease, and mind control.",
-      "movement": "12",
-      "saving_throws": {
-        "Physical": 2
-      },
-      "notes": "Robots are purely automated lifeforms. Electricity is their blood and metal is their skin. Yet, their programming is so complex that they seem to have emotions and thoughts just like a human. They can be programmed for any number of tasks from manual labor, technology interface, zero-g functionality, and even combat. Each Robot is designed for a single specific purpose, but their complex programming allows them to learn to adapt as much as any living and sentient being.",
       "modifiers": {
         "Strength": 1,
-        "Dexterity": 1,
-        "Constitution": 2
+        "Constitution": 1,
+        "Charisma": -1
       }
     }
   ]
