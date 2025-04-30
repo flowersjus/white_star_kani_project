@@ -25,15 +25,20 @@ This project uses [Kani](https://github.com/zhudotexe/kani) to serve as a fully 
 
 ## 🧪 Quickstart
 
-### First-Time Setup - Mac/Linux
+### Prerequisites
 
-If this is your first time running the project or if your virtual environment was deleted:
+- Python 3.8 or higher
+- OpenAI API key
+
+### First-Time Setup
+
+#### For Linux and macOS:
 
 ```bash
 # Navigate to the project directory
-cd ~/Github/white_star_kani_project
+cd path/to/white_star_kani_project
 
-# Create a virtual environment (if missing)
+# Create a virtual environment
 python3 -m venv kani-env
 
 # Activate the virtual environment
@@ -42,25 +47,54 @@ source kani-env/bin/activate
 # Upgrade pip (recommended)
 pip install --upgrade pip
 
-# Install required packages (make sure pip points to kani-env/bin/pip)
-./kani-env/bin/pip install -r requirements.txt
+# Install required packages
+pip install -r requirements.txt
 
 # Set up your OpenAI API key
 cp .env.example .env
 # Edit the .env file and replace 'your_api_key_here' with your actual OpenAI API key
 ```
 
-#### Running the Game
+#### For Windows:
 
-Using the provided script
+```powershell
+# Navigate to the project directory
+cd path\to\white_star_kani_project
+
+# Create a virtual environment
+python -m venv kani-env
+
+# Activate the virtual environment
+.\kani-env\Scripts\Activate.ps1
+
+# Upgrade pip (recommended)
+pip install --upgrade pip
+
+# Install required packages
+pip install -r requirements.txt
+
+# Set up your OpenAI API key
+copy .env.example .env
+# Edit .env and add your API key
+```
+
+### Running the Game
+
+#### For Linux and macOS:
+
+Using the provided script:
 
 ```bash
+# Make sure the script is executable
+chmod +x run.sh
+
+# Run the game
 ./run.sh
 ```
 
-Manual Launch (if you prefer):
+Or manually:
 
-```
+```bash
 # Activate the virtual environment
 source kani-env/bin/activate
 
@@ -68,26 +102,37 @@ source kani-env/bin/activate
 python run_kani.py
 ```
 
-### First-Time Setup - Windows
+#### For Windows:
 
-```
-# First-time setup:
-python -m venv kani-env
-.\kani-env\Scripts\Activate.ps1
-pip install -r requirements.txt
+Using the provided PowerShell script:
 
-# Set your OpenAI key
-copy .env.example .env
-# Edit .env and add your API key
-
-# Run the game:
+```powershell
+# Run the game
 .\run.ps1
 ```
 
-If Powershell blocks the script:
+If PowerShell blocks the script:
 
-```
+```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\run.ps1
+```
+
+Or using Command Prompt:
+
+```cmd
+# Run the game
+run.bat
+```
+
+Or manually:
+
+```powershell
+# Activate the virtual environment
+.\kani-env\Scripts\Activate.ps1
+
+# Run the AI DM
+python run_kani.py
 ```
 
 ---

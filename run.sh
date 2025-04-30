@@ -7,7 +7,7 @@ set -e
 if [ ! -f "kani-env/bin/python" ]; then
   echo "Virtual environment not found."
   echo "Create it with:"
-  echo "  /opt/homebrew/bin/python3.11 -m venv kani-env"
+  echo "  python3 -m venv kani-env"
   echo "  source kani-env/bin/activate"
   echo "  pip install -r requirements.txt"
   exit 1
