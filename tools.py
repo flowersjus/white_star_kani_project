@@ -363,18 +363,7 @@ async def start_scenario(character: str) -> str:
     import random
     import sys
     sys.path.append('.')
-    try:
-        from run_kani import get_character_pronouns
-    except ImportError:
-        def get_character_pronouns(character):
-            return {
-                "subject": "they",
-                "object": "them",
-                "possessive_adjective": "their",
-                "possessive_pronoun": "theirs",
-                "reflexive": "themself"
-            }
-    
+    # Remove pronoun imports and logic
     # Try to include recent scene summaries if available
     recap = ""
     try:
@@ -447,11 +436,12 @@ async def start_scenario(character: str) -> str:
         "npc_or_detail": random.choice(npc_or_detail)
     }
 
-    # Get pronouns for the character
-    pronouns = get_character_pronouns(character)
-
-    # Add pronoun instruction to the scenario prompt
-    pronoun_instruction = f"Always refer to the character using these pronouns: subject: {pronouns['subject']}, object: {pronouns['object']}, possessive adjective: {pronouns['possessive_adjective']}, possessive pronoun: {pronouns['possessive_pronoun']}, reflexive: {pronouns['reflexive']}."
+    # Use hardcoded they/them pronoun instruction
+    pronoun_instruction = (
+        "Always refer to the character using these pronouns: "
+        "subject: they, object: them, possessive adjective: their, "
+        "possessive pronoun: theirs, reflexive: themself."
+    )
 
     scenario = f"""
 🪐 **SCENARIO START**
