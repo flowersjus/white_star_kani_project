@@ -39,6 +39,29 @@ with open("character_creation/character_classes.json") as f:
 with open("character_creation/character_races.json") as f:
     races_data = json.load(f)["character_races"]
 
+# Helper function to get pronouns for a character
+def get_character_pronouns(character):
+    char_slug = character.lower().replace(" ", "_")
+    char_path = f"characters/{char_slug}.json"
+    try:
+        with open(char_path) as f:
+            char_data = json.load(f)
+        return char_data.get("pronouns", {
+            "subject": "they",
+            "object": "them",
+            "possessive_adjective": "their",
+            "possessive_pronoun": "theirs",
+            "reflexive": "themself"
+        })
+    except Exception:
+        return {
+            "subject": "they",
+            "object": "them",
+            "possessive_adjective": "their",
+            "possessive_pronoun": "theirs",
+            "reflexive": "themself"
+        }
+
 async def generate_ai_backstory(name: str, char_class: str, char_race: str, char_alignment: str, attributes: dict, engine) -> str:
     """Generate an AI-crafted backstory based on character attributes and choices."""
     # Define possible character flaws
@@ -64,7 +87,16 @@ async def generate_ai_backstory(name: str, char_class: str, char_race: str, char
         key=lambda x: x[1],
         reverse=True
     )[:2]  # Get top 2 attributes
-    
+
+    # Always use they/them pronouns for backstory
+    pronouns = {
+        "subject": "they",
+        "object": "them",
+        "possessive_adjective": "their",
+        "possessive_pronoun": "theirs",
+        "reflexive": "themself"
+    }
+
     prompt = f"""
     Create a 3-5 sentence character backstory for a {char_race} {char_class} named {name} with {char_alignment} alignment.
     Their highest attributes are {highest_attrs[0][0]} ({highest_attrs[0][1]}) and {highest_attrs[1][0]} ({highest_attrs[1][1]}).
@@ -77,8 +109,9 @@ async def generate_ai_backstory(name: str, char_class: str, char_race: str, char
     5. Keep the tone grounded, realistic, and willing to acknowledge flaws, regrets, and internal conflicts.
     6. Avoid portraying characters as perfect heroes; instead, show how their background shaped them into who they are — for better or worse.
     7. Fit naturally within a sci-fi universe rich with danger, opportunity, and moral complexity.
+    8. Always refer to the character using these pronouns: subject: {pronouns['subject']}, object: {pronouns['object']}, possessive adjective: {pronouns['possessive_adjective']}, possessive pronoun: {pronouns['possessive_pronoun']}, reflexive: {pronouns['reflexive']}.
     
-    Additionally, subtly weave this personal flaw into the backstory: "{selected_flaw}"
+    Additionally, subtly weave this personal flaw into the backstory: \"{selected_flaw}\"
     
     Write in a vivid, concise style (3–5 sentences), focusing more on the character's internal motivations than external achievements.
     """
@@ -812,7 +845,7 @@ async def generate_adventure_summary(character_name, scene_log_entries, engine):
     
     {adventures_text}
     
-    Begin your summary by clearly stating the character's current location (e.g., "Currently on Tycho-221 in the Frontier Scrapyards").
+    Begin your summary by clearly stating the character's current location.
     
     Then, identify and highlight the character's current primary objective or quest based on these entries.
     

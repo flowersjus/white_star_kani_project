@@ -104,21 +104,7 @@ python run_kani.py
 
 #### For Windows:
 
-Using the provided PowerShell script:
-
-```powershell
-# Run the game
-.\run.ps1
-```
-
-If PowerShell blocks the script:
-
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\run.ps1
-```
-
-Or using Command Prompt:
+Using the provided batch script:
 
 ```cmd
 # Run the game
@@ -138,6 +124,43 @@ python run_kani.py
 ---
 
 ## ✅ Current Capabilities
+
+### 👤 Character Creation & Management
+
+- Enhanced character creation with:
+  - Origin-based race and class restrictions
+  - Intelligent name generation based on character class
+  - Proper pronoun handling throughout character lifecycle
+  - AI-generated or manual backstory options
+- Character selection at startup
+- Enhanced welcome screen showing:
+  - Character stats and attributes
+  - Current inventory and credits
+  - Recent adventure recap
+  - Backstory and special abilities
+
+### 📝 Name Generation System
+
+- Markov chain-based name generation
+- Class-specific name patterns
+- Support for:
+  - Character names based on class
+  - Location names (stations, drifts)
+  - Robot designations
+  - NPC names
+
+### 🎭 Pronoun System
+
+- Comprehensive pronoun support:
+  - Custom pronouns for any gender identity
+  - Proper pronoun persistence in character data
+  - Consistent pronoun usage in all AI interactions
+  - Default they/them pronouns for new characters
+- Smart pronoun handling in:
+  - Character backstories
+  - Scene descriptions
+  - NPC interactions
+  - Adventure summaries
 
 ### 📦 Inventory Management
 
@@ -168,6 +191,8 @@ python run_kani.py
 - `/start_scenario "Character Name"` begins a new adventure
   - Includes **Location**, **Situation**, **Narrative Detail**
   - Auto-includes last 3 scene summaries if available
+  - Uses character-appropriate pronouns in all descriptions
+  - Generates unique location and NPC names
 
 ### 📖 Scene Logging + Summary
 

@@ -7,7 +7,7 @@ import inspect
 import sys
 from kani.ai_function import AIFunction, ai_function
 from datetime import datetime
-from character_creation.name_generator import generate_name_by_class, generate_last_name
+from character_creation.name_generator import generate_name_by_class, generate_last_name, generate_robot_name
 
 # Configuration
 NUM_RECENT_USER_MESSAGES = 10  # Change this value to adjust the summary range
@@ -359,6 +359,22 @@ async def show_ledger(character: str = None) -> str:
 @ai_function()
 async def start_scenario(character: str) -> str:
     """Generate a new scenario setup with location, hook, and detail."""
+    from character_creation.name_generator import generate_last_name, generate_name_by_class, generate_robot_name
+    import random
+    import sys
+    sys.path.append('.')
+    try:
+        from run_kani import get_character_pronouns
+    except ImportError:
+        def get_character_pronouns(character):
+            return {
+                "subject": "they",
+                "object": "them",
+                "possessive_adjective": "their",
+                "possessive_pronoun": "theirs",
+                "reflexive": "themself"
+            }
+    
     # Try to include recent scene summaries if available
     recap = ""
     try:
@@ -373,10 +389,16 @@ async def start_scenario(character: str) -> str:
     except Exception as e:
         recap = ""  # Fallback to no recap if something goes wrong
 
+    # Generate location names
+    station_name = f"{generate_last_name()}-{random.randint(10, 999)}"
+    drift_name = f"{generate_last_name()}'s Drift"
+    mechanic_name = generate_name_by_class("Pilot")  # Using pilot class for the mechanic
+    robot_name = generate_robot_name()
+
     # Scenario generation
     location = [
-        "Tycho-221, a rusting mining station orbiting a dead moon",
-        "Krellar's Drift, a smuggler outpost on the edge of lawful space",
+        f"{station_name}, a rusting mining station orbiting a dead moon",
+        f"{drift_name}, a smuggler outpost on the edge of lawful space",
         "The Verdant Wreck, a crashed science vessel overtaken by vegetation",
         "Bastion Core, a half-functional AI-run defense platform",
         "Drifter's Coil, a rotating casino/fuel depot hybrid"
@@ -399,11 +421,11 @@ async def start_scenario(character: str) -> str:
     ]
 
     companion = [
-        "You're accompanied by a jittery mechanic named Rix.",
+        f"You're accompanied by a jittery mechanic named {mechanic_name}.",
         f"Your only company is an unreliable AI named {generate_last_name()}.",
         "You travel alone — no backup, no guarantees.",
         "A bounty hunter named Lysa trails you, offering reluctant help.",
-        "You've been forced to collaborate with a suspicious android called Unit 7."
+        f"You've been forced to collaborate with a suspicious android called {robot_name}."
     ]
 
     # Generate a contact name using the Markov chain generator
@@ -425,6 +447,12 @@ async def start_scenario(character: str) -> str:
         "npc_or_detail": random.choice(npc_or_detail)
     }
 
+    # Get pronouns for the character
+    pronouns = get_character_pronouns(character)
+
+    # Add pronoun instruction to the scenario prompt
+    pronoun_instruction = f"Always refer to the character using these pronouns: subject: {pronouns['subject']}, object: {pronouns['object']}, possessive adjective: {pronouns['possessive_adjective']}, possessive pronoun: {pronouns['possessive_pronoun']}, reflexive: {pronouns['reflexive']}."
+
     scenario = f"""
 🪐 **SCENARIO START**
 
@@ -433,6 +461,8 @@ async def start_scenario(character: str) -> str:
 **Situation:** {scene_elements["situation"]}
 **Companion/Alone Status:** {scene_elements["companion"]}
 **Detail:** {scene_elements["npc_or_detail"]}
+
+{pronoun_instruction}
 """.strip()
 
     return recap + scenario
