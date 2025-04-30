@@ -14,6 +14,29 @@ NUM_RECENT_USER_MESSAGES = 10  # Change this value to adjust the summary range
 SCENE_LOG_PATH = "ephemeral/scene_log.json"
 XP_LOG_PATH = "ephemeral/xp_log.json"
 
+def get_character_pronouns(character: str) -> dict:
+    """Get the pronouns for a character from their character file."""
+    char_slug = character.lower().replace(" ", "_")
+    char_path = f"characters/{char_slug}.json"
+    try:
+        with open(char_path, "r") as f:
+            char_data = json.load(f)
+            return char_data.get("pronouns", {
+                "subject": "they",
+                "object": "them",
+                "possessive_adjective": "their",
+                "possessive_pronoun": "theirs",
+                "reflexive": "themself"
+            })
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {
+            "subject": "they",
+            "object": "them",
+            "possessive_adjective": "their",
+            "possessive_pronoun": "theirs",
+            "reflexive": "themself"
+        }
+
 def log_transaction(entry: dict):
     """Append a transaction entry to ledger.json with a timestamp."""
     LEDGER_PATH = "ephemeral/ledger.json"
@@ -363,7 +386,10 @@ async def start_scenario(character: str) -> str:
     import random
     import sys
     sys.path.append('.')
-    # Remove pronoun imports and logic
+    
+    # Get character's pronouns
+    pronouns = get_character_pronouns(character)
+    
     # Try to include recent scene summaries if available
     recap = ""
     try:
@@ -436,11 +462,13 @@ async def start_scenario(character: str) -> str:
         "npc_or_detail": random.choice(npc_or_detail)
     }
 
-    # Use hardcoded they/them pronoun instruction
+    # Use character's actual pronouns
     pronoun_instruction = (
         "Always refer to the character using these pronouns: "
-        "subject: they, object: them, possessive adjective: their, "
-        "possessive pronoun: theirs, reflexive: themself."
+        f"subject: {pronouns['subject']}, object: {pronouns['object']}, "
+        f"possessive adjective: {pronouns['possessive_adjective']}, "
+        f"possessive pronoun: {pronouns['possessive_pronoun']}, "
+        f"reflexive: {pronouns['reflexive']}."
     )
 
     scenario = f"""
